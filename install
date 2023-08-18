@@ -16,7 +16,7 @@ if which brew &> /dev/null; then
   CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml dotbot/install.asdf.yaml"
   PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 elif which apt &> /dev/null; then
-  apt update && apt install -y git sudo python3
+  sudo apt update && sudo apt install -y git python3
   CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"
   PLUGIN_DIR=""
 else
