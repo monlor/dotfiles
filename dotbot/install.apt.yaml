@@ -1,0 +1,32 @@
+- shell:
+    - 
+      command: sudo apt update
+      description: Updating apt
+      stdout: true
+      stderr: true
+    - 
+      command: sudo apt install -y zsh git python3 python3-pip curl fish socat bat jq fzf ipcalc htop neofetch neovim telnet pipenv mycli redis tmux tree bash
+      description: Installing packages
+      stdout: true
+      stderr: true
+    - 
+      command: curl -sS https://starship.rs/install.sh | sh -s -- -f
+      description: Installing starship
+      stdout: true
+      stderr: true
+      quiet: true
+    - 
+      command: |-
+        if [ ! -d ~/.pyenv ]; then
+          curl https://pyenv.run | bash
+        fi
+      description: Installing pyenv
+      quiet: true
+      stdout: true
+      stderr: true
+    - command: |-
+        if [ "${SHELL}" != "/bin/zsh" ]; then
+          chsh -s $(which zsh)
+        fi
+      description: Making zsh the default shell
+      quiet: true

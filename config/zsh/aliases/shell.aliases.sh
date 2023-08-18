@@ -78,3 +78,6 @@ fi
 
 alias to_lower="tr '[:upper:]' '[:lower:]'"
 alias to_upper="tr '[:lower:]' '[:upper:]'"
+
+alias cp="cp -i"
+alias upxx="upx --lzma --ultra-brute"
