@@ -24,10 +24,3 @@
       quiet: true
       stdout: true
       stderr: true
-    - command: |-
-        if [ "${SHELL}" != "/bin/zsh" ]; then
-          chsh -s $(which zsh)
-        fi
-      description: Making zsh the default shell
-      quiet: true
-      stderr: true

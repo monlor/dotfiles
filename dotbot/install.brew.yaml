@@ -7,11 +7,3 @@
     - [brew install git python3 curl, Installing packages]
 - brewfile:
     file: config/os/macos/brewfile
-- shell:
-    - command: |-
-        if [ "${SHELL}" != "/bin/zsh" ]; then
-          chsh -s $(which zsh)
-        fi
-      description: Making zsh the default shell
-      quiet: true
-      stderr: true
