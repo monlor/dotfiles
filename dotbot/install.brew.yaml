@@ -14,3 +14,4 @@
         fi
       description: Making zsh the default shell
       quiet: true
+      stderr: true
