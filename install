@@ -33,5 +33,6 @@ cat ${CONFIG} > install.conf.yaml
 
 cat <<-EOF
 Installation complete. 
+* Run 'chsh -s $(which zsh)' to make zsh your default shell.
 * Run 'zsh' to start a new shell.
 EOF
