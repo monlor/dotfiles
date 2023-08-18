@@ -1,19 +1,24 @@
-.PHONY: install brew brew-restore
+.PHONY: install brew_dump brew_install
 
 # Run dotbot install script
+# todo: add support for other OS
 install:
 	./install
 
 # Save snapshot of all Homebrew packages to macos/brewfile
-brew:
-	brew bundle dump -f --file=config/os/macos/brewfile
-	brew bundle --force cleanup --file=config/os/macos/brewfile
+brew_dump:
+	brew bundle dump --brews -f --file=config/os/macos/brewfile
+	brew bundle dump --casks -f --file=config/os/macos/brewfile.cask
+	brew bundle dump --mas -f --file=config/os/macos/brewfile.mas
+	# brew bundle --force cleanup --file=config/os/macos/brewfile
 
 # Restore Homebrew packages
-brew-restore:
+brew_install:
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
 	brew update
 	brew upgrade
 	brew install mas
 	brew bundle install --file=config/os/macos/brewfile
+	brew bundle install --file=config/os/macos/brewfile.cask
+	brew bundle install --file=config/os/macos/brewfile.mas
 	brew cleanup

@@ -30,3 +30,5 @@ alias guns="git reset HEAD --"
 alias gstl="git stash list --pretty=format:'%C(blue)%gd%C(reset): %<(100,trunc)%s %C(green)(%cr)%C(reset)'"
 
 alias ccmt="conventional_commit"
+
+alias init-git-cz="commitizen init git-cz --save-dev --save-exact"

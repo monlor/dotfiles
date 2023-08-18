@@ -64,6 +64,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HIST_STAMPS="yyyy-mm-dd"
 
 # Return time on long running processes
 REPORTTIME=2
@@ -92,9 +93,16 @@ export FZF_DEFAULT_OPTS='--reverse --bind 'ctrl-l:cancel''
 export FZF_TMUX_HEIGHT=80%
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export BAT_THEME='Monokai Extended Bright'
+export BAT_THEME='GitHub'
 export AWS_PAGER='bat -p'
+
+# default editor
+export VISUAL=vim
+export EDITOR="\$VISUAL"
 
 source ~/.asdf/asdf.sh
 
 eval "$(starship init zsh)"
+
+# load user zshrc
+[ -f ${HOME}/.zshrc.user ] && source ${HOME}/.zshrc.user

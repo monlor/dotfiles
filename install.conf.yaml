@@ -1,8 +1,4 @@
 - defaults:
-    brewfile:
-      stdout: true
-      stderr: true
-      include: ['tap', 'brew', 'cask', 'mas']
     link:
       relink: true
       create: true
@@ -10,7 +6,7 @@
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
 - link:
-    ~/bin:
+    ~/.local/bin:
       glob: true
       path: config/scripts/*
       relink: true
@@ -20,6 +16,7 @@
     ~/.zshrc:
       path: config/zsh/zshrc.zsh
       force: true
+    ~/.zshrc.user: config/zsh/zshrc.zsh.user
     ~/.config/zsh:
       path: config/zsh
       force: true
@@ -28,32 +25,63 @@
     ~/.config/fish:
       path: config/fish
       force: true
+    ~/.gitconfig: 
+      path: config/git/gitconfig
+      force: true
+    ~/.gitconfig.user: config/git/gitconfig.user
+    ~/.gitmessage: 
+      path: config/git/gitmessage
+      force: true
+    ~/.gitignore: 
+      path: config/git/gitignore
+      force: true
     ~/.config/htop:
       path: config/htop
-      force: true
-    ~/.config/nvim:
-      path: modules/nvchad
-      force: true
-    ~/.config/nvim/lua/custom:
-      path: config/nvim/custom
       force: true
     ~/.config/tmux:
       path: config/tmux
       force: true
     ~/.config/iterm2:
+      if: '[ `uname` = Darwin ]'
       path: config/iterm2
       force: true
-    ~/.asdf: modules/asdf
-    ~/.asdfrc: config/zsh/asdfrc
+- defaults:
+    brewfile:
+      stdout: true
+      stderr: true
+      include: ['tap', 'brew', 'cask', 'mas']
+- shell:
+    - [brew install git python3 curl, Installing packages]
 - brewfile:
     file: config/os/macos/brewfile
+- shell:
+    - command: |-
+        if [ "${SHELL}" != "/bin/zsh" ]; then
+          chsh -s $(which zsh)
+        fi
+      description: Making zsh the default shell
+      quiet: true
+- link:
+    ~/.asdf: modules/asdf
+    ~/.asdfrc: config/zsh/asdfrc
 - asdf:
   - plugin: java
+    asdf_path: ~/.asdf/asdf.sh
     url: https://github.com/halcyon/asdf-java.git
     global: corretto-17.0.6.10.1
     versions:
       - corretto-17.0.6.10.1
       - corretto-19.0.2.7.1
+  - plugin: golang
+    url: https://github.com/asdf-community/asdf-golang.git
+    global: 1.19.2
+    versions:
+      - 1.19.2
+  - plugin: python
+    url: https://github.com/danhper/asdf-python.git
+    global: 3.11.4
+    versions:
+      - 3.11.4
   - plugin: maven
     url: https://github.com/halcyon/asdf-maven.git
     global: 3.9.0

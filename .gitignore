@@ -1,6 +1,5 @@
 .vscode
 
-modules
 config/nvim/plugged
 
 .DS_Store
@@ -12,3 +11,5 @@ config/nvim/plugin/packer_compiled.lua
 
 # fish
 config/fish/fish_variables
+
+install.conf.yaml
