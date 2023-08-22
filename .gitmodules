@@ -20,3 +20,6 @@
 [submodule "modules/dotbot-brewfile"]
 	path = modules/dotbot-brewfile
 	url = https://ghproxy.com/https://github.com/sobolevn/dotbot-brewfile.git
+[submodule "modules/dotbot-yarn"]
+	path = modules/dotbot-yarn
+	url = https://github.com/duranzno/dotbot-yarn.git

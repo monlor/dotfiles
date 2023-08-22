@@ -33,3 +33,8 @@
     url: https://github.com/asdf-community/asdf-deno.git
     versions:
       - 1.33.1
+
+- shell:
+    - [npm i -g yarn, Installing yarn]
+- yarn:
+  - git-cz
