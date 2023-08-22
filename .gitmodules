@@ -1,25 +1,25 @@
 [submodule "modules/dotbot"]
 	path = modules/dotbot
-	url = https://ghproxy.com/https://github.com/anishathalye/dotbot.git
+	url = https://github.com/anishathalye/dotbot.git
 	ignore = dirty
 [submodule "modules/zgen"]
 	path = modules/zgen
-	url = https://ghproxy.com/https://github.com/tarjoilija/zgen.git
+	url = https://github.com/tarjoilija/zgen.git
 	ignore = dirty
 [submodule "modules/asdf"]
 	path = modules/asdf
-	url = https://ghproxy.com/https://github.com/asdf-vm/asdf.git
+	url = https://github.com/asdf-vm/asdf.git
 	ignore = dirty
 [submodule "modules/oh-my-zsh"]
 	path = modules/oh-my-zsh
-	url = https://ghproxy.com/https://github.com/ohmyzsh/ohmyzsh.git
+	url = https://github.com/ohmyzsh/ohmyzsh.git
 	ignore = dirty
 [submodule "modules/dotbot-asdf"]
 	path = modules/dotbot-asdf
-	url = https://ghproxy.com/https://github.com/sobolevn/dotbot-asdf.git
+	url = https://github.com/sobolevn/dotbot-asdf.git
 [submodule "modules/dotbot-brewfile"]
 	path = modules/dotbot-brewfile
-	url = https://ghproxy.com/https://github.com/sobolevn/dotbot-brewfile.git
+	url = https://github.com/sobolevn/dotbot-brewfile.git
 [submodule "modules/dotbot-yarn"]
 	path = modules/dotbot-yarn
 	url = https://github.com/duranzno/dotbot-yarn.git
