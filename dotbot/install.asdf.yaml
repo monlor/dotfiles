@@ -38,11 +38,13 @@
       - 1.33.1
 
 - shell:
-    - [npm i -g yarn, Installing yarn]
-- yarn:
-  - git-cz
-- pip:
-    file: package/pip/requirements.txt
-    user: true
-    stderr: true
-    stdout: false
+    - 
+     command: source ~/.asdf/asdf.sh && npm i -g yarn git-cz 
+     description: Installing npm package
+     quiet: true
+     stderr: true
+    - 
+     command: source ~/.asdf/asdf.sh && pip install ydcv
+     description: Installing python package
+     quiet: true
+     stderr: true
