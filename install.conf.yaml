@@ -45,6 +45,9 @@
       if: '[ `uname` = Darwin ]'
       path: config/iterm2
       force: true
+    ~/.m2/settings.xml:
+      path: config/maven-settings.xml 
+      force: true
 - defaults:
     brewfile:
       stdout: true
@@ -53,7 +56,10 @@
 - shell:
     - [brew install git python3 curl, Installing packages]
 - brewfile:
-    file: config/os/macos/brewfile
+    file: package/brew/brewfile
+- defaults:
+     pip:
+       stderr: true
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
@@ -94,3 +100,8 @@
     - [npm i -g yarn, Installing yarn]
 - yarn:
   - git-cz
+- pip:
+    file: package/pip/requirements.txt
+    user: true
+    stderr: true
+    stdout: false

@@ -23,3 +23,6 @@
 [submodule "modules/dotbot-yarn"]
 	path = modules/dotbot-yarn
 	url = https://github.com/duranzno/dotbot-yarn.git
+[submodule "modules/dotbot-pip"]
+	path = modules/dotbot-pip
+	url = https://github.com/sobolevn/dotbot-pip.git

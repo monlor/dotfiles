@@ -6,4 +6,4 @@
 - shell:
     - [brew install git python3 curl, Installing packages]
 - brewfile:
-    file: config/os/macos/brewfile
+    file: package/brew/brewfile
