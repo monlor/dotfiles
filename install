@@ -14,7 +14,7 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 if which brew &> /dev/null; then 
   brew install git python3 curl
   CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml dotbot/install.asdf.yaml"
-  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile --plugin-dir ${BASEDIR}/modules/dotbot-asdf --plugin-dir ${BASEDIR}/modules/dotbot-yarn"
+  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile --plugin-dir ${BASEDIR}/modules/dotbot-asdf --plugin-dir ${BASEDIR}/modules/dotbot-yarn --plugin-dir ${BASEDIR}/modules/dotbot-pip"
 elif which apt &> /dev/null; then
   sudo apt update && sudo apt install -y git python3
   CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"

@@ -45,3 +45,6 @@
       if: '[ `uname` = Darwin ]'
       path: config/iterm2
       force: true
+    ~/.m2/settings.xml:
+      path: config/maven-settings.xml 
+      force: true

@@ -1,3 +1,6 @@
+- defaults:
+     pip:
+       stderr: true
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
@@ -38,3 +41,8 @@
     - [npm i -g yarn, Installing yarn]
 - yarn:
   - git-cz
+- pip:
+    file: package/pip/requirements.txt
+    user: true
+    stderr: true
+    stdout: false
