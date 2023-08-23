@@ -3,7 +3,5 @@
       stdout: true
       stderr: true
       include: ['tap', 'brew', 'cask', 'mas']
-- shell:
-    - [brew install git python3 curl, Installing packages]
 - brewfile:
     file: package/brew/brewfile

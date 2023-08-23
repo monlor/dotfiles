@@ -16,6 +16,9 @@
     ~/.zshrc:
       path: config/zsh/zshrc.zsh
       force: true
+    ~/.zprofile:
+      path: config/zsh/zprofile.zsh
+      force: true
     ~/.zshrc.user: config/zsh/zshrc.zsh.user
     ~/.config/zsh:
       path: config/zsh
@@ -41,10 +44,13 @@
     ~/.config/tmux:
       path: config/tmux
       force: true
+    ~/.config/nvim:
+      path: config/nvim
+      force: true
     ~/.config/iterm2:
       if: '[ `uname` = Darwin ]'
       path: config/iterm2
       force: true
     ~/.m2/settings.xml:
-      path: config/maven-settings.xml 
+      path: config/maven/settings.xml 
       force: true

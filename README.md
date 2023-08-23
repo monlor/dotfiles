@@ -20,8 +20,8 @@
 
 #### Mac
 
-* brew
-* git
+* brew [`make brew_install`]
+* git [`xcode-select --install`]
 
 #### Linux
 

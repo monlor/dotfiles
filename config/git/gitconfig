@@ -46,7 +46,7 @@
     autoSetupRemote = true
 
 [credential]
-    helper = 'cache --timeout=3600'
+    helper = cache
 
 [commit]
     template = ~/.gitmessage
