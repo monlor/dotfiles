@@ -7,9 +7,9 @@ install:
 
 # Save snapshot of all Homebrew packages to macos/brewfile
 brew_dump:
-	brew bundle dump --brews -f --file=config/os/macos/brewfile
-	brew bundle dump --casks -f --file=config/os/macos/brewfile.cask
-	brew bundle dump --mas -f --file=config/os/macos/brewfile.mas
+	brew bundle dump --brews -f --file=package/brew/brewfile
+	brew bundle dump --casks -f --file=package/brew/brewfile.cask
+	brew bundle dump --mas -f --file=package/brew/brewfile.mas
 	# brew bundle --force cleanup --file=config/os/macos/brewfile
 
 # Restore Homebrew packages
@@ -17,9 +17,9 @@ brew_restore:
 	brew update
 	brew upgrade
 	brew install mas
-	brew bundle install --file=config/os/macos/brewfile
-	brew bundle install --file=config/os/macos/brewfile.cask
-	brew bundle install --file=config/os/macos/brewfile.mas
+	brew bundle install --file=package/brew/brewfile
+	brew bundle install --file=package/brew/brewfile.cask
+	brew bundle install --file=package/brew/brewfile.mas
 	brew cleanup
 
 brew_install:
