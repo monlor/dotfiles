@@ -5,7 +5,6 @@ mas "EasyRes", id: 688211836
 mas "iBar", id: 6443843900
 mas "iCopy", id: 1638023723
 mas "Infuse", id: 1136220934
-mas "Xnip", id: 1221250572
 mas "IT之家", id: 1075668476
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft OneNote", id: 784801555
@@ -29,3 +28,5 @@ mas "爱奇艺", id: 1012296988
 mas "腾讯视频", id: 1231336508
 mas "虎牙直播", id: 886103288
 mas "Save to Raindrop.io", id: 1549370672
+mas "xSearch for Safari", id: 1579902068
+mas "iShot Pro", id: 1611347086
