@@ -97,8 +97,8 @@ export BAT_THEME='GitHub'
 export AWS_PAGER='bat -p'
 
 # default editor
-export VISUAL=vim
-export EDITOR="\$VISUAL"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 source ~/.asdf/asdf.sh
 
