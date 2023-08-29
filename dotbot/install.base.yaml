@@ -54,3 +54,6 @@
     ~/.m2/settings.xml:
       path: config/maven/settings.xml 
       force: true
+    ~/.npmrc:
+      path: config/node/npmrc
+      force: true
