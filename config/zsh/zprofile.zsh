@@ -7,3 +7,8 @@ if [ -n "${BREW_HOME}" ]; then
   eval "$(${BREW_HOME}/bin/brew shellenv)"
   export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
 fi
+
+# Added by OrbStack: command-line tools and integration
+if [ -f ~/.orbstack/shell/init.zsh ]; then
+  source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+fi
