@@ -43,7 +43,6 @@ h() {
 OS=$(uname)
 case $OS in
 'Linux')
-  alias ls='ls --color=auto -p'
   alias sagi='sudo apt-get install'
   alias sai='sudo apt install'
   alias sagu='sudo apt-get update'
@@ -64,12 +63,14 @@ if type bat >/dev/null 2>&1; then
   alias cat="bat"
 fi
 
-if type exa >/dev/null 2>&1; then
-  alias ll='exa --long --header --git --group --all --icons'
-  alias tr1='exa --long --header --git --group --all --tree --level=1 --icons'
-  alias tr2='exa --long --header --git --group --all --tree --level=2 --icons'
-  alias tr3='exa --long --header --git --group --all --tree --level=3 --icons'
+if type eza >/dev/null 2>&1; then
+  alias ls='eza'
+  alias ll='eza --long --header --git --group --all --icons'
+  alias tr1='eza --long --header --git --group --all --tree --level=1 --icons'
+  alias tr2='eza --long --header --git --group --all --tree --level=2 --icons'
+  alias tr3='eza --long --header --git --group --all --tree --level=3 --icons'
 else
+  alias ls='ls --color=auto -p'
   alias ll='ll -la'
   alias tr1='tree -L 1 -C'
   alias tr2='tree -L 2 -C'
