@@ -13,3 +13,4 @@ config/nvim/plugin/packer_compiled.lua
 config/fish/fish_variables
 
 install.conf.yaml
+InjectLib
