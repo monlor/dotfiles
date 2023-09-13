@@ -15,6 +15,8 @@ if type systemctl >/dev/null 2>&1; then
   alias sstart='sudo systemctl start'
 fi
 
+alias rm='trash'
+
 # Easier navigation
 alias ..='cd ..'
 alias ...='cd ../..'
