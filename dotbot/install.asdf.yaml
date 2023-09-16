@@ -1,14 +1,9 @@
-- defaults:
-    pip:
-      stderr: true
-    asdf:
-      stderr: true
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
 - asdf:
+  - asdf_path: ~/.asdf/asdf.sh
   - plugin: java
-    # asdf_path: ~/.asdf/asdf.sh
     url: https://github.com/halcyon/asdf-java.git
     global: corretto-17.0.6.10.1
     versions:
@@ -42,12 +37,12 @@
 
 - shell:
     - 
-     command: source ~/.asdf/asdf.sh && npm i -g yarn git-cz 
+     command: . ~/.asdf/asdf.sh && npm i -g yarn git-cz 
      description: Installing npm package
      quiet: true
      stderr: true
     - 
-     command: source ~/.asdf/asdf.sh && pip install ydcv
+     command: . ~/.asdf/asdf.sh && pip install ydcv
      description: Installing python package
      quiet: true
      stderr: true
