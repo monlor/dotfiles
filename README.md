@@ -33,7 +33,7 @@
 ```bash
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
-./install
+./install.sh
 ```
 
 ### Custom

@@ -3,7 +3,7 @@
 # Run dotbot install script
 # todo: add support for other OS
 install:
-	./install
+	./install.sh
 
 # Save snapshot of all Homebrew packages to macos/brewfile
 brew_dump:
