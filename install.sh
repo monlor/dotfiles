@@ -11,6 +11,7 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+echo "Installing prerequisites..."
 if which brew &> /dev/null; then 
   which python3 &> /dev/null || brew install python3
   which git &> /dev/null || brew install git
@@ -26,7 +27,16 @@ else
   exit 1
 fi
 
-echo ${CONFIG}
+cat <<-EOF
+
+Dotbot will install the following:
+* Configs
+${CONFIG}
+* Plugins
+${PLUGIN_DIR}
+EOF
+sleep 3
+
 cat ${CONFIG} > install.conf.yaml
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" ${PLUGIN_DIR} \
