@@ -15,17 +15,23 @@ if which brew &> /dev/null; then
   which python3 &> /dev/null || brew install python3
   which git &> /dev/null || brew install git
   which curl &> /dev/null || brew install curl
-  CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml dotbot/install.asdf.yaml"
-  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+  CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml"
+  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
 elif which apt &> /dev/null; then
   sudo apt update && sudo apt install -y git python3
-  CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml dotbot/install.asdf.yaml"
-  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+  CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"
+  PLUGIN_DIR=""
 else
   echo "Unknown environment. Exiting."
   exit 1
 fi
 
+if [ "${ASDF:-true}" = "true" ]; then
+  CONFIG="${CONFIG} dotbot/install.asdf.yaml"
+  PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+fi
+
+# show config
 cat <<-EOF
 
 Dotbot will install the following:
@@ -34,6 +40,7 @@ ${CONFIG}
 * Plugins
 ${PLUGIN_DIR}
 EOF
+
 sleep 3
 
 cat ${CONFIG} > install.conf.yaml
