@@ -19,8 +19,8 @@ if which brew &> /dev/null; then
   PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 elif which apt &> /dev/null; then
   sudo apt update && sudo apt install -y git python3
-  CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"
-  PLUGIN_DIR=""
+  CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml dotbot/install.asdf.yaml"
+  PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 else
   echo "Unknown environment. Exiting."
   exit 1
