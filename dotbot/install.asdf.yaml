@@ -18,9 +18,9 @@
       - 1.19.2
   - plugin: python
     url: https://github.com/danhper/asdf-python.git
-    global: 3.11.4
+    global: 3.10.13
     versions:
-      - 3.11.4
+      - 3.10.13
   - plugin: maven
     url: https://github.com/halcyon/asdf-maven.git
     global: 3.9.0
