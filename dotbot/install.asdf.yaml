@@ -1,8 +1,6 @@
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
-- shell: 
-    - [sleep 3, Waiting for asdf to be installed]
 - asdf:
   - asdf_path: ~/.asdf/asdf.sh
   - plugin: java
@@ -36,7 +34,6 @@
     url: https://github.com/asdf-community/asdf-deno.git
     versions:
       - 1.33.1
-
 - shell:
     - 
      command: bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz' 
