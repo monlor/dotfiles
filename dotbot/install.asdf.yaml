@@ -1,6 +1,8 @@
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
+- shell: 
+    - [sleep 3, Waiting for asdf to be installed]
 - asdf:
   - asdf_path: ~/.asdf/asdf.sh
   - plugin: java
