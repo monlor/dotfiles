@@ -8,8 +8,7 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
+git submodule update --init --recursive
 
 echo "Installing prerequisites..."
 if which brew &> /dev/null; then 

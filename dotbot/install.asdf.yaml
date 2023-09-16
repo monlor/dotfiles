@@ -1,5 +1,7 @@
 - link:
-    ~/.asdf: modules/asdf
+    ~/.asdf: 
+      path: modules/asdf
+      force: true
     ~/.asdfrc: config/zsh/asdfrc
 - asdf:
   - asdf_path: ~/.asdf/asdf.sh
