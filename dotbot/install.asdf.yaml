@@ -39,12 +39,12 @@
 
 - shell:
     - 
-     command: . ~/.asdf/asdf.sh && npm i -g yarn git-cz 
+     command: bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz' 
      description: Installing npm package
      quiet: true
      stderr: true
     - 
-     command: . ~/.asdf/asdf.sh && pip install ydcv
+     command: bash -c 'source ~/.asdf/asdf.sh && pip install ydcv'
      description: Installing python package
      quiet: true
      stderr: true
