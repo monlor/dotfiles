@@ -1,12 +1,14 @@
 - defaults:
-     pip:
-       stderr: true
+    pip:
+      stderr: true
+    asdf:
+      stderr: true
 - link:
     ~/.asdf: modules/asdf
     ~/.asdfrc: config/zsh/asdfrc
 - asdf:
   - plugin: java
-    asdf_path: ~/.asdf/asdf.sh
+    # asdf_path: ~/.asdf/asdf.sh
     url: https://github.com/halcyon/asdf-java.git
     global: corretto-17.0.6.10.1
     versions:
