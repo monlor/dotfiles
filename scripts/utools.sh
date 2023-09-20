@@ -24,12 +24,8 @@ backup() {
     echo "开始备份..."
     restic backup "$SOURCE_DIR" --tag uTools
 
-    # 检查备份数量是否超出设定的最大数量
-    while [ $(restic snapshots --tag uTools --no-lock | wc -l) -gt $MAX_BACKUP_COUNT ]
-    do
-        # 删除最早的备份
-        restic forget --tag uTools --prune --keep-last $MAX_BACKUP_COUNT --no-lock
-    done
+    # 删除较早的备份
+    restic forget --tag uTools --prune --keep-last $MAX_BACKUP_COUNT 
 
     echo "备份完成."
 }
