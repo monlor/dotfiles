@@ -19,19 +19,25 @@
     separator = yellow
     function = blue
 
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-
 [color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    # 用于显示未添加到暂存区的更改的颜色配置
+    color = auto
+
+[color "diff-highlight"]
+    # 新增的行将以绿色显示
+    new = green bold
+
+    # 删除的行将以红色显示
+    old = red bold
+
+    # 修改的行将以蓝色显示
+    frag = blue bold
+
+    # 更改的行将以紫色显示
+    meta = yellow bold
+
+    # 指示行将以青色显示
+    whitespace = cyan reverse
 
 [pretty]
     line = "%C(auto)%h%d %s %C(yellow)by %C(blue)%an %C(green)%ar"
