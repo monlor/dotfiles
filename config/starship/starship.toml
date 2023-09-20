@@ -1,21 +1,19 @@
-# format = '$directory$character'
 format = """
 $directory\
 $git_branch\
 $git_status\
 $java\
 $rust\
+$nodejs\
 $cmd_duration\
 $character\
 """
 
-# Disable the blank line at the start of the prompt
 add_newline = false
-
 command_timeout = 1000
 
 [directory]
-truncation_length = 7
+truncation_length = 1
 truncate_to_repo = false
 truncation_symbol = '…/'
 style = 'bold fg:39'
@@ -23,8 +21,9 @@ repo_root_style = 'bold fg:31'
 before_repo_root_style = 'bold fg:39'
 
 [git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style) '
+format = '[$symbol $branch(:$remote_branch)]($style) '
 style = 'bold fg:76'
+symbol = "🚀"
 
 [git_status]
 ahead = '⇡${count}'
@@ -34,13 +33,17 @@ behind = '⇣${count}'
 [java]
 format = '[${symbol}(${version} )]($style)'
 version_format = 'v${raw}'
+symbol = "☕"
 
 [nodejs]
-format = '[$symbol($version )]($style)'
+format = '[$symbol ($version )]($style)'
+symbol = "⬢"
 
 [rust]
-format = '[$symbol($version )]($style)'
+format = '[$symbol ($version )]($style)'
+symbol = "🦀"
 
 [cmd_duration]
 min_time = 500
 format = 'took [$duration]($style) '
+
