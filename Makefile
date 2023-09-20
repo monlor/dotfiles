@@ -5,6 +5,9 @@
 install:
 	./install.sh
 
+install_all:
+	ASDF=true ./install.sh
+
 # Save snapshot of all Homebrew packages to macos/brewfile
 brew_dump:
 	brew bundle dump --brews -f --file=package/brew/brewfile
