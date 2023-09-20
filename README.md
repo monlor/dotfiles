@@ -41,6 +41,15 @@ cd ~/.dotfiles
 * ~/.zshrc.user
 * ~/.gitconfig.user (Set up your git user)
 
+### uTools Backup and Restore
+
+```
+# Backup your utools files to ~/Documents/Backup/uTools
+./scripts/utools.sh backup
+# Overwrite your utools data with the latest backup
+./scripts/utools.sh restore
+```
+
 ### Inspired By
 
 - https://github.com/denolfe/dotfiles
