@@ -26,7 +26,7 @@ else
   exit 1
 fi
 
-if [ "${ASDF:-true}" = "true" ]; then
+if [ "${ASDF:-false}" = "true" ]; then
   CONFIG="${CONFIG} dotbot/install.asdf.yaml"
   PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 fi
