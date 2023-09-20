@@ -33,7 +33,7 @@ backup() {
 # 恢复函数
 restore() {
     echo "开始恢复最新备份..."
-    restic restore latest --target "$SOURCE_DIR" --no-lock
+    restic restore latest --target "/" --no-lock
     echo "恢复完成."
 }
 
