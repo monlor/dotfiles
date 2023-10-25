@@ -106,3 +106,4 @@ eval "$(starship init zsh)"
 
 # load user zshrc
 [ -f ${HOME}/.zshrc.user ] && source ${HOME}/.zshrc.user
+. "/Users/monlor/.acme.sh/acme.sh.env"
