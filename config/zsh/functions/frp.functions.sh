@@ -13,5 +13,5 @@ easyfrp() {
   local end_port=$(echo ${FRP_ALLOW_PORTS} | cut -d '-' -f2)
   local remote_port=${2:-$(( RANDOM % (end_port-start_port+1) + start_port ))}
   echo "将本地服务：${local_ip:-127.0.0.1}:${local_port} 映射到远程：${server_ip}:${remote_port}"
-  frpc tcp -s ${server_ip}:${server_port} -t ${FRP_TOKEN} -i ${local_ip:-127.0.0.1} -l ${local_port} -r ${remote_port}
+  frpc tcp -n ${remote_port} -s ${server_ip}:${server_port} -t ${FRP_TOKEN} -i ${local_ip:-127.0.0.1} -l ${local_port} -r ${remote_port}
 }
