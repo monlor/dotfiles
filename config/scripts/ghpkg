@@ -64,8 +64,8 @@ for arg in "${@}"; do
 
     # 检查是否找到了匹配的asset
     if [ ${#ASSET_URLS[@]} -eq 0 ]; then
-        echo "No matching assets found for $OS with architectures: $ARCH_NAMES"
-        exit 1
+        echo "$USER/$REPO has no matching assets found for $OS with architectures: $ARCH_NAMES"
+        continue
     fi
 
 
