@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# bash version >= 4.0
+
+set -eu
+
+# 检查输入参数
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <USER/REPO>"
+    exit 1
+fi
+
+# 获取操作系统和架构
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m)
+
+# 定义架构名映射
+declare -A ARCH_MAP
+ARCH_MAP["x86_64"]="amd64 x86_64"
+ARCH_MAP["amd64"]="amd64 x86_64"
+ARCH_MAP["arm64"]="arm64 aarch64"
+ARCH_MAP["aarch64"]="arm64 aarch64"
+
+# 获取当前架构的可能名称
+ARCH_NAMES=${ARCH_MAP[$ARCH]}
+if [ -z "$ARCH_NAMES" ]; then
+    ARCH_NAMES=$ARCH
+fi
+
+# 定义用于安装的目录
+INSTALL_DIR="$HOME/.local/bin"
+
+for arg in "${@}"; do
+
+    echo "Preparing $arg..."
+    REPO_INFO=(${arg//\// })
+    # 解析输入参数
+    USER=${REPO_INFO[0]}
+    REPO=${REPO_INFO[1]}
+
+    # 使用GitHub API获取最新release的信息
+    RELEASE_URL="https://api.github.com/repos/$USER/$REPO/releases/latest"
+
+    # 获取所有匹配的asset URLs
+    ASSET_URLS=()
+    for NAME in $ARCH_NAMES; do
+        urls=$(curl -s $RELEASE_URL | grep -i "browser_download_url.*$OS.*$NAME" | cut -d '"' -f 4)
+        contains_tar_gz=false
+        # 检查是否存在tar.gz文件
+        if echo $urls | grep -q ".tar.gz"; then
+            contains_tar_gz=true
+        fi
+        for url in $urls; do
+            if [ "$contains_tar_gz" = true ]; then
+                # 存在tar.gz文件时，只下载tar.gz文件
+                if [[ $url == *.tar.gz ]]; then
+                    ASSET_URLS+=("$url")
+                fi
+            else
+                # 不存在tar.gz文件时，下载所有文件
+                ASSET_URLS+=("$url")
+            fi
+        done
+    done
+
+    # 检查是否找到了匹配的asset
+    if [ ${#ASSET_URLS[@]} -eq 0 ]; then
+        echo "No matching assets found for $OS with architectures: $ARCH_NAMES"
+        exit 1
+    fi
+
+
+    # 创建一个临时目录来解压文件
+    TEMP_DIR=$(mktemp -d)
+
+    # 下载并处理每个asset
+    for ASSET_URL in "${ASSET_URLS[@]}"; do
+        # 提取文件名
+        FILE_NAME=$(basename $ASSET_URL)
+        
+        # 判断文件类型并执行相应操作
+        if [[ $FILE_NAME == *.tar.gz ]]; then
+            # 下载并解压tar.gz文件到临时目录
+            curl -sL $ASSET_URL | tar -xz -C $TEMP_DIR
+            # 找到解压后的可执行文件
+            EXECUTABLE=$(find $TEMP_DIR -perm +111 -type f | head -n 1)
+            FILE_NAME=$(basename $EXECUTABLE)
+            # 提取文件名的前缀，yq_darwin_amd64 => yq
+            FILE_NAME=${FILE_NAME%%_*}
+            echo "> Installing $FILE_NAME to $INSTALL_DIR"
+            # 移动到安装目录
+            mv $EXECUTABLE $INSTALL_DIR/$FILE_NAME
+            # 删除临时目录
+            rm -rf $TEMP_DIR/*
+        else
+            FILE_NAME=$(basename $ASSET_URL)
+            # 提取文件名的前缀，yq_darwin_amd64 => yq
+            FILE_NAME=${FILE_NAME%%_*}
+            echo "> Installing $FILE_NAME to $INSTALL_DIR"
+            # 对于其他类型的文件，直接下载
+            curl -sL $ASSET_URL -o "$INSTALL_DIR/$FILE_NAME"
+            # 给执行文件添加执行权限
+            chmod +x "$INSTALL_DIR/$FILE_NAME"
+        fi
+    done
+
+    rm -rf $TEMP_DIR
+done

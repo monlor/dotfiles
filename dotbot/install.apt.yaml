@@ -22,3 +22,9 @@
       command: curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
       description: Installing helm
       stderr: true
+    - 
+      command: bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer' 
+      description: Installing Github release package
+      quiet: true
+      stdout: true
+      stderr: true
