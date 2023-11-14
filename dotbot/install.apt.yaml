@@ -23,7 +23,7 @@
       description: Installing helm
       stderr: true
     - 
-      command: bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer' 
+      command: bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile' 
       description: Installing Github release package
       quiet: true
       stdout: true
