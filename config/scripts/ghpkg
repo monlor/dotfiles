@@ -87,7 +87,7 @@ for arg in "${@}"; do
             else
                 find_params="-executable -type f"
             fi
-            EXECUTABLE=$(find $TEMP_DIR $find_params | head -n 1)
+            EXECUTABLE=$(find $TEMP_DIR -not -name "*.sh" $find_params | head -n 1)
             FILE_NAME=$(basename $EXECUTABLE)
             # 提取文件名的前缀，yq_darwin_amd64 => yq
             FILE_NAME=${FILE_NAME%%_*}
