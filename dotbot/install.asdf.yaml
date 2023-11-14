@@ -38,12 +38,12 @@
       - 1.33.1
 - shell:
     - 
-     command: bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz pnpm' 
-     description: Installing npm package
-     quiet: true
-     stderr: true
+      command: bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz pnpm' 
+      description: Installing npm package
+      quiet: true
+      stderr: true
     - 
-     command: bash -c 'source ~/.asdf/asdf.sh && pip install ydcv'
-     description: Installing python package
-     quiet: true
-     stderr: true
+      command: bash -c 'source ~/.asdf/asdf.sh && pip install ydcv'
+      description: Installing python package
+      quiet: true
+      stderr: true

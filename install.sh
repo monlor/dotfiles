@@ -7,6 +7,8 @@ DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+ASDF=${ASDF:-false}
+
 cd "${BASEDIR}"
 git submodule update --init --recursive
 
@@ -17,18 +19,21 @@ if which brew &> /dev/null; then
   which curl &> /dev/null || brew install curl
   CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml"
   PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
+  if [ "${ASDF}" = "true" ]; then
+    CONFIG="${CONFIG} dotbot/install.asdf.yaml"
+    PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+  fi
 elif which apt &> /dev/null; then
   sudo apt update && sudo apt install -y git python3
   CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"
   PLUGIN_DIR=""
+  if [ "${ASDF}" = "true" ]; then
+    CONFIG="${CONFIG} dotbot/install.asdf.yaml"
+    PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+  fi
 else
   echo "Unknown environment. Exiting."
   exit 1
-fi
-
-if [ "${ASDF:-false}" = "true" ]; then
-  CONFIG="${CONFIG} dotbot/install.asdf.yaml"
-  PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 fi
 
 # show config
