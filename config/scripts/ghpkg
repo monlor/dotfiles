@@ -82,7 +82,12 @@ for arg in "${@}"; do
             # 下载并解压tar.gz文件到临时目录
             curl -sL $ASSET_URL | tar -xz -C $TEMP_DIR
             # 找到解压后的可执行文件
-            EXECUTABLE=$(find $TEMP_DIR -perm +111 -type f | head -n 1)
+            if [ "$OS" = "darwin" ]; then
+                find_params="-perm +111 -type f"
+            else
+                find_params="-executable -type f"
+            fi
+            EXECUTABLE=$(find $TEMP_DIR $find_params | head -n 1)
             FILE_NAME=$(basename $EXECUTABLE)
             # 提取文件名的前缀，yq_darwin_amd64 => yq
             FILE_NAME=${FILE_NAME%%_*}
