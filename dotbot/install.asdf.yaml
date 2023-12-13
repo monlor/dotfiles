@@ -16,11 +16,11 @@
     global: 1.21.0
     versions:
       - 1.21.0
-  # - plugin: python
-  #   url: https://github.com/danhper/asdf-python.git
-  #   global: 3.10.13
-  #   versions:
-  #     - 3.10.13
+  - plugin: python
+    url: https://github.com/danhper/asdf-python.git
+    global: 3.10.13
+    versions:
+      - 3.10.13
   - plugin: maven
     url: https://github.com/halcyon/asdf-maven.git
     global: 3.9.0
@@ -43,7 +43,7 @@
       quiet: true
       stderr: true
     - 
-      command: bash -c 'source ~/.asdf/asdf.sh && pip install ydcv'
+      command: bash -c 'source ~/.asdf/asdf.sh && pip3 install ydcv'
       description: Installing python package
       quiet: true
       stderr: true
