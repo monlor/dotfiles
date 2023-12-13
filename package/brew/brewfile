@@ -1,4 +1,6 @@
 tap "homebrew/cask-fonts"
+tap "monlor/taps"
+tap "ameshkov/tap"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 brew "bash"

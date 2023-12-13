@@ -59,6 +59,7 @@ Installation complete.
 * Run 'chsh -s $(which zsh)' to make zsh your default shell.
 * Change terminal font to 'Nerd'.
 * Run 'zsh' to start a new shell.
+* Run 'asdf reshim python' for the binary to be in your path.
 * Run 'make brew_restore' to restore all brew package.
 When zgen initialization fails:
 * zgen reset
