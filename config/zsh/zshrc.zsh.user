@@ -1,4 +1,6 @@
 # frp
-FRP_SERVER=frp.freefrp.net:7000
-FRP_TOKEN=freefrp.net
-FRP_ALLOW_PORTS=10001-50000
+export FRP_SERVER=frp.freefrp.net:7000
+export FRP_TOKEN=freefrp.net
+export FRP_ALLOW_PORTS=10001-50000
+# openai
+export OPENAI_API_KEY=
