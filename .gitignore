@@ -14,3 +14,9 @@ config/fish/fish_variables
 
 install.conf.yaml
 InjectLib
+*.user
+*.user
+
+# custom
+config/git/gitconfig.user
+config/zsh/zshrc.zsh.user
