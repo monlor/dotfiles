@@ -7,7 +7,7 @@
     file: package/brew/brewfile
 - shell:
     - 
-      command: /usr/local/bin/bash -c '~/.local/bin/ghpkg AliyunContainerService/image-syncer' 
+      command: /bin/bash -c '~/.local/bin/ghpkg AliyunContainerService/image-syncer' 
       description: Installing Github release package
       quiet: true
       stdout: true
