@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ ! -d "InjectLib" ]; then
-  git clone https://github.com/QiuChenlyOpenSource/InjectLib
+if [ ! -d "91QiuChen" ]; then
+  git clone https://github.com/QiuChenlyOpenSource/91QiuChen
 fi
 
-cd InjectLib
+cd 91QiuChen
 
 git pull
 

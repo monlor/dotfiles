@@ -15,12 +15,12 @@
     url: https://github.com/asdf-community/asdf-golang.git
     global: 1.21.0
     versions:
-      - 1.21.0
+      - 1.19.2
   - plugin: python
     url: https://github.com/danhper/asdf-python.git
-    global: 3.10.13
+    global: 3.12.2
     versions:
-      - 3.10.13
+      - 3.12.2
   - plugin: maven
     url: https://github.com/halcyon/asdf-maven.git
     global: 3.9.0
