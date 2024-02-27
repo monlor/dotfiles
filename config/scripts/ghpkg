@@ -42,7 +42,7 @@ for arg in "${@}"; do
     REPO=${REPO_INFO[1]}
 
     if [ "${GHPKG_UPDATE}" = "true" ]; then
-        echo "update mode is enabled!"
+        echo "Update mode is enabled!"
     else
         if [ -f "$INSTALL_DIR/$REPO" ]; then
             echo "$REPO is already installed in $INSTALL_DIR"
