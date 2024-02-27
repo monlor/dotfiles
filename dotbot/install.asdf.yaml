@@ -15,7 +15,7 @@
     url: https://github.com/asdf-community/asdf-golang.git
     global: 1.21.0
     versions:
-      - 1.19.2
+      - 1.21.0
   - plugin: python
     url: https://github.com/danhper/asdf-python.git
     global: 3.11.7
