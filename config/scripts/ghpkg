@@ -9,6 +9,10 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
+# env
+# 开启更新模式，跳过已安装校验 true/false
+GHPKG_UPDATE=${GHPKG_UPDATE:-}
+
 # 获取操作系统和架构
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
@@ -36,6 +40,15 @@ for arg in "${@}"; do
     # 解析输入参数
     USER=${REPO_INFO[0]}
     REPO=${REPO_INFO[1]}
+
+    if [ "${GHPKG_UPDATE}" = "true" ]; then
+        echo "update mode is enabled!"
+    else
+        if [ -f "$INSTALL_DIR/$REPO" ]; then
+            echo "$REPO is already installed in $INSTALL_DIR"
+            continue
+        fi
+    fi
 
     # 使用GitHub API获取最新release的信息
     RELEASE_URL="https://api.github.com/repos/$USER/$REPO/releases/latest"
