@@ -100,7 +100,9 @@ export AWS_PAGER='bat -p'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-source ~/.asdf/asdf.sh
+if [ -f ~/.asdf/asdf.sh ]; then
+  source ~/.asdf/asdf.sh
+fi
 
 eval "$(starship init zsh)"
 
