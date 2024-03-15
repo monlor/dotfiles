@@ -17,7 +17,6 @@
     ~/.zprofile:
       path: config/zsh/zprofile.zsh
       force: true
-    ~/.zshrc.user: config/zsh/zshrc.zsh.user
     ~/.config/zsh:
       path: config/zsh
       force: true
@@ -29,7 +28,6 @@
     ~/.gitconfig: 
       path: config/git/gitconfig
       force: true
-    ~/.gitconfig.user: config/git/gitconfig.user
     ~/.gitmessage: 
       path: config/git/gitmessage
       force: true
@@ -55,3 +53,6 @@
     ~/.npmrc:
       path: config/node/npmrc
       force: true
+- shell:
+    - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
+    - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
