@@ -27,3 +27,9 @@ brew_restore:
 
 brew_install:
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
+backup:
+	mackup backup -f
+
+restore:
+	mackup restore
