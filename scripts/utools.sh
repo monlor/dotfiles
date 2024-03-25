@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 # 全局变量
 MAX_BACKUP_COUNT=10
 SOURCE_DIR="$HOME/Library/Application Support/uTools"
@@ -22,7 +24,7 @@ init_repo() {
 backup() {
     init_repo
     echo "开始备份..."
-    restic backup "$SOURCE_DIR" --tag uTools
+    cd "$SOURCE_DIR" && restic backup . --tag uTools
 
     # 删除较早的备份
     restic forget --tag uTools --prune --keep-last $MAX_BACKUP_COUNT 
@@ -33,7 +35,7 @@ backup() {
 # 恢复函数
 restore() {
     echo "开始恢复最新备份..."
-    restic restore latest --target "/" --no-lock
+    restic restore latest --target "$SOURCE_DIR" --no-lock
     echo "恢复完成."
 }
 

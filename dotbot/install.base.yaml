@@ -53,6 +53,12 @@
     ~/.npmrc:
       path: config/node/npmrc
       force: true
+    ~/.mackup.cfg:
+      path: config/mackup.cfg
+      force: true
+    ~/.mackup:
+      path: config/mackup
+      force: true
 - shell:
     - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
     - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
