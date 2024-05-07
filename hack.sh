@@ -8,6 +8,6 @@ cd 91QiuChen
 
 git pull
 
-sudo ruby main.rb
+./秋城落叶_启动.command
 
 cd ..
