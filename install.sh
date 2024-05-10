@@ -64,4 +64,7 @@ Installation complete.
 When zgen initialization fails:
 * zgen reset
 * rm -rf ~/.zgen/zsh-users
+Initialization:
+* brew: make brew_install; make brew_restore
+* mackup: make restore
 EOF
