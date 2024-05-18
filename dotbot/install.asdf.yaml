@@ -42,3 +42,8 @@
       description: Installing npm package
       quiet: true
       stderr: true
+    -        
+      command: /bin/bash -c 'pyenv install -s 3.10 && pyenv global 3.10'
+      description: Installing npm package            
+      quiet: true   
+      stderr: true
