@@ -16,11 +16,13 @@
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) - theme
   - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) Meslo Nerd Font patched for Powerlevel10k
 
+## Installation
+
 ### Required
 
 #### Mac
 
-* brew [`make brew_install`]
+* brew [`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`]
 * git [`xcode-select --install`]
 
 #### Linux
@@ -28,29 +30,32 @@
 * sudo
 * git
 
-### Installation
-
 ```bash
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
-./install.sh
+make install
 ```
 
-### Custom
+### Custom config
 
 * ~/.zshrc.user
 * ~/.gitconfig.user (Set up your git user)
 
-### uTools Backup and Restore
+### App Backup and Restore
+
+restore application config from iCloud
 
 ```
-# Backup your utools files to ~/Documents/Backup/uTools
-./scripts/utools.sh backup
-# Overwrite your utools data with the latest backup
-./scripts/utools.sh restore
+make restore
 ```
 
-### Inspired By
+backup application config to iCloud
+
+```
+make backup
+```
+
+## Inspired By
 
 - https://github.com/denolfe/dotfiles
 - https://github.com/craftzdog/dotfiles-public
