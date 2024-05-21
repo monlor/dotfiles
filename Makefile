@@ -25,9 +25,6 @@ brew_restore:
 	brew bundle install --file=package/brew/brewfile.mas
 	brew cleanup
 
-brew_install:
-	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-
 backup:
 	mackup backup -f
 
