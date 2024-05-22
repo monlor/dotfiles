@@ -22,18 +22,43 @@
 
 #### Mac
 
-* brew [`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`]
-* git [`xcode-select --install`]
+* brew
+
+需要安装brew并添加brew环境变量，保证brew命令可用
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+* git 
+
+```bash
+xcode-select --install
+```
 
 #### Linux
 
 * sudo
 * git
 
+### Install
+
 ```bash
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
 make install
+```
+
+install asdf
+
+```
+make install_all
+```
+
+install brew cask
+
+```
+make brew_restore
 ```
 
 ### Custom config
