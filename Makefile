@@ -26,7 +26,7 @@ brew_restore:
 	brew cleanup
 
 backup:
-	mackup backup -f
+	mackup backup 
 
 restore:
 	mackup restore
