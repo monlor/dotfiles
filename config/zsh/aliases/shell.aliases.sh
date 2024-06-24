@@ -84,3 +84,9 @@ alias to_upper="tr '[:lower:]' '[:upper:]'"
 
 alias cp="cp -i"
 alias upxx="upx --lzma --ultra-brute"
+
+if type code-server &> /dev/null; then
+  alias xclip="code-server --stdin-to-clipboard"
+elif type pbcopy &> /dev/null; then
+  alias xclip="pbcopy"
+fi
