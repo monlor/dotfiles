@@ -32,10 +32,6 @@
     versions:
       - 18.18.0
       - 14.18.2
-  - plugin: deno
-    url: https://github.com/asdf-community/asdf-deno.git
-    versions:
-      - 1.33.1
 - shell:
     - 
       command: /bin/bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz pnpm' 
@@ -43,7 +39,7 @@
       quiet: true
       stderr: true
     -        
-      command: /bin/bash -c 'pyenv install -s 3.10 && pyenv global 3.10'
-      description: Installing npm package            
+      command: /bin/bash -c 'export PATH=${HOME}/.pyenv/bin:$PATH && pyenv install -s 3.10 && pyenv global 3.10'
+      description: Installing python        
       quiet: true   
       stderr: true
