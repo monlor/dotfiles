@@ -28,3 +28,7 @@
       quiet: true
       stdout: true
       stderr: true
+    - 
+      command: mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf && fc-cache -vf ~/.local/share/fonts/
+      description: Installing font DroidSansMono
+      stderr: true
