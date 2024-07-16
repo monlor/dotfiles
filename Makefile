@@ -16,7 +16,7 @@ brew_dump:
 	# brew bundle --force cleanup --file=config/os/macos/brewfile
 
 # Restore Homebrew packages
-brew_restore:
+brew_install:
 	brew update
 	brew upgrade
 	brew install mas
