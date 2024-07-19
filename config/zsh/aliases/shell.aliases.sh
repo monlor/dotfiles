@@ -53,8 +53,9 @@ case $OS in
   alias pbcopy='xclip -selection c'
   alias pbpaste='xclip -selection clipboard -o'
   ;;
-'Darwin') ;;
-
+'Darwin') 
+  alias traceroute='nexttrace'
+  ;;
 *) ;;
 esac
 
@@ -85,8 +86,7 @@ alias to_upper="tr '[:lower:]' '[:upper:]'"
 alias cp="cp -i"
 alias upxx="upx --lzma --ultra-brute"
 
-if type code-server &> /dev/null; then
-  alias xclip="code-server --stdin-to-clipboard"
-elif type pbcopy &> /dev/null; then
-  alias xclip="pbcopy"
+# for code-server
+if [ "${LOGNAME}" = "coder" ]; then
+  alias pbcopy="code-server --stdin-to-clipboard"
 fi

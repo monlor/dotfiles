@@ -1,4 +1,4 @@
-.PHONY: install brew_dump brew_install brew_restore
+.PHONY: install install_all brew_dump brew_install backup
 
 # Run dotbot install script
 # todo: add support for other OS
@@ -26,7 +26,6 @@ brew_install:
 	brew cleanup
 
 backup:
+	mackup restore
 	mackup backup 
 
-restore:
-	mackup restore
