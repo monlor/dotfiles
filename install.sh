@@ -57,6 +57,7 @@ cat ${CONFIG} > install.conf.yaml
 cat <<-EOF
 Installation complete. 
 * Run 'chsh -s $(which zsh)' to make zsh your default shell.
+* Run 'source ~/.zshrc' to reload your shell.
 * Change terminal font to 'Nerd'.
 * Run 'zsh' to start a new shell.
 * Run 'asdf reshim python' for the binary to be in your path.
