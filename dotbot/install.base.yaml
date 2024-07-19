@@ -59,12 +59,6 @@
     ~/.mackup:
       path: config/mackup
       force: true
-    ~/.local/share/code-server/User/settings.json:
-      path: config/code-server/settings.json
-      force: true
-    ~/.local/share/code-server/extensions/extensions.json:
-      path: config/code-server/extensions.json
-      force: true
 - shell:
     - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
     - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
