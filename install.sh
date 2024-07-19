@@ -60,11 +60,9 @@ Installation complete.
 * Change terminal font to 'Nerd'.
 * Run 'zsh' to start a new shell.
 * Run 'asdf reshim python' for the binary to be in your path.
-* Run 'make brew_restore' to restore all brew package.
+* Run 'make brew_install' to restore all brew package.
+* Run 'make backup' to backup all mackup files to iCloud.
 When zgen initialization fails:
 * zgen reset
 * rm -rf ~/.zgen/zsh-users
-Initialization:
-* brew: make brew_install; make brew_restore
-* mackup: make restore
 EOF

@@ -1,84 +1,51 @@
-![cover](./assets/screenshot.png)
+## Dotfiles
 
-# Dotfiles
+**Check all the files before you install.It may break your configuration of your computer.**
 
-[![Actions Status](https://github.com/monlor/dotfiles/workflows/Dotfiles%20Install/badge.svg)](https://github.com/monlor/dotfiles/actions)
+## Features
 
-**Warning**: Don’t blindly use my settings unless you know what that entails. Use at your own risk!
-
-* The environment with brew and pacman is recognized as a local development environment, and a full set of software packages will be installed.
-* The presence of apt and yum is recognized as a server environment, and only the basic terminal environment is configured.
-
-## Shell setup (macOS)
-
-- [Dotbot](https://github.com/anishathalye/dotbot) - a tool that bootstraps dotfiles
-- [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) - framework for managing `zsh` configuration
-- [Powerlevel10k](https://github.com/romkatv/powerlevel10k) - theme
-  - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) Meslo Nerd Font patched for Powerlevel10k
+* 📦 Dotbot: Effortless Configuration Management Across Devices
+* 🗂️ All terminal configurations are managed in one Git repository.
+* 🧰 Favorite tools and applications are tracked and installed with a single command.
+* 🔄 Synchronized configurations ensure a consistent experience on any machine.
+* 🚀 One-click setup for quickly initializing a new computer.
 
 ## Installation
 
-### Required
-
-#### Mac
-
-* brew
-
-需要安装brew并添加brew环境变量，保证brew命令可用
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-* git 
-
-```bash
-xcode-select --install
-```
-
-#### Linux
-
-* sudo
-* git
-
-### Install
+### Mac
 
 ```bash
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
+# install brew if not installed
+make brew
+# install git if not installed
+xcode-select --install
+# install dotfiles
 make install
-```
-
-install asdf
-
-```
+# install asdf packager including python, nodejs, golang ...
 make install_all
+# mackup backup and restore application config from icloud
+make backup
 ```
 
-install brew cask
+### Linux
 
-```
-make brew_restore
+```bash
+# install sudo git make 
+sudo apt-get install -y sudo git make
+git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
+cd ~/.dotfiles
+# install dotfiles
+make install
+# install asdf packager including python, nodejs, golang ...
+make install_all
 ```
 
 ### Custom config
 
-* ~/.zshrc.user
+* ~/.zshrc.user (frps and openai config)
 * ~/.gitconfig.user (Set up your git user)
-
-### App Backup and Restore
-
-restore application config from iCloud
-
-```
-make restore
-```
-
-backup application config to iCloud
-
-```
-make backup
-```
 
 ## Inspired By
 
