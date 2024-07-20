@@ -1,0 +1,101 @@
+#!/bin/bash
+
+set -e
+
+# 配置加密密码: openssl rand -base64 48
+# ENCFILE_SECRET="your-encryption-password"
+
+# 检查加密密码是否设置
+if [ -z "${ENCFILE_SECRET:-}" ]; then
+    echo "Error: ENCFILE_SECRET environment variable not set."
+    echo "Generate a random password using 'openssl rand -base64 48'."
+    exit 1
+fi
+
+help() {
+    echo "Usage: ${0##*/} [-d] <file1> [<file2> ... <fileN>]"
+    echo "Options:"
+    echo "  -d  Decrypt the specified files."
+    echo "  -h  Display this help message."
+    exit 1
+}
+
+# 加密函数
+encrypt_file() {
+    # 判断文件是否以enc结尾
+    if [[ "$1" == *.enc ]]; then
+        echo "Error: File '$1' is already encrypted."
+        return
+    fi
+    # 判断.enc文件是否存在，存在提示用户覆盖
+    if [ -f "$1.enc" ]; then
+        read -p "File '$1.enc' already exists. Do you want to overwrite it? [y/N]: " overwrite
+        if [[ ! "$overwrite" =~ ^[Yy]$ ]]; then
+            return
+        fi
+    fi
+    # 使用 openssl 加密并覆盖原始文件
+    openssl enc -aes-256-cbc -salt -pbkdf2 -in "$1" -out "$1.enc" -pass pass:"$ENCFILE_SECRET"
+    if [ $? -eq 0 ]; then
+        rm -rf "$1"
+        echo "File '$1' encrypted successfully. Saved as '$1.enc'."
+    else
+        echo "Encryption failed for '$1'."
+        rm -f "$1.enc"
+    fi
+}
+
+# 解密函数
+decrypt_file() {
+    # 使用 openssl 解密并覆盖原始文件
+    openssl enc -aes-256-cbc -d -pbkdf2 -in "$1" -out "$1.dec" -pass pass:"$ENCFILE_SECRET"
+    if [ $? -eq 0 ]; then
+        # 判断原文件是否存在
+        if [ -f "${1%.enc}" ]; then
+            read -p "File '${1%.enc}' already exists. Do you want to overwrite it? [y/N]: " overwrite
+            if [[ ! "$overwrite" =~ ^[Yy]$ ]]; then
+                rm -f "$1.dec"
+                return
+            fi
+        fi
+        # 文件已enc结尾则去掉文件名中的.enc后缀
+        mv -f "$1.dec" "${1%.enc}"
+        rm -f "$1"
+        echo "File '$1' decrypted successfully. Saved as '${1%.enc}'."
+    else
+        echo "Decryption failed for '$1'."
+        rm -f "$1.dec"
+    fi
+}
+
+# 根据操作类型执行相应操作
+case "${1}" in
+    -h|"")
+        help
+        ;;
+    -d)
+        if [ "$#" -lt 2 ]; then
+            echo "Error: No files specified for decryption."
+            help
+        fi
+        shift
+        for file in "$@"; do
+            if [ -f "$file" ]; then
+                decrypt_file "$file"
+            else
+                echo "Error: File '$file' not found!"
+                exit 1
+            fi
+        done
+        ;;
+    *)
+        for file in "$@"; do
+            if [ -f "$file" ]; then
+                encrypt_file "$file"
+            else
+                echo "Error: File '$file' not found!"
+                exit 1
+            fi
+        done
+        ;;
+esac

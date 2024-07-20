@@ -7,3 +7,5 @@ export OPENAI_API_KEY=
 # ydcv
 export YDCV_YOUDAO_APPID=
 export YDCV_YOUDAO_APPSEC=
+# encfile
+export ENCFILE_SECRET=
