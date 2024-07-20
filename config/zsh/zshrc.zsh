@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# zsh config
+zstyle ':omz:update' mode disabled
+
 # Get zgen
 source ~/.zgen/zgen.zsh
 
