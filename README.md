@@ -42,6 +42,13 @@ make install
 make install_all
 ```
 
+### Config git user
+
+```bash
+git config user.name "monlor"
+git config user.email "me@monlor.com"
+```
+
 ### Custom config
 
 * ~/.zshrc.user (frps and openai config)
