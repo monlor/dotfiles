@@ -15,12 +15,13 @@
 ### Mac
 
 ```bash
+# install git if not installed
+xcode-select --install
+# git clone dotfiles
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
 # install brew if not installed
 make brew
-# install git if not installed
-xcode-select --install
 # install dotfiles
 make install
 # install asdf packager including python, nodejs, golang ...
@@ -34,6 +35,7 @@ make backup
 ```bash
 # install sudo git make 
 sudo apt-get install -y sudo git make
+# git clone dotfiles
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
 # install dotfiles
