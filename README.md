@@ -21,13 +21,15 @@ xcode-select --install
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
 # install brew if not installed
-make brew
+make brew_install
 # install dotfiles
 make install
 # install asdf packager including python, nodejs, golang ...
 make install_all
 # mackup backup and restore application config from icloud
 make backup
+# install brew package
+make brew
 ```
 
 ### Linux

@@ -8,7 +8,7 @@ install:
 install_all:
 	ASDF=true ./install.sh
 
-brew:
+brew_install:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Save snapshot of all Homebrew packages to macos/brewfile
@@ -19,7 +19,7 @@ brew_dump:
 	# brew bundle --force cleanup --file=config/os/macos/brewfile
 
 # Restore Homebrew packages
-brew_install:
+brew:
 	brew update
 	brew upgrade
 	brew install mas
