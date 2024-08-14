@@ -44,7 +44,7 @@
       quiet: true   
       stderr: true
     - 
-      command: /bin/bash -c '~/.pyenv/shims/pip install open-interpreter ydcv'
+      command: /bin/bash -c '~/.pyenv/shims/pip install ydcv'
       description: Installing python package
       quiet: true
       stderr: true
