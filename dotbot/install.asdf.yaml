@@ -39,7 +39,7 @@
       quiet: true
       stderr: true
     -        
-      command: /bin/bash -c 'export PATH=${HOME}/.pyenv/bin:$PATH && pyenv install -s 3.10 && pyenv global 3.10'
+      command: /bin/bash -c 'export PATH=${HOME}/.pyenv/bin:$PATH && pyenv install -s 3.12.0 && pyenv global 3.12.0'
       description: Installing python        
       quiet: true   
       stderr: true
