@@ -20,3 +20,6 @@
 [submodule "modules/dotbot-brewfile"]
 	path = modules/dotbot-brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
+[submodule "InjectLib"]
+	path = InjectLib
+	url = https://github.com/QiuChenly/InjectLib.git

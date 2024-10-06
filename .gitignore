@@ -19,3 +19,4 @@ install.conf.yaml
 # custom
 config/git/gitconfig.user
 config/zsh/zshrc.zsh.user
+InjectLib
