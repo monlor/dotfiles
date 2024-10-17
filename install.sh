@@ -15,7 +15,6 @@ git submodule update --init --recursive
 echo "Installing prerequisites..."
 if which brew &> /dev/null; then 
   which python3 &> /dev/null || brew install python3
-  which git &> /dev/null || brew install git
   which curl &> /dev/null || brew install curl
   CONFIG="dotbot/install.base.yaml dotbot/install.brew.yaml"
   PLUGIN_DIR="--plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
@@ -24,7 +23,6 @@ if which brew &> /dev/null; then
     PLUGIN_DIR="${PLUGIN_DIR} --plugin-dir ${BASEDIR}/modules/dotbot-asdf"
   fi
 elif which apt &> /dev/null; then
-  sudo apt update && sudo apt install -y git python3
   CONFIG="dotbot/install.base.yaml dotbot/install.apt.yaml"
   PLUGIN_DIR=""
   if [ "${ASDF}" = "true" ]; then
