@@ -1,8 +1,8 @@
 - shell:
     - 
       command: |-
-        sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key > /etc/apt/trusted.gpg.d/kubernetes.asc
-        sudo echo "deb https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" > /etc/apt/sources.list.d/kubernetes.list
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo tee /etc/apt/trusted.gpg.d/kubernetes.asc
+        echo "deb https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
       description: Add apt source
       stderr: true
     - 
