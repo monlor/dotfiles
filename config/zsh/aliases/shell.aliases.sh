@@ -90,3 +90,5 @@ alias upxx="upx --lzma --ultra-brute"
 if [ "${LOGNAME}" = "coder" ]; then
   alias pbcopy="code-server --stdin-to-clipboard"
 fi
+
+alias dri="docker run -it --rm --entrypoint=sh"
