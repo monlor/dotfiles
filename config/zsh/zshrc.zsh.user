@@ -9,3 +9,6 @@ export YDCV_YOUDAO_APPID=
 export YDCV_YOUDAO_APPSEC=
 # encfile
 export ENCFILE_SECRET=
+# agenc
+export AGE_PRIVATE_KEY=
+export AGE_PUBLIC_KEY=

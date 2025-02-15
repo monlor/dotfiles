@@ -1,0 +1,121 @@
+#!/bin/bash
+
+# 颜色输出
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+RESET="\033[0m"
+
+# 确保 age 和 age-keygen 已安装
+if ! command -v age &>/dev/null; then
+    echo -e "${RED}❌ 错误: age 未安装，请先安装 age。${RESET}"
+    exit 1
+fi
+
+if ! command -v age-keygen &>/dev/null; then
+    echo -e "${RED}❌ 错误: age-keygen 未安装，请先安装 age-keygen。${RESET}"
+    exit 1
+fi
+
+# 生成 Age 密钥，并存入环境变量
+init_age_key() {
+    echo -e "${GREEN}🔑 生成 Age 密钥...${RESET}"
+    key=$(age-keygen)
+    export AGE_PRIVATE_KEY="$(echo "$key" | tail -n 1)"
+    export AGE_PUBLIC_KEY="$(echo "$key" | grep -o 'age1[^\"]*')"
+
+    echo -e "${GREEN}✅ Age 密钥已生成.${RESET}"
+    echo -e "🔒 你可以将以下命令添加到 GitHub Secrets 或 .bashrc 以便使用:"
+    echo -e "${GREEN}export AGE_PRIVATE_KEY=\"$AGE_PRIVATE_KEY\"${RESET}"
+    echo -e "${GREEN}export AGE_PUBLIC_KEY=\"$AGE_PUBLIC_KEY\"${RESET}"
+}
+
+# 统一加密文件/目录
+encrypt() {
+    if [ -z "$AGE_PUBLIC_KEY" ]; then
+        echo -e "${RED}❌ 未检测到 AGE_PUBLIC_KEY，请先运行: $0 init${RESET}"
+        exit 1
+    fi
+
+    if [ "$#" -eq 0 ]; then
+        echo -e "${RED}❌ 请输入要加密的文件或目录${RESET}"
+        exit 1
+    fi
+
+    for TARGET in "$@"; do
+        if [ -f "$TARGET" ]; then
+            echo -e "🔐 加密单个文件: $TARGET -> $TARGET.age"
+            age -r "$AGE_PUBLIC_KEY" -o "$TARGET.age" "$TARGET"
+            rm -f "$TARGET"  # 删除原始文件
+        elif [ -d "$TARGET" ]; then
+            echo -e "${GREEN}🔒 开始加密目录: $TARGET${RESET}"
+            find "$TARGET" -type f ! -name ".*" ! -name "*.age" | while read -r file; do
+                echo -e "🔐 加密: $file -> $file.age"
+                age -r "$AGE_PUBLIC_KEY" -o "$file.age" "$file"
+                rm -f "$file"  # 删除原始文件
+            done
+        else
+            echo -e "${RED}❌ 目标不存在: $TARGET${RESET}"
+        fi
+    done
+}
+
+# 统一解密文件/目录
+decrypt() {
+    if [ -z "$AGE_PRIVATE_KEY" ]; then
+        echo -e "${RED}❌ 未检测到 AGE_PRIVATE_KEY，请先运行: $0 init${RESET}"
+        exit 1
+    fi
+
+    if [ "$#" -eq 0 ]; then
+        echo -e "${RED}❌ 请输入要解密的文件或目录${RESET}"
+        exit 1
+    fi
+
+    for TARGET in "$@"; do
+        if [ -f "$TARGET" ] && [[ "$TARGET" == *.age ]]; then
+            original_file="${TARGET%.age}"
+            echo -e "🔓 解密单个文件: $TARGET -> $original_file"
+            age -d -i <(echo "$AGE_PRIVATE_KEY") -o "$original_file" "$TARGET"
+            rm -f "$TARGET"  # 删除加密文件
+        elif [ -d "$TARGET" ]; then
+            echo -e "${GREEN}🔓 开始解密目录: $TARGET${RESET}"
+            find "$TARGET" -type f -name "*.age" | while read -r file; do
+                original_file="${file%.age}"
+                echo -e "🔓 解密: $file -> $original_file"
+                age -d -i <(echo "$AGE_PRIVATE_KEY") -o "$original_file" "$file"
+                rm -f "$file"  # 删除加密文件
+            done
+        else
+            echo -e "${RED}❌ 目标不存在或不是 .age 文件: $TARGET${RESET}"
+        fi
+    done
+}
+
+# 显示帮助
+usage() {
+    echo "用法: $0 [init|encrypt|decrypt] [文件/目录...]"
+    echo "  init      - 生成 Age 密钥，并存入环境变量"
+    echo "  encrypt   - 加密文件或目录（支持多个）"
+    echo "  decrypt   - 解密文件或目录（支持多个）"
+    exit 1
+}
+
+# 解析参数
+case "$1" in
+    init)
+        init_age_key
+        ;;
+    encrypt)
+        shift
+        encrypt "$@"
+        ;;
+    decrypt)
+        shift
+        decrypt "$@"
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+
