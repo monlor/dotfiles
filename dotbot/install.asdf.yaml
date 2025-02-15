@@ -28,9 +28,9 @@
   #     - 3.9.0
   - plugin: nodejs
     url: https://github.com/asdf-vm/asdf-nodejs.git
-    global: 18.18.0
+    global: 20.18.3
     versions:
-      - 18.18.0
+      - 20.18.3
 - shell:
     - 
       command: /bin/bash -c 'source ~/.asdf/asdf.sh && npm i -g yarn git-cz pnpm' 
