@@ -17,7 +17,7 @@
       description: Updating apt
       stderr: true
     - 
-      command: sudo apt install -y iputils-ping net-tools dnsutils zsh git curl fish socat bat jq fzf ipcalc htop neofetch neovim telnet pipenv mycli redis tmux tree bash trash-cli direnv git-crypt libedit-dev libbz2-dev libffi-dev libreadline-dev libssl-dev libsqlite3-dev liblzma-dev shellcheck kubectl terraform helm
+      command: sudo apt install -y iputils-ping net-tools dnsutils zsh git curl fish socat bat jq fzf ipcalc htop neofetch neovim telnet pipenv mycli redis tmux tree bash trash-cli direnv git-crypt libedit-dev libbz2-dev libffi-dev libreadline-dev libssl-dev libsqlite3-dev liblzma-dev shellcheck kubectl terraform helm ripgrep
       description: Installing packages
       stderr: true
     - 
