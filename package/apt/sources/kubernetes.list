@@ -1,0 +1,2 @@
+# Kubernetes
+deb https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
