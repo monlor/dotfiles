@@ -1,24 +1,24 @@
 #!/bin/bash
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APT_DIR="$(dirname "$SCRIPT_DIR")"
+APT_DIR="./package/apt"
 
 # Add repositories
 echo "Adding apt repositories..."
 # Kubernetes
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo tee /etc/apt/trusted.gpg.d/kubernetes.asc > /dev/null
-sudo cp "$APT_DIR/sources/kubernetes.list" /etc/apt/sources.list.d/
+echo "deb https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # HashiCorp
 if [ ! -f /usr/share/keyrings/hashicorp-archive-keyring.gpg ]; then 
   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 fi
-sudo cp "$APT_DIR/sources/hashicorp.list" /etc/apt/sources.list.d/
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
 
 # Helm
 curl -fsSL https://baltocdn.com/helm/signing.asc | sudo tee /etc/apt/trusted.gpg.d/helm.asc > /dev/null
-sudo cp "$APT_DIR/sources/helm.list" /etc/apt/sources.list.d/
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 
 # Update apt
 echo "Updating apt..."
