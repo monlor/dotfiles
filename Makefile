@@ -1,5 +1,18 @@
 .PHONY: install install_all brew_dump brew_install backup
 
+# 判断系统架构（通过 `uname -m` 检测）
+SYS_ARCH := $(shell uname -m)
+
+# 根据架构设置 Homebrew 安装路径
+ifeq ($(SYS_ARCH), arm64)
+    BREW_PREFIX := /opt/homebrew
+else
+    BREW_PREFIX := /usr/local
+endif
+
+# 定义 brew 命令路径
+BREW := $(BREW_PREFIX)/bin/brew
+
 # Run dotbot install script
 # todo: add support for other OS
 install:
@@ -8,8 +21,10 @@ install:
 install_all:
 	ASDF=true ./install.sh
 
-brew_install:
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew_install: 
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	@grep -q "$(BREW_PREFIX)/bin/brew" $(HOME)/.zprofile &> /dev/null || echo 'eval "$$($(BREW) shellenv)"' >> $(HOME)/.zprofile
+	@eval "$$($(BREW) shellenv)"
 
 # Save snapshot of all Homebrew packages to macos/brewfile
 brew_dump:

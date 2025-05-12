@@ -22,6 +22,8 @@ git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
 # install brew if not installed
 make brew_install
+# load brew env
+source ~/.zprofile
 # install dotfiles
 make install
 # install asdf packager including python, nodejs, golang ...
