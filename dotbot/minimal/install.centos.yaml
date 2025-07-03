@@ -1,0 +1,5 @@
+- shell:
+    - 
+      command: ./scripts/install-yum.sh
+      description: Installing yum packages
+      stderr: true

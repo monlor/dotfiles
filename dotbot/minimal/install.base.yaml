@@ -54,11 +54,31 @@
       path: config/node/npmrc
       force: true
     ~/.mackup.cfg:
+      if: '[ `uname` = Darwin ]'
       path: config/mackup.cfg
       force: true
     ~/.mackup:
+      if: '[ `uname` = Darwin ]'
       path: config/mackup
       force: true
 - shell:
     - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
     - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
+    - 
+      command: curl -sS https://starship.rs/install.sh | sh -s -- -f
+      description: Installing starship ...
+      quiet: true
+      stdout: false
+      stderr: true
+    - 
+      command: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      description: Installing helm ...
+      quiet: true
+      stdout: true
+      stderr: true
+    - 
+      command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core' 
+      description: Installing Github release package ...
+      quiet: true
+      stdout: true
+      stderr: true

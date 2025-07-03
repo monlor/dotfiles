@@ -1,6 +1,6 @@
-## Dotfiles
+# Dotfiles
 
-**Check all the files before you install.It may break your configuration of your computer.**
+**Check all the files before you install. It may break your configuration of your computer.**
 
 ## Features
 
@@ -12,53 +12,94 @@
 
 ## Installation
 
-### Mac
+### Quick Start
 
 ```bash
-# install git if not installed
+# Clone the repository
+git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
+cd ~/.dotfiles
+
+# Install dotfiles (interactive mode selection)
+make install
+```
+
+### Installation Modes
+
+The installer supports three modes:
+
+1. **Minimal** - Basic configuration for servers or minimal environments
+2. **Development** - Development environment with ASDF and development tools
+3. **Desktop** - Full desktop environment with GUI applications
+
+### Mac Setup
+
+```bash
+# Install git if not installed
 xcode-select --install
-# git clone dotfiles
+
+# Clone dotfiles
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
-# install brew if not installed
+
+# Install Homebrew if not installed
 make brew_install
-# load brew env
+
+# Load brew environment
 source ~/.zprofile
-# install dotfiles
+
+# Install dotfiles (interactive mode selection)
 make install
-# install asdf packager including python, nodejs, golang ...
-make install_all
-# mackup backup and restore application config from icloud
+
+# Backup and restore application config from iCloud
 make backup
-# install brew package
-make brew
+
 ```
 
-### Linux
+### Linux Setup
 
 ```bash
-# install sudo git make 
+# Install required packages
 sudo apt-get install -y sudo git make
-# git clone dotfiles
+
+# Clone dotfiles
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
 cd ~/.dotfiles
-# install dotfiles
+
+# Install dotfiles (interactive mode selection)
 make install
-# install asdf packager including python, nodejs, golang ...
-make install_all
 ```
 
-### Config git user
+### Advanced Usage
+
+You can also specify the installation mode directly:
+
+```bash
+# Install specific mode
+./install.sh --mode development
+./install.sh --mode desktop --yes  # Skip confirmation
+
+# Using environment variables
+INSTALL_MODE=desktop SKIP_CONFIRM=true ./install.sh
+```
+
+### Configure Git User
 
 ```bash
 git config user.name "monlor"
 git config user.email "me@monlor.com"
 ```
 
-### Custom config
+### Custom Configuration
 
-* ~/.zshrc.user (frps and openai config)
-* ~/.gitconfig.user (Set up your git user)
+* `~/.zshrc.user` (frps and openai config)
+* `~/.gitconfig.user` (Set up your git user)
+
+## Supported Operating Systems
+
+- **macOS** - All installation modes supported
+- **Debian/Ubuntu** - All installation modes supported  
+- **CentOS/RHEL/Fedora** - All installation modes supported
+- **Alpine Linux** - All installation modes supported
 
 ## Inspired By
 

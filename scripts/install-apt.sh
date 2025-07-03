@@ -15,11 +15,6 @@ if [ ! -f /usr/share/keyrings/hashicorp-archive-keyring.gpg ]; then
 fi
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-
-# Helm
-curl -fsSL https://baltocdn.com/helm/signing.asc | sudo tee /etc/apt/trusted.gpg.d/helm.asc > /dev/null
-echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-
 # Update apt
 echo "Updating apt..."
 sudo apt update
@@ -33,18 +28,5 @@ while IFS= read -r line || [[ -n "$line" ]]; do
   packages+=("$line")
 done < "$APT_DIR/aptfile"
 sudo apt install -y "${packages[@]}"
-
-# Install additional tools
-echo "Installing additional tools..."
-# Starship
-curl -sS https://starship.rs/install.sh | sh -s -- -f
-
-# Pyenv
-if [ ! -d ~/.pyenv ]; then
-  curl https://pyenv.run | bash
-fi
-
-# GitHub packages
-bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate'
 
 echo "Apt package installation completed!"

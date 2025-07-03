@@ -1,0 +1,8 @@
+- defaults:
+    brewfile:
+      stdout: true
+      stderr: true
+      include: ['tap', 'brew', 'cask', 'mas']
+- brewfile:
+    file: package/brew/brewfile
+

@@ -4,7 +4,6 @@ dnsutils
 zsh
 git
 curl
-fish
 socat
 bat
 jq
@@ -33,5 +32,4 @@ liblzma-dev
 shellcheck
 kubectl
 terraform
-helm
 ripgrep

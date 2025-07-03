@@ -1,0 +1,7 @@
+- shell:
+    - 
+      command: sudo yum groupinstall -y "Development Tools"
+      description: Installing development tools on CentOS ...
+      quiet: true
+      stdout: true
+      stderr: true 

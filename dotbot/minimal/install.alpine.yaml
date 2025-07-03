@@ -1,0 +1,7 @@
+- shell:
+    - 
+      command: apk add --no-cache curl git
+      description: Installing basic tools on Alpine ...
+      quiet: true
+      stdout: true
+      stderr: true 
