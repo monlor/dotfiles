@@ -2,4 +2,12 @@
     - 
       command: ./scripts/install-yum.sh
       description: Installing yum packages
+      quiet: false
+      stdout: true
+      stderr: true
+    - 
+      command: curl -sfL https://direnv.net/install.sh | bash
+      description: Installing direnv ...
+      quiet: false
+      stdout: true
       stderr: true

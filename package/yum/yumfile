@@ -15,10 +15,8 @@ neovim
 telnet
 bash
 trash-cli 
-direnv
 redis
-tmux
-mycli
 openssl
 terraform
 kubectl
+mysql

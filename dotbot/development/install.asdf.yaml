@@ -4,7 +4,7 @@
   - 
     command: /bin/bash -c '~/.local/bin/ghpkg asdf-vm/asdf' 
     description: Installing Github release package ...
-    quiet: true
+    quiet: false
     stdout: true
     stderr: true
 - asdf:
@@ -37,10 +37,10 @@
     - 
       command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code' 
       description: Installing npm package
-      quiet: true
+      quiet: false
       stderr: true
     - 
       command: /bin/bash -c '~/.asdf/shims/pip install ydcv'
       description: Installing python package
-      quiet: true
+      quiet: false
       stderr: true

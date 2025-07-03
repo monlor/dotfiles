@@ -2,6 +2,6 @@
     - 
       command: sudo apt install -y build-essential 
       description: Installing development tools on Debian/Ubuntu ...
-      quiet: true
+      quiet: false
       stdout: true
       stderr: true 

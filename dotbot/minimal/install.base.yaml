@@ -67,18 +67,18 @@
     - 
       command: curl -sS https://starship.rs/install.sh | sh -s -- -f
       description: Installing starship ...
-      quiet: true
+      quiet: false
       stdout: false
       stderr: true
     - 
       command: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
       description: Installing helm ...
-      quiet: true
+      quiet: false
       stdout: true
       stderr: true
     - 
       command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core' 
       description: Installing Github release package ...
-      quiet: true
+      quiet: false
       stdout: true
       stderr: true

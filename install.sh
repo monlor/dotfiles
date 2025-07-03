@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
@@ -101,9 +99,6 @@ if [[ ! " ${VALID_MODES[*]} " =~ " ${INSTALL_MODE} " ]]; then
     exit 1
 fi
 
-cd "${BASEDIR}"
-git submodule update --init --recursive --remote --merge
-
 echo "Detecting operating system..."
 # OS detection
 detect_os() {
@@ -115,7 +110,7 @@ detect_os() {
             "ubuntu"|"debian")
                 echo "debian"
                 ;;
-            "centos"|"rhel"|"fedora")
+            "centos"|"rhel"|"fedora"|"rocky")
                 echo "centos"
                 ;;
             "alpine")
@@ -240,6 +235,9 @@ DOTBOT_CMD+=("-d" "${BASEDIR}")
 DOTBOT_CMD+=("-c" "install.conf.yaml")
 DOTBOT_CMD+=("-x")
 DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
+
+echo "Updating submodules..."
+git submodule update --init --recursive --remote --merge
 
 echo "Running install command: ${DOTBOT_CMD[*]}"
 echo ""

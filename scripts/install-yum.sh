@@ -24,10 +24,10 @@ EOF
 
 # Update yum
 echo "Updating yum..."
-sudo yum update
+sudo yum makecache
 
-# Install packages from aptfile
-echo "Installing packages from aptfile..."
+# Install packages from yum
+echo "Installing packages from yumfile..."
 packages=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   # Skip empty lines and comments
