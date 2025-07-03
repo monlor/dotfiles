@@ -8,13 +8,5 @@ jobs:
         os: [macos-11.0, ubuntu-22.04]
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout submodules
-        shell: bash
-        run: |
-          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
-          git submodule sync --recursive
-          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive
-      - name: Install dotfiles (minimal)
-        run: ./install.sh --mode minimal
-      - name: Install dotfiles (development)
-        run: ./install.sh --mode development
+      - name: Install dotfiles 
+        run: ./install.sh -m minimal -y
