@@ -65,13 +65,13 @@
     - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
     - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
     - 
-      command: curl -sS https://starship.rs/install.sh | sh -s -- -f
+      command: if ! type starship > /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
       description: Installing starship ...
       quiet: false
-      stdout: false
+      stdout: true
       stderr: true
     - 
-      command: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
       description: Installing helm ...
       quiet: false
       stdout: true

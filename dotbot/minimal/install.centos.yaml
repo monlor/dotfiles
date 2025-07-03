@@ -6,7 +6,7 @@
       stdout: true
       stderr: true
     - 
-      command: curl -sfL https://direnv.net/install.sh | bash
+      command: if ! type direnv > /dev/null; then curl -sfL https://direnv.net/install.sh | bash; fi
       description: Installing direnv ...
       quiet: false
       stdout: true
