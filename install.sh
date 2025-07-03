@@ -9,8 +9,24 @@ INSTALL_MODE=${INSTALL_MODE:-""}
 # Confirmation prompt (default: require confirmation)
 SKIP_CONFIRM=${SKIP_CONFIRM:-false}
 
-# Supported install modes
-VALID_MODES=("minimal" "development" "desktop")
+# Supported install modes (easy to extend)
+ALL_MODES=(minimal development desktop)
+
+# Mode dependency chain (easy to extend)
+MODE_DEPENDENCIES_minimal=()
+MODE_DEPENDENCIES_development=(minimal)
+MODE_DEPENDENCIES_desktop=(minimal development)
+
+# Mode-specific required configs (easy to extend)
+MODE_CONFIGS_minimal=(dotbot/minimal/install.base.yaml)
+MODE_CONFIGS_development=(dotbot/development/install.asdf.yaml)
+MODE_CONFIGS_desktop=()
+
+# All plugin directories (always included)
+PLUGIN_DIRS=(
+  "--plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
+  "--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+)
 
 # Show help
 show_help() {
@@ -23,7 +39,7 @@ Install modes:
   desktop      - Desktop environment, includes GUI apps and desktop configs
 
 Options:
-  -m, --mode MODE    Specify install mode (${VALID_MODES[*]})
+  -m, --mode MODE    Specify install mode (${ALL_MODES[*]})
   -y, --yes          Skip confirmation prompt
   -h, --help         Show this help message
 
@@ -93,9 +109,9 @@ if [[ -z "$INSTALL_MODE" ]]; then
 fi
 
 # Validate install mode
-if [[ ! " ${VALID_MODES[*]} " =~ " ${INSTALL_MODE} " ]]; then
+if [[ ! " ${ALL_MODES[*]} " =~ " ${INSTALL_MODE} " ]]; then
     echo "Error: Invalid install mode '${INSTALL_MODE}'"
-    echo "Supported modes: ${VALID_MODES[*]}"
+    echo "Supported modes: ${ALL_MODES[*]}"
     exit 1
 fi
 
@@ -131,63 +147,24 @@ OS=$(detect_os)
 echo "Detected OS: ${OS}"
 echo "Install mode: ${INSTALL_MODE}"
 
-# Mode-specific required configs (compatible with older bash)
-MODE_CONFIGS_MINIMAL="dotbot/minimal/install.base.yaml"
-MODE_CONFIGS_DEVELOPMENT="dotbot/development/install.asdf.yaml"
-MODE_CONFIGS_DESKTOP=""
-
-# Mode dependency chain (compatible with older bash)
-MODE_DEPENDENCIES_MINIMAL=""
-MODE_DEPENDENCIES_DEVELOPMENT="minimal"
-MODE_DEPENDENCIES_DESKTOP="minimal development"
-
-# Plugin directory mapping (compatible with older bash)
-PLUGIN_DEVELOPMENT="--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
-PLUGIN_DESKTOP="--plugin-dir ${BASEDIR}/modules/dotbot-asdf --plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
+# Supported install modes for validation
+VALID_MODES=("${ALL_MODES[@]}")
 
 # Build config file list
 build_configs() {
     local mode=$1
     local os=$2
     local configs=()
-    
-    # Get dependencies based on mode
-    local dependencies=""
-    case "$mode" in
-        "minimal")
-            dependencies="$MODE_DEPENDENCIES_MINIMAL"
-            ;;
-        "development")
-            dependencies="$MODE_DEPENDENCIES_DEVELOPMENT"
-            ;;
-        "desktop")
-            dependencies="$MODE_DEPENDENCIES_DESKTOP"
-            ;;
-    esac
-    
-    local all_modes=($dependencies $mode)
-    
+    # Get dependency chain for this mode
+    local dep_var="MODE_DEPENDENCIES_${mode}[@]"
+    local dependencies=("${!dep_var}")
+    local all_modes=("${dependencies[@]}" "$mode")
     for m in "${all_modes[@]}"; do
-        # Get mode configs based on mode
-        local mode_configs=""
-        case "$m" in
-            "minimal")
-                mode_configs="$MODE_CONFIGS_MINIMAL"
-                ;;
-            "development")
-                mode_configs="$MODE_CONFIGS_DEVELOPMENT"
-                ;;
-            "desktop")
-                mode_configs="$MODE_CONFIGS_DESKTOP"
-                ;;
-        esac
-        
-        if [[ -n "$mode_configs" ]]; then
-            for config in $mode_configs; do
-                configs+=("$config")
-            done
-        fi
-        
+        local conf_var="MODE_CONFIGS_${m}[@]"
+        local mode_configs=("${!conf_var}")
+        for config in "${mode_configs[@]}"; do
+            configs+=("$config")
+        done
         local system_config="dotbot/${m}/install.${os}.yaml"
         if [[ -f "$system_config" ]]; then
             configs+=("$system_config")
@@ -196,26 +173,9 @@ build_configs() {
     echo "${configs[@]}"
 }
 
-# Build plugin directory list
+# Build plugin directory list (always return all)
 build_plugins() {
-    local mode=$1
-    local plugins=()
-    
-    # Get plugin config based on mode
-    local plugin_config=""
-    case "$mode" in
-        "development")
-            plugin_config="$PLUGIN_DEVELOPMENT"
-            ;;
-        "desktop")
-            plugin_config="$PLUGIN_DESKTOP"
-            ;;
-    esac
-    
-    if [[ -n "$plugin_config" ]]; then
-        plugins+=($plugin_config)
-    fi
-    echo "${plugins[@]}"
+    echo "${PLUGIN_DIRS[@]}"
 }
 
 CONFIGS=($(build_configs "$INSTALL_MODE" "$OS"))
