@@ -34,9 +34,9 @@ show_help() {
 Usage: $0 [options] [dotbot options]
 
 Install modes:
-  minimal      - Minimal install, basic configs
-  development  - Development environment, includes ASDF and dev tools
-  desktop      - Desktop environment, includes GUI apps and desktop configs
+  🟢 minimal      - Minimal install, basic configs
+  🛠️  development  - Development environment, includes ASDF and dev tools
+  🖥️  desktop      - Desktop environment, includes GUI apps and desktop configs
 
 Options:
   -m, --mode MODE    Specify install mode (${ALL_MODES[*]})
@@ -56,10 +56,10 @@ EOF
 
 # Interactive mode selection
 select_mode() {
-    echo "Please select an installation mode:"
-    echo "1) minimal      - Basic configuration for servers or minimal environments"
-    echo "2) development  - Development environment with ASDF and dev tools"
-    echo "3) desktop      - Full desktop environment with GUI apps"
+    echo "✨ Please select an installation mode:"
+    echo "  1) 🟢 minimal      - Basic configuration for servers or minimal environments"
+    echo "  2) 🛠️  development  - Development environment with ASDF and dev tools"
+    echo "  3) 🖥️  desktop      - Full desktop environment with GUI apps"
     echo ""
     read -p "Enter your choice (1-3): " choice
     
@@ -74,7 +74,7 @@ select_mode() {
             INSTALL_MODE="desktop"
             ;;
         *)
-            echo "Invalid choice. Please run the script again."
+            echo "❌ Invalid choice. Please run the script again."
             exit 1
             ;;
     esac
@@ -110,12 +110,12 @@ fi
 
 # Validate install mode
 if [[ ! " ${ALL_MODES[*]} " =~ " ${INSTALL_MODE} " ]]; then
-    echo "Error: Invalid install mode '${INSTALL_MODE}'"
+    echo "❌ Error: Invalid install mode '${INSTALL_MODE}'"
     echo "Supported modes: ${ALL_MODES[*]}"
     exit 1
 fi
 
-echo "Detecting operating system..."
+echo "🔍 Detecting operating system..."
 # OS detection
 detect_os() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -144,8 +144,8 @@ detect_os() {
 }
 
 OS=$(detect_os)
-echo "Detected OS: ${OS}"
-echo "Install mode: ${INSTALL_MODE}"
+echo "🖥️  Detected OS: ${OS}"
+echo "🛠️  Install mode: ${INSTALL_MODE}"
 
 # Supported install modes for validation
 VALID_MODES=("${ALL_MODES[@]}")
@@ -181,17 +181,9 @@ build_plugins() {
 CONFIGS=($(build_configs "$INSTALL_MODE" "$OS"))
 PLUGIN_DIRS=($(build_plugins "$INSTALL_MODE"))
 
-echo "Checking config files..."
-for config in "${CONFIGS[@]}"; do
-    if [[ -f "$config" ]]; then
-        echo "✓ Found config: $config"
-    else
-        echo "⚠ Config not found: $config"
-    fi
-done
 
 echo ""
-echo "Dotbot will install with the following configs:"
+echo "🚀 Dotbot will install with the following configs:"
 echo "* Install mode: ${INSTALL_MODE}"
 echo "* OS: ${OS}"
 echo "* Config files:"
@@ -210,7 +202,7 @@ fi
 echo ""
 
 if [[ "${SKIP_CONFIRM}" == "false" ]]; then
-    read -p "Press Enter to continue, or Ctrl+C to cancel... " -r
+    read -p "👉 Press Enter to continue, or Ctrl+C to cancel... " -r
 fi
 
 # Merge configuration files with empty lines between them
@@ -230,34 +222,34 @@ DOTBOT_CMD+=("-c" "install.conf.yaml")
 DOTBOT_CMD+=("-x")
 DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 
-echo "Updating submodules..."
+echo "🔄 Updating submodules..."
 git submodule update --init --recursive --remote --merge
 
-echo "Running install command: ${DOTBOT_CMD[*]}"
+echo "💡 Running install command: ${DOTBOT_CMD[*]}"
 echo ""
 
 # Run install
 "${DOTBOT_CMD[@]}"
 
 echo ""
-echo "Installation complete!"
+echo "🎉 Installation complete!"
 echo ""
 echo "Next steps:"
-echo "* Run 'chsh -s \$(which zsh)' to set zsh as your default shell."
-echo "* Run 'source ~/.zshrc' to reload your shell config."
-echo "* Change your terminal font to a Nerd Font."
-echo "* Run 'zsh' to start a new shell."
+echo "* 🐚 Run 'chsh -s \$(which zsh)' to set zsh as your default shell."
+echo "* 🔄 Run 'source ~/.zshrc' to reload your shell config."
+echo "* 🖋️  Change your terminal font to a Nerd Font."
+echo "* 🆕 Run 'zsh' to start a new shell."
 
 if [[ "${INSTALL_MODE}" == "development" || "${INSTALL_MODE}" == "desktop" ]]; then
-    echo "* Run 'asdf reshim python' to ensure Python binaries are in your PATH."
+    echo "* 🐍 Run 'asdf reshim python' to ensure Python binaries are in your PATH."
 fi
 
 if [[ "${OS}" == "mac" ]]; then
-    echo "* Run 'make brew_install' to restore all Homebrew packages."
-    echo "* Run 'make backup' to backup all Mackup files to iCloud."
+    echo "* 🍺 Run 'make brew_install' to restore all Homebrew packages."
+    echo "* ☁️  Run 'make backup' to backup all Mackup files to iCloud."
 fi
 
 echo ""
 echo "If zgen initialization fails:"
-echo "* zgen reset"
-echo "* rm -rf ~/.zgen/zsh-users"
+echo "* 🧹 zgen reset"
+echo "* 🗑️  rm -rf ~/.zgen/zsh-users"
