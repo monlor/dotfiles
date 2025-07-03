@@ -40,7 +40,7 @@
       quiet: false
       stderr: true
     - 
-      command: /bin/bash -c '~/.asdf/shims/pip install ydcv'
+      command: /bin/bash -c '~/.asdf/shims/pip install ydcv uv'
       description: Installing python package
       quiet: false
       stderr: true
