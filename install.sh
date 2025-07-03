@@ -131,40 +131,63 @@ OS=$(detect_os)
 echo "Detected OS: ${OS}"
 echo "Install mode: ${INSTALL_MODE}"
 
-# Mode-specific required configs
-declare -A MODE_CONFIGS=(
-    ["minimal"]="dotbot/minimal/install.base.yaml"
-    ["development"]="dotbot/development/install.asdf.yaml"
-    ["desktop"]=""
-)
+# Mode-specific required configs (compatible with older bash)
+MODE_CONFIGS_MINIMAL="dotbot/minimal/install.base.yaml"
+MODE_CONFIGS_DEVELOPMENT="dotbot/development/install.asdf.yaml"
+MODE_CONFIGS_DESKTOP=""
 
-# Mode dependency chain
-declare -A MODE_DEPENDENCIES=(
-    ["minimal"]=""
-    ["development"]="minimal"
-    ["desktop"]="minimal development"
-)
+# Mode dependency chain (compatible with older bash)
+MODE_DEPENDENCIES_MINIMAL=""
+MODE_DEPENDENCIES_DEVELOPMENT="minimal"
+MODE_DEPENDENCIES_DESKTOP="minimal development"
 
-# Plugin directory mapping
-declare -A PLUGIN_MAP=(
-    ["development"]="--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
-    ["desktop"]="--plugin-dir ${BASEDIR}/modules/dotbot-asdf --plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
-)
+# Plugin directory mapping (compatible with older bash)
+PLUGIN_DEVELOPMENT="--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
+PLUGIN_DESKTOP="--plugin-dir ${BASEDIR}/modules/dotbot-asdf --plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
 
 # Build config file list
 build_configs() {
     local mode=$1
     local os=$2
     local configs=()
-    local dependencies="${MODE_DEPENDENCIES[$mode]}"
+    
+    # Get dependencies based on mode
+    local dependencies=""
+    case "$mode" in
+        "minimal")
+            dependencies="$MODE_DEPENDENCIES_MINIMAL"
+            ;;
+        "development")
+            dependencies="$MODE_DEPENDENCIES_DEVELOPMENT"
+            ;;
+        "desktop")
+            dependencies="$MODE_DEPENDENCIES_DESKTOP"
+            ;;
+    esac
+    
     local all_modes=($dependencies $mode)
+    
     for m in "${all_modes[@]}"; do
-        local mode_configs="${MODE_CONFIGS[$m]}"
+        # Get mode configs based on mode
+        local mode_configs=""
+        case "$m" in
+            "minimal")
+                mode_configs="$MODE_CONFIGS_MINIMAL"
+                ;;
+            "development")
+                mode_configs="$MODE_CONFIGS_DEVELOPMENT"
+                ;;
+            "desktop")
+                mode_configs="$MODE_CONFIGS_DESKTOP"
+                ;;
+        esac
+        
         if [[ -n "$mode_configs" ]]; then
             for config in $mode_configs; do
                 configs+=("$config")
             done
         fi
+        
         local system_config="dotbot/${m}/install.${os}.yaml"
         if [[ -f "$system_config" ]]; then
             configs+=("$system_config")
@@ -177,7 +200,18 @@ build_configs() {
 build_plugins() {
     local mode=$1
     local plugins=()
-    local plugin_config="${PLUGIN_MAP[$mode]}"
+    
+    # Get plugin config based on mode
+    local plugin_config=""
+    case "$mode" in
+        "development")
+            plugin_config="$PLUGIN_DEVELOPMENT"
+            ;;
+        "desktop")
+            plugin_config="$PLUGIN_DESKTOP"
+            ;;
+    esac
+    
     if [[ -n "$plugin_config" ]]; then
         plugins+=($plugin_config)
     fi
