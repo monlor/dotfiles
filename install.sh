@@ -245,7 +245,6 @@ if [[ "${INSTALL_MODE}" == "development" || "${INSTALL_MODE}" == "desktop" ]]; t
 fi
 
 if [[ "${OS}" == "mac" ]]; then
-    echo "* 🍺 Run 'make brew_install' to restore all Homebrew packages."
     echo "* ☁️  Run 'make backup' to backup all Mackup files to iCloud."
 fi
 
