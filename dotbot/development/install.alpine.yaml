@@ -1,7 +1,7 @@
 - shell:
-    - 
-      command: apk add --no-cache build-base curl git
-      description: Installing development tools on Alpine ...
-      quiet: false
-      stdout: true
-      stderr: true 
+  - 
+    command: apk add --no-cache build-base 
+    description: Installing development tools on Alpine ...
+    quiet: false
+    stdout: true
+    stderr: true 

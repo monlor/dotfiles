@@ -59,23 +59,23 @@
       path: config/mackup
       force: true
 - shell:
-    - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
-    - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
-    - 
-      command: if ! type starship > /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
-      description: Installing starship ...
-      quiet: false
-      stdout: true
-      stderr: true
-    - 
-      command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
-      description: Installing helm ...
-      quiet: false
-      stdout: true
-      stderr: true
-    - 
-      command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core' 
-      description: Installing Github release package ...
-      quiet: false
-      stdout: true
-      stderr: true
+  - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
+  - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
+  - 
+    command: if ! type starship > /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
+    description: Installing starship ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
+    description: Installing helm ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core' 
+    description: Installing Github release package ...
+    quiet: false
+    stdout: true
+    stderr: true

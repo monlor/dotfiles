@@ -28,6 +28,7 @@ sudo yum makecache
 
 # Install packages from yum
 echo "Installing packages from yumfile..."
+cat "$YUM_DIR/yumfile"
 packages=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   # Skip empty lines and comments

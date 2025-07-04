@@ -1,13 +1,14 @@
 - shell:
-    - 
-      command: ./scripts/install-yum.sh
-      description: Installing yum packages
-      quiet: false
-      stdout: true
-      stderr: true
-    - 
-      command: if ! type direnv > /dev/null; then curl -sfL https://direnv.net/install.sh | bash; fi
-      description: Installing direnv ...
-      quiet: false
-      stdout: true
-      stderr: true
+  - 
+    command: ./scripts/install-yum.sh
+    description: Installing yum packages ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: if ! type direnv > /dev/null; then curl -sfL https://direnv.net/install.sh | bash; fi
+    description: Installing direnv ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - helm plugin install https://github.com/databus23/helm-diff

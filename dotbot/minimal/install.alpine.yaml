@@ -1,7 +1,8 @@
 - shell:
-    - 
-      command: apk add --no-cache curl git
-      description: Installing basic tools on Alpine ...
-      quiet: false
-      stdout: true
-      stderr: true 
+  - 
+    command: ./scripts/install-apk.sh
+    description: Installing apk packages ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - helm plugin install https://github.com/databus23/helm-diff

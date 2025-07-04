@@ -21,3 +21,5 @@ terraform
 kubectl
 mysql
 tmux
+shellcheck
+nmap

@@ -5,4 +5,5 @@
       include: ['tap', 'brew', 'cask', 'mas']
 - brewfile:
     file: package/brew/brewfile
-
+- shell:
+  - helm plugin install https://github.com/databus23/helm-diff

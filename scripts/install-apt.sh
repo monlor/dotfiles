@@ -21,6 +21,7 @@ sudo apt update
 
 # Install packages from aptfile
 echo "Installing packages from aptfile..."
+cat "$APT_DIR/aptfile"
 packages=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   # Skip empty lines and comments

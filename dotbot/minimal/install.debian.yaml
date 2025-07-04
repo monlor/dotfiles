@@ -1,7 +1,8 @@
 - shell:
-    - 
-      command: ./scripts/install-apt.sh
-      description: Installing apt packages
-      quiet: false
-      stdout: true
-      stderr: true
+  - 
+    command: ./scripts/install-apt.sh
+    description: Installing apt packages ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - helm plugin install https://github.com/databus23/helm-diff
