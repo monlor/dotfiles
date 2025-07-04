@@ -20,3 +20,4 @@ openssl
 terraform
 kubectl
 mysql
+tmux

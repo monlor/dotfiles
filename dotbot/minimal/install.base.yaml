@@ -22,9 +22,6 @@
       force: true
     ~/.oh-my-zsh: modules/oh-my-zsh
     ~/.zgen: modules/zgen
-    ~/.config/fish:
-      path: config/fish
-      force: true
     ~/.gitconfig: 
       path: config/git/gitconfig
       force: true

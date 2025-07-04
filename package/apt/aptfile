@@ -31,3 +31,4 @@ shellcheck
 kubectl
 terraform
 ripgrep
+tmux
