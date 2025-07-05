@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
 
 DOTBOT_DIR="modules/dotbot"
