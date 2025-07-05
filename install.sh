@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+export PATH=$HOME/.local/bin:$PATH
+
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"

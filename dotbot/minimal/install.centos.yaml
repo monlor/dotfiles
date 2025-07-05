@@ -11,4 +11,4 @@
     quiet: false
     stdout: true
     stderr: true
-  - helm plugin install https://github.com/databus23/helm-diff
+  - helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true

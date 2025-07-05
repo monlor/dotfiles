@@ -6,4 +6,4 @@
 - brewfile:
     file: package/brew/brewfile
 - shell:
-  - helm plugin install https://github.com/databus23/helm-diff
+  - helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true

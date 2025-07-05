@@ -62,7 +62,7 @@ make backup
 sudo apt-get install -y sudo git make
 
 # Clone dotfiles
-git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive
+git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive --remote 
 cd ~/.dotfiles
 
 # Install dotfiles (interactive mode selection)
