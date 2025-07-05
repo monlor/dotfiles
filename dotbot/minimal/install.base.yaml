@@ -68,12 +68,6 @@
     stdout: true
     stderr: true
   - 
-    command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
-    description: Installing helm ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - 
     command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core' 
     description: Installing Github release package ...
     quiet: false

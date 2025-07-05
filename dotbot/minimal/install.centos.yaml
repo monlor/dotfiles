@@ -11,4 +11,10 @@
     quiet: false
     stdout: true
     stderr: true
+  - 
+    command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
+    description: Installing helm ...
+    quiet: false
+    stdout: true
+    stderr: true
   - helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true
