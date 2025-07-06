@@ -1,5 +1,8 @@
 name: Test Install
 on: [push]
+concurrency:
+  group: install-dotfiles-global
+  cancel-in-progress: true
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
