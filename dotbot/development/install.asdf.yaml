@@ -37,7 +37,7 @@
     - 20.18.3
 - shell:
   - 
-    command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code' 
+    command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli' 
     description: Installing npm package
     quiet: false
     stderr: true
