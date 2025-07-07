@@ -58,6 +58,12 @@
       if: '[ `uname` = Darwin ]'
       path: config/mackup
       force: true
+    ~/.asdfrc:
+      path: config/zsh/asdfrc
+      force: true
+    ~/.asdf/asdf.sh:
+      path: config/zsh/asdf.sh
+      force: true
 - shell:
   - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
   - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
@@ -68,7 +74,7 @@
     stdout: true
     stderr: true
   - 
-    command: /bin/bash -c '~/.local/bin/ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core helmfile/vals' 
+    command: /bin/bash -c '~/.local/bin/ghpkg asdf-vm/asdf mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core helmfile/vals' 
     description: Installing Github release package ...
     quiet: false
     stdout: true

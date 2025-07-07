@@ -1,20 +1,10 @@
-- link:
-    ~/.asdfrc: config/zsh/asdfrc
-    ~/.asdf/asdf.sh: config/zsh/asdf.sh
-- shell:
-  - 
-    command: /bin/bash -c '~/.local/bin/ghpkg asdf-vm/asdf' 
-    description: Installing Github release package ...
-    quiet: false
-    stdout: true
-    stderr: true
 - asdf:
   - asdf_path: ~/.asdf/asdf.sh
-  - plugin: java
-    url: https://github.com/halcyon/asdf-java.git
-    default: corretto-17.0.6.10.1
-    versions:
-    - corretto-17.0.6.10.1
+  # - plugin: java
+  #   url: https://github.com/halcyon/asdf-java.git
+  #   default: corretto-17.0.6.10.1
+  #   versions:
+  #   - corretto-17.0.6.10.1
   - plugin: golang
     url: https://github.com/asdf-community/asdf-golang.git
     default: 1.21.0
@@ -25,11 +15,11 @@
     default: 3.12.3
     versions:
     - 3.12.3
-  - plugin: maven
-    url: https://github.com/halcyon/asdf-maven.git
-    default: 3.9.0
-    versions: 
-    - 3.9.0
+  # - plugin: maven
+  #   url: https://github.com/halcyon/asdf-maven.git
+  #   default: 3.9.0
+  #   versions: 
+  #   - 3.9.0
   - plugin: nodejs
     url: https://github.com/asdf-vm/asdf-nodejs.git
     default: 20.18.3
