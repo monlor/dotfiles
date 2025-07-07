@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -eu
 
@@ -30,7 +30,7 @@ case "$ARCH" in
 esac
 
 # 定义用于安装的目录
-INSTALL_DIR="$HOME/.local/bin"
+INSTALL_DIR=${GHPKG_INSTALL_DIR:-"$HOME/.local/bin"}
 
 for arg in "${@}"; do
 
@@ -90,7 +90,7 @@ for arg in "${@}"; do
         FILE_NAME=$(basename $ASSET_URL)
         
         # 判断文件类型并执行相应操作
-        if [[ $FILE_NAME == *.tar.gz ]]; then
+        if echo $FILE_NAME | grep -q ".tar.gz"; then
             # 下载并解压tar.gz文件到临时目录
             curl -sL $ASSET_URL | tar -xz -C $TEMP_DIR
             # 找到解压后的可执行文件
@@ -109,7 +109,6 @@ for arg in "${@}"; do
             # 删除临时目录
             rm -rf $TEMP_DIR/*
         else
-            FILE_NAME=$(basename $ASSET_URL)
             # 提取文件名的前缀，yq_darwin_amd64 => yq
             FILE_NAME=${FILE_NAME%%_*}
             echo "> Installing $FILE_NAME to $INSTALL_DIR"
