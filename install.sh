@@ -59,7 +59,7 @@ EOF
 # Interactive mode selection
 select_mode() {
     echo "✨ Please select an installation mode:"
-    echo "  1) 🟢 minimal      - Basic configuration for servers or minimal environments"
+    echo "  1) 🟢  minimal      - Basic configuration for servers or minimal environments"
     echo "  2) 🛠️  development  - Development environment with ASDF and dev tools"
     echo "  3) 🖥️  desktop      - Full desktop environment with GUI apps"
     echo ""
