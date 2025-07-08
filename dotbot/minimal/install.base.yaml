@@ -59,10 +59,10 @@
       path: config/mackup
       force: true
     ~/.asdfrc:
-      path: config/zsh/asdfrc
+      path: config/asdf/asdfrc
       force: true
     ~/.asdf/asdf.sh:
-      path: config/zsh/asdf.sh
+      path: config/asdf/asdf.sh
       force: true
 - shell:
   - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
