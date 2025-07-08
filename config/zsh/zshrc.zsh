@@ -8,6 +8,7 @@ source ~/.zgen/zgen.zsh
 
 export ZSH_CONFIG_HOME="$HOME/.config/zsh"
 export GPG_TTY=$TTY # https://unix.stackexchange.com/a/608921
+export ASDF_DIR="$HOME/.asdf"
 
 # Generate zgen init.sh if it doesn't exist
 if ! zgen saved; then
@@ -102,10 +103,6 @@ export AWS_PAGER='bat -p'
 # default editor
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
-if [ -f ~/.asdf/asdf.sh ]; then
-  source ~/.asdf/asdf.sh
-fi
 
 eval "$(starship init zsh)"
 
