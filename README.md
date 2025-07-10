@@ -59,7 +59,7 @@ make backup
 
 ```bash
 # Install required packages
-sudo apt-get install -y sudo git make
+sudo apt-get install -y sudo git make lsb_release curl
 
 # Clone dotfiles
 git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive --remote 
