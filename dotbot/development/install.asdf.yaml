@@ -37,7 +37,7 @@
     quiet: false
     stderr: true
   - 
-    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi'
+    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi
     description: Installing SuperClaude ...
     quiet: false
     stderr: true
