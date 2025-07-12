@@ -64,8 +64,13 @@
     ~/.asdf/asdf.sh:
       path: config/asdf/asdf.sh
       force: true
+    ~/.mcp.sh:
+      path: config/mcp/mcp.sh
+      force: true
 - shell:
+  - chmod +x ~/.mcp.sh
   - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
+  - cp -n config/zsh/secrets ~/.secrets || true
   - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
   - 
     command: if ! type starship > /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
@@ -74,7 +79,7 @@
     stdout: true
     stderr: true
   - 
-    command: /bin/bash -c '~/.local/bin/ghpkg asdf-vm/asdf mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core helmfile/vals' 
+    command: /bin/bash -c '~/.local/bin/ghpkg asdf-vm/asdf mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core:nexttrace helmfile/vals' 
     description: Installing Github release package ...
     quiet: false
     stdout: true

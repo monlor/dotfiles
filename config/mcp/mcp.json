@@ -1,0 +1,66 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "uvx mcp-server-fetch"
+      ]
+    },
+    "context7": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y @upstash/context7-mcp"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y @modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "puppeteer": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y @modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "magic": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y @21st-dev/magic@latest"
+      ],
+      "env": {
+        "API_KEY": "$MAGIC_API_KEY"
+      }
+    },
+    "time": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "uvx mcp-server-time"
+      ]
+    },
+    "git": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "uvx mcp-server-git"
+      ]
+    },
+    "taskmaster-ai": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y --package=task-master-ai task-master-ai"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "$OPENAI_API_KEY"
+      }
+    },
+    "playwright": {
+      "command": "~/.mcp.sh",
+      "args": [
+        "npx -y @playwright/mcp@latest"
+      ]
+    }
+  },
+  "theme": "Default",
+  "selectedAuthType": "oauth-personal"
+}

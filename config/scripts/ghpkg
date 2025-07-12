@@ -4,7 +4,7 @@ set -eu
 
 # 检查输入参数
 if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <USER/REPO>"
+    echo "Usage: $0 <USER/REPO(:BINARY_NAME)>"
     exit 1
 fi
 
@@ -35,21 +35,23 @@ INSTALL_DIR=${GHPKG_INSTALL_DIR:-"$HOME/.local/bin"}
 for arg in "${@}"; do
 
     echo "Preparing $arg..."
-    REPO_INFO=(${arg//\// })
+    REPO_INFO=(${arg//:/ })
+    USER_REPO=(${REPO_INFO[0]//\// })
     # 解析输入参数
-    USER=${REPO_INFO[0]}
-    REPO=${REPO_INFO[1]}
+    USER=${USER_REPO[0]}
+    REPO=${USER_REPO[1]}
+    BINARY_NAME=${REPO_INFO[1]:-${REPO}}
 
-    if which $REPO &> /dev/null; then
-        echo "$REPO is already installed"
+    if which $BINARY_NAME &> /dev/null; then
+        echo "$BINARY_NAME is already installed"
         continue
     fi
 
     if [ "${GHPKG_UPDATE}" = "true" ]; then
         echo "Update mode is enabled!"
     else
-        if [ -f "$INSTALL_DIR/$REPO" ]; then
-            echo "$REPO is already installed in $INSTALL_DIR"
+        if [ -f "$INSTALL_DIR/$BINARY_NAME" ]; then
+            echo "$BINARY_NAME is already installed in $INSTALL_DIR"
             continue
         fi
     fi

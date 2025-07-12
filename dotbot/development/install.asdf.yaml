@@ -30,11 +30,13 @@
     command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli' 
     description: Installing npm package ...
     quiet: false
+    stdout: true
     stderr: true
   - 
     command: /bin/bash -c '~/.asdf/shims/pip install ydcv uv mycli'
     description: Installing python package ...
     quiet: false
+    stdout: true
     stderr: true
   - 
     command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi
@@ -47,3 +49,10 @@
   - claude mcp add -s user time -- uvx mcp-server-time
   - claude mcp add -s user git -- uvx mcp-server-git
   - claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/magic@latest
+  - claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
+  - cp -n config/mcp/mcp_sh.json ~/.gemini/settings.json
+- link:
+    ~/.cursor/mcp.json:
+      path: config/mcp/mcp.json
+      force: true
+ 
