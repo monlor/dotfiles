@@ -41,3 +41,9 @@
     description: Installing SuperClaude ...
     quiet: false
     stderr: true
+  - claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
+  - claude mcp add -s user sequential-thinking -- npx -y @modelcontextprotocol/server-sequential-thinking
+  - claude mcp add -s user puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
+  - claude mcp add -s user time -- uvx mcp-server-time
+  - claude mcp add -s user git -- uvx mcp-server-git
+  - claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/magic@latest

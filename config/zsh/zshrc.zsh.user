@@ -14,3 +14,5 @@ export AGE_PRIVATE_KEY=
 export AGE_PUBLIC_KEY=
 # gemini
 export GEMINI_API_KEY=
+# mcp
+export MAGIC_API_KEY=
