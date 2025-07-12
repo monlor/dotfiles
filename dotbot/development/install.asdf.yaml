@@ -28,11 +28,16 @@
 - shell:
   - 
     command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli' 
-    description: Installing npm package
+    description: Installing npm package ...
     quiet: false
     stderr: true
   - 
     command: /bin/bash -c '~/.asdf/shims/pip install ydcv uv mycli'
-    description: Installing python package
+    description: Installing python package ...
+    quiet: false
+    stderr: true
+  - 
+    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi'
+    description: Installing SuperClaude ...
     quiet: false
     stderr: true

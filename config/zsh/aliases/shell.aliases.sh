@@ -52,6 +52,7 @@ case $OS in
   alias sagr='sudo apt-get remove'
   alias pbcopy='xclip -selection c'
   alias pbpaste='xclip -selection clipboard -o'
+  alias traceroute='nexttrace'
   ;;
 'Darwin') 
   alias traceroute='nexttrace'

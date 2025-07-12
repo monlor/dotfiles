@@ -225,7 +225,7 @@ DOTBOT_CMD+=("-x")
 DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 
 echo "🔄 Updating submodules..."
-git submodule update --init --recursive --remote --merge
+git submodule update --init --recursive 
 
 echo "💡 Running install command: ${DOTBOT_CMD[*]}"
 echo ""

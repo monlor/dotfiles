@@ -19,3 +19,6 @@
 [submodule "InjectLib"]
 	path = InjectLib
 	url = https://github.com/QiuChenly/InjectLib.git
+[submodule "modules/SuperClaude"]
+	path = modules/SuperClaude
+	url = https://github.com/NomenAK/SuperClaude.git

@@ -62,7 +62,7 @@ make backup
 sudo apt-get install -y sudo git make lsb_release curl
 
 # Clone dotfiles
-git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive --remote 
+git clone https://github.com/monlor/dotfiles ~/.dotfiles --recursive 
 cd ~/.dotfiles
 
 # Install dotfiles (interactive mode selection)
