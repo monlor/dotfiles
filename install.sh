@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
-
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
