@@ -12,6 +12,8 @@
 
 ## Installation
 
+> **⚠️ Before installation, please read [CONFIG_OVERRIDES.md](./CONFIG_OVERRIDES.md) to understand which configuration files will be forcefully overwritten!**
+
 ### Quick Start
 
 ```bash
