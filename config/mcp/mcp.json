@@ -2,7 +2,7 @@
   "mcpServers": {
     "mcp-feedback-enhanced": {
       "command": "~/.mcp.sh",
-      "args": ["mcp-feedback-enhanced@latest"],
+      "args": ["uvx mcp-feedback-enhanced@latest"],
       "env": {
         "MCP_DEBUG": "false",
         "MCP_WEB_PORT": "8765"
@@ -69,7 +69,5 @@
         "npx -y @playwright/mcp@latest"
       ]
     }
-  },
-  "theme": "Default",
-  "selectedAuthType": "oauth-personal"
+  }
 }

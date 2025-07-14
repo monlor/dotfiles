@@ -50,9 +50,6 @@
   - claude mcp add -s user git -- uvx mcp-server-git
   - claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/magic@latest
   - claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
-  - mkdir -p ~/.gemini && cp -f config/mcp/gemini.json ~/.gemini/settings.json
-- link:
-    ~/.cursor/mcp.json:
-      path: config/mcp/mcp.json
-      force: true
+  - mkdir -p ~/.gemini && cat config/mcp/gemini.json > ~/.gemini/settings.json
+  - mkdir -p ~/.cursor && sed -e "s@~/@$HOME/@g" config/mcp/mcp.json > ~/.cursor/mcp.json
  
