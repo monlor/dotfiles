@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "mcp-feedback-enhanced": {
+      "command": "~/.mcp.sh",
+      "args": ["mcp-feedback-enhanced@latest"],
+      "env": {
+        "MCP_DEBUG": "false",
+        "MCP_WEB_PORT": "8765"
+      },
+      "autoApprove": ["interactive_feedback"]
+    },
     "fetch": {
       "command": "~/.mcp.sh",
       "args": [
