@@ -68,6 +68,23 @@
         "-c",
         "~/.mcp.sh npx -y @playwright/mcp@latest"
       ]
+    },
+    "deepwiki": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "~/.mcp.sh npx -y mcp-deepwiki@latest"
+      ]
+    },
+    "zen": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "~/.mcp.sh uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "$OPENAI_API_KEY"
+      }
     }
   },
   "theme": "Xcode",

@@ -42,14 +42,22 @@
     command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi
     description: Installing SuperClaude ...
     quiet: false
+    stdout: true
     stderr: true
-  - claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
-  - claude mcp add -s user sequential-thinking -- npx -y @modelcontextprotocol/server-sequential-thinking
-  - claude mcp add -s user puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
-  - claude mcp add -s user time -- uvx mcp-server-time
-  - claude mcp add -s user git -- uvx mcp-server-git
-  - claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/magic@latest
-  - claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
-  - mkdir -p ~/.gemini && cat config/mcp/gemini.json > ~/.gemini/settings.json
-  - mkdir -p ~/.cursor && sed -e "s@~/@$HOME/@g" config/mcp/mcp.json > ~/.cursor/mcp.json
+  - 
+    command: ./config/mcp/claude.sh
+    description: Installing claude mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - command: mkdir -p ~/.gemini && cat config/mcp/gemini.json > ~/.gemini/settings.json
+    description: Installing gemini mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - command: mkdir -p ~/.cursor && sed -e "s@~/@$HOME/@g" config/mcp/mcp.json > ~/.cursor/mcp.json
+    description: Installing cursor mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
  
