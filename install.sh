@@ -117,34 +117,31 @@ fi
 
 echo "🔍 Detecting operating system..."
 # OS detection
-detect_os() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        echo "mac"
-    elif [[ -f /etc/os-release ]]; then
-        source /etc/os-release
-        case "$ID" in
-            "ubuntu"|"debian")
-                echo "debian"
-                ;;
-            "centos"|"rhel"|"fedora"|"rocky")
-                echo "centos"
-                ;;
-            "alpine")
-                echo "alpine"
-                ;;
-            *)
-                echo "Unsupported OS: $ID"
-                exit 1
-                ;;
-        esac
-    else
-        echo "Unsupported OS: unknown"
-        exit 1
-    fi
-}
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    OS="mac"
+elif [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    case "$ID" in
+        "ubuntu"|"debian")
+            OS="debian"
+            ;;
+        "centos"|"rhel"|"fedora"|"rocky"|"almalinux")
+            OS="centos"
+            ;;
+        "alpine")
+            OS="alpine"
+            ;;
+        *)
+            echo "Unsupported OS: $ID"
+            exit 1
+            ;;
+    esac
+else
+    echo "Unsupported OS: unknown"
+    exit 1
+fi
 
-OS=$(detect_os)
-echo "🖥️  Detected OS: ${OS}"
+echo "🖥️  Detected OS type: ${OS}"
 echo "🛠️  Install mode: ${INSTALL_MODE}"
 
 # Supported install modes for validation

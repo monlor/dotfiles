@@ -73,7 +73,7 @@
   - cp -n config/zsh/secrets ~/.secrets || true
   - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
   - 
-    command: if ! type starship > /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
+    command: if ! type starship &> /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
     description: Installing starship ...
     quiet: false
     stdout: true
