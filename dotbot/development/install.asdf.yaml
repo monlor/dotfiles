@@ -22,9 +22,9 @@
   #   - 3.9.0
   - plugin: nodejs
     url: https://github.com/asdf-vm/asdf-nodejs.git
-    default: 20.18.3
+    default: 22.17.1
     versions:
-    - 20.18.3
+    - 22.17.1
 - shell:
   - 
     command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli' 
