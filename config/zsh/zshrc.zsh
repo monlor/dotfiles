@@ -9,9 +9,6 @@ source ~/.zgen/zgen.zsh
 export ZSH_CONFIG_HOME="$HOME/.config/zsh"
 export GPG_TTY=$TTY # https://unix.stackexchange.com/a/608921
 
-# asdf
-source ~/.asdf/asdf.sh
-
 # Generate zgen init.sh if it doesn't exist
 if ! zgen saved; then
   zgen oh-my-zsh

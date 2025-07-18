@@ -17,6 +17,9 @@
     ~/.zprofile:
       path: config/zsh/zprofile.zsh
       force: true
+    ~/.profile:
+      path: config/zsh/zprofile.zsh
+      force: true
     ~/.config/zsh:
       path: config/zsh
       force: true
