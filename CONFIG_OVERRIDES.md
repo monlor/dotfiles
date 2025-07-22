@@ -22,7 +22,7 @@ The following files will be overwritten during installation via the `link` opera
 - `~/.npmrc`                ←  `config/node/npmrc`
 - `~/.asdfrc`               ←  `config/asdf/asdfrc`
 - `~/.asdf/asdf.sh`         ←  `config/asdf/asdf.sh`
-- `~/.mcp.sh`               ←  `config/mcp/mcp.sh`
+- `~/.exec`                 ←  `config/zsh/exec.sh`
 - `~/.cursor/mcp.json`      ←  `config/mcp/mcp.json`  (development mode)
 - `~/.gemini/settings.json` ←  `config/mcp/gemini.json` (development mode)
 

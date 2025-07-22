@@ -27,19 +27,19 @@
     - 22.17.1
 - shell:
   - 
-    command: /bin/bash -c '~/.asdf/shims/npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli' 
+    command: ~/.exec npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli
     description: Installing npm package ...
     quiet: false
     stdout: true
     stderr: true
   - 
-    command: /bin/bash -c '~/.asdf/shims/pip install ydcv uv mycli'
+    command: ~/.exec pip install ydcv uv mycli
     description: Installing python package ...
     quiet: false
     stdout: true
     stderr: true
   - 
-    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && ./install.sh --force ; fi
+    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && uv sync && python3 -m SuperClaude install --quick --force -y ; fi
     description: Installing SuperClaude ...
     quiet: false
     stdout: true

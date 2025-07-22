@@ -28,4 +28,4 @@
 [submodule "modules/SuperClaude"]
 	path = modules/SuperClaude
 	url = https://github.com/NomenAK/SuperClaude.git
-	branch = master
+	branch = main

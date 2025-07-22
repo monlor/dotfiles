@@ -4,35 +4,35 @@
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh uvx mcp-server-fetch"
+        "~/.exec uvx mcp-server-fetch"
       ]
     },
     "context7": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y @upstash/context7-mcp"
+        "~/.exec npx -y @upstash/context7-mcp"
       ]
     },
     "sequential-thinking": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y @modelcontextprotocol/server-sequential-thinking"
+        "~/.exec npx -y @modelcontextprotocol/server-sequential-thinking"
       ]
     },
     "puppeteer": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y @modelcontextprotocol/server-puppeteer"
+        "~/.exec npx -y @modelcontextprotocol/server-puppeteer"
       ]
     },
     "magic": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y @21st-dev/magic@latest"
+        "~/.exec npx -y @21st-dev/magic@latest"
       ],
       "env": {
         "API_KEY": "$MAGIC_API_KEY"
@@ -42,21 +42,21 @@
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh uvx mcp-server-time"
+        "~/.exec uvx mcp-server-time"
       ]
     },
     "git": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh uvx mcp-server-git"
+        "~/.exec uvx mcp-server-git"
       ]
     },
     "taskmaster-ai": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y --package=task-master-ai task-master-ai"
+        "~/.exec npx -y --package=task-master-ai task-master-ai"
       ],
       "env": {
         "OPENAI_API_KEY": "$OPENAI_API_KEY"
@@ -66,21 +66,21 @@
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y @playwright/mcp@latest"
+        "~/.exec npx -y @playwright/mcp@latest"
       ]
     },
     "deepwiki": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh npx -y mcp-deepwiki@latest"
+        "~/.exec npx -y mcp-deepwiki@latest"
       ]
     },
     "zen": {
       "command": "sh",
       "args": [
         "-c",
-        "~/.mcp.sh uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
+        "~/.exec uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
       ],
       "env": {
         "OPENAI_API_KEY": "$OPENAI_API_KEY"

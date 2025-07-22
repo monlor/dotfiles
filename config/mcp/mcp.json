@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "mcp-feedback-enhanced": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": ["uvx mcp-feedback-enhanced@latest"],
       "env": {
         "MCP_DEBUG": "false",
@@ -10,31 +10,31 @@
       "autoApprove": ["interactive_feedback"]
     },
     "fetch": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "uvx mcp-server-fetch"
       ]
     },
     "context7": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y @upstash/context7-mcp"
       ]
     },
     "sequential-thinking": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y @modelcontextprotocol/server-sequential-thinking"
       ]
     },
     "puppeteer": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y @modelcontextprotocol/server-puppeteer"
       ]
     },
     "magic": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y @21st-dev/magic@latest"
       ],
@@ -43,19 +43,19 @@
       }
     },
     "time": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "uvx mcp-server-time"
       ]
     },
     "git": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "uvx mcp-server-git"
       ]
     },
     "taskmaster-ai": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y --package=task-master-ai task-master-ai"
       ],
@@ -64,19 +64,19 @@
       }
     },
     "playwright": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y @playwright/mcp@latest"
       ]
     },
     "deepwiki": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "npx -y mcp-deepwiki@latest"
       ]
     },
     "zen": {
-      "command": "~/.mcp.sh",
+      "command": "~/.exec",
       "args": [
         "uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
       ],

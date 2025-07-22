@@ -19,3 +19,6 @@ claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/ma
 claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
 claude mcp add -s user deepwiki -- npx -y mcp-deepwiki@latest
 claude mcp add -s user zen -e OPENAI_API_KEY="\$OPENAI_API_KEY" -- uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server
+
+
+exit 0
