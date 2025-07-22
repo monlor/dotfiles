@@ -24,7 +24,7 @@
     stdout: true
     stderr: true
   - 
-    command: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin
+    command: if ! which kustomize; then curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin; fi
     description: Installing kustomize ...
     quiet: false
     stdout: true
