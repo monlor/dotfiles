@@ -1,9 +1,8 @@
 #!/bin/bash
 
-cd InjectLib
-
-git pull
+cd modules/CoreInject
 
 python3 main.py
 
+cd ..
 cd ..

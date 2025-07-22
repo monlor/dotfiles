@@ -1,24 +1,31 @@
 [submodule "modules/dotbot"]
 	path = modules/dotbot
 	url = https://github.com/anishathalye/dotbot.git
+	branch = master
 	ignore = dirty
 [submodule "modules/zgen"]
 	path = modules/zgen
 	url = https://github.com/tarjoilija/zgen.git
+	branch = master
 	ignore = dirty
 [submodule "modules/oh-my-zsh"]
 	path = modules/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+	branch = master
 	ignore = dirty
 [submodule "modules/dotbot-asdf"]
 	path = modules/dotbot-asdf
 	url = https://github.com/sobolevn/dotbot-asdf.git
+	branch = master
 [submodule "modules/dotbot-brewfile"]
 	path = modules/dotbot-brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
-[submodule "InjectLib"]
-	path = InjectLib
-	url = https://github.com/QiuChenly/InjectLib.git
+	branch = master
+[submodule "CoreInject"]
+	path = modules/CoreInject
+	url = https://git.sr.ht/~qiuchenly/CoreInject
+	branch = main
 [submodule "modules/SuperClaude"]
 	path = modules/SuperClaude
 	url = https://github.com/NomenAK/SuperClaude.git
+	branch = master

@@ -103,6 +103,18 @@ git config user.email "me@monlor.com"
 - **CentOS/RHEL/Fedora** - All installation modes supported
 - **Alpine Linux** - All installation modes supported
 
+## Force Update Submodules
+
+```bash
+cd ~/.dotfiles
+git submodule foreach --recursive '
+  branch=$(git rev-parse --abbrev-ref HEAD);
+  git fetch origin;
+  git reset --hard origin/$branch;
+  git clean -fdx;
+'
+```
+
 ## Inspired By
 
 - https://github.com/denolfe/dotfiles
