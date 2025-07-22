@@ -5,4 +5,15 @@
     quiet: false
     stdout: true
     stderr: true
-  - helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true
+  - 
+    command: helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true
+    description: Installing helm diff plugin ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin
+    description: Installing kustomize ...
+    quiet: false
+    stdout: true
+    stderr: true
