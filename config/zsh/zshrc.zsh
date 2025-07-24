@@ -4,7 +4,12 @@
 zstyle ':omz:update' mode disabled
 
 # Get zgen
-source ~/.zgen/zgen.zsh
+. ~/.zgen/zgen.zsh
+
+# asdf
+. /opt/asdf/asdf.sh
+
+export PATH="$HOME/.local/bin:$PATH"
 
 export ZSH_CONFIG_HOME="$HOME/.config/zsh"
 export GPG_TTY=$TTY # https://unix.stackexchange.com/a/608921

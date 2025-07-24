@@ -1,0 +1,65 @@
+- link:
+    ~/.asdfrc:
+      path: config/asdf/asdfrc
+      force: true
+- shell:
+  - description: Add asdf to profile ...
+    command: |
+      sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg asdf-vm/asdf
+      sudo mkdir -p /opt/asdf /etc/profile.d
+      sudo chmod 777 -R /opt/asdf
+      echo "export ASDF_DIR=/opt/asdf" | sudo tee /opt/asdf/asdf.sh
+      echo "export ASDF_DATA_DIR=/opt/asdf" | sudo tee -a /opt/asdf/asdf.sh
+      echo "export PATH=/opt/asdf/shims:\$PATH" | sudo tee -a /opt/asdf/asdf.sh
+  - description: Add golang plugin ...
+    command: |
+      . /opt/asdf/asdf.sh
+      asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+      asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+      asdf plugin add python https://github.com/danhper/asdf-python.git
+    stdout: true
+    stderr: true
+  - description: Install tools ...
+    command: | 
+      . /opt/asdf/asdf.sh
+      asdf install golang 1.21.0
+      asdf set -u golang 1.21.0
+
+      asdf install python 3.12.3
+      asdf set -u python 3.12.3
+
+      asdf install nodejs 22.17.1
+      asdf set -u nodejs 22.17.1
+      
+    stdout: true
+    stderr: true
+  - description: Install packages ...
+    command: |
+      . /opt/asdf/asdf.sh
+      npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli
+      pip install ydcv uv mycli
+    stdout: true
+    stderr: true
+  - 
+    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && uv sync && python3 -m SuperClaude install --profile developer -y ; fi
+    description: Installing SuperClaude ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: ./config/mcp/claude.sh
+    description: Installing claude mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - command: mkdir -p ~/.gemini && cat config/mcp/gemini.json > ~/.gemini/settings.json
+    description: Installing gemini mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - command: mkdir -p ~/.cursor && sed -e "s@~/@$HOME/@g" config/mcp/mcp.json > ~/.cursor/mcp.json
+    description: Installing cursor mcp ...
+    quiet: false
+    stdout: true
+    stderr: true
+ 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
@@ -21,7 +21,7 @@ MODE_DEPENDENCIES_desktop=(minimal development)
 
 # Mode-specific required configs (easy to extend)
 MODE_CONFIGS_minimal=(dotbot/minimal/install.base.yaml)
-MODE_CONFIGS_development=(dotbot/development/install.asdf.yaml)
+MODE_CONFIGS_development=(dotbot/development/install.dev.yaml)
 MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)

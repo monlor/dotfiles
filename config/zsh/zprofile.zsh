@@ -14,8 +14,3 @@ if [ -f ~/.orbstack/shell/init.zsh ]; then
   source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
 
-# asdf
-export ASDF_DIR="$HOME/.asdf"
-export ASDF_DATA_DIR="$ASDF_DIR"
-
-export PATH="$ASDF_DIR/shims:$HOME/.local/bin:$PATH"
