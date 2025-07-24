@@ -45,7 +45,7 @@
     stdout: true
     stderr: true
   - 
-    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && uv sync && python3 -m SuperClaude install --profile developer -y ; fi
+    command: if [ ! -d ~/.claude ]; then cd ./modules/SuperClaude && uv sync && python3 -m SuperClaude install --components core commands --force -y ; fi
     description: Installing SuperClaude ...
     quiet: false
     stdout: true
