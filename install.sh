@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/opt/asdf/shims:/usr/local/bin:$PATH
 
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
