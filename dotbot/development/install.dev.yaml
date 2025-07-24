@@ -51,7 +51,7 @@
     stdout: true
     stderr: true
   - 
-    command: ./config/mcp/claude.sh
+    command: ./config/mcp/claude.sh || true
     description: Installing claude mcp ...
     quiet: false
     stdout: true
