@@ -1,11 +1,8 @@
 # CLAUDE.md - Dotfiles Management Guidelines
 
-## Commands
+Never execute the install.sh script. There is no need to test the script
 
-### Installation
-- Full install: `./install.sh`
-- Linux packages: `./scripts/install-apt.sh`
-- macOS packages: `brew bundle --file=package/brew/brewfile`
+## Commands
 
 ### Dotbot Commands
 - Update dotbot modules: `git submodule update --init --recursive`

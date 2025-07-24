@@ -20,8 +20,8 @@ MODE_DEPENDENCIES_development=(minimal)
 MODE_DEPENDENCIES_desktop=(minimal development)
 
 # Mode-specific required configs (easy to extend)
-MODE_CONFIGS_minimal=(dotbot/minimal/install.base.yaml)
-MODE_CONFIGS_development=(dotbot/development/install.dev.yaml)
+MODE_CONFIGS_minimal=(dotbot/minimal/install.01-base.yaml)
+MODE_CONFIGS_development=(dotbot/development/install.80-dev.yaml)
 MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)
@@ -158,19 +158,33 @@ build_configs() {
     local dep_var="MODE_DEPENDENCIES_${mode}[@]"
     local dependencies=("${!dep_var}")
     local all_modes=("${dependencies[@]}" "$mode")
+    
+    # Collect all config files from all modes
     for m in "${all_modes[@]}"; do
+        # Add mode-specific configs
         local conf_var="MODE_CONFIGS_${m}[@]"
         local mode_configs=("${!conf_var}")
         for config in "${mode_configs[@]}"; do
-            configs+=("$config")
+            if [[ -f "$config" ]]; then
+                configs+=("$config")
+            fi
         done
-
-        local system_config="dotbot/${m}/install.${os}.yaml"
-        if [[ -f "$system_config" ]]; then
-            configs+=("$system_config")
-        fi
     done
-    echo "${configs[@]}"
+    
+    # Add system-specific config files from all modes
+    for m in "${all_modes[@]}"; do
+        local system_configs=(dotbot/${m}/install.*-${os}.yaml)
+        for system_config in "${system_configs[@]}"; do
+            if [[ -f "$system_config" ]]; then
+                configs+=("$system_config")
+            fi
+        done
+    done
+    
+    # Sort all configs by filename's numeric prefix to ensure execution order
+    # This allows using numbered prefixes like install.01-base.yaml, install.80-dev.yaml
+    IFS=$'\n' sorted_configs=($(printf '%s\n' "${configs[@]}" | sort -t'/' -k3,3))
+    echo "${sorted_configs[@]}"
 }
 
 # Build plugin directory list (always return all)
