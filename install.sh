@@ -159,15 +159,16 @@ build_configs() {
     local dependencies=("${!dep_var}")
     local all_modes=("${dependencies[@]}" "$mode")
     for m in "${all_modes[@]}"; do
-        local system_config="dotbot/${m}/install.${os}.yaml"
-        if [[ -f "$system_config" ]]; then
-            configs+=("$system_config")
-        fi
-         local conf_var="MODE_CONFIGS_${m}[@]"
+        local conf_var="MODE_CONFIGS_${m}[@]"
         local mode_configs=("${!conf_var}")
         for config in "${mode_configs[@]}"; do
             configs+=("$config")
         done
+
+        local system_config="dotbot/${m}/install.${os}.yaml"
+        if [[ -f "$system_config" ]]; then
+            configs+=("$system_config")
+        fi
     done
     echo "${configs[@]}"
 }
