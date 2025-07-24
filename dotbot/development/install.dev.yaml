@@ -3,10 +3,10 @@
       path: config/asdf/asdfrc
       force: true
 - shell:
-  - description: Add asdf to profile ...
+  - description: Install asdf ...
     command: |
       sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg asdf-vm/asdf
-      sudo mkdir -p /opt/asdf /etc/profile.d
+      sudo mkdir -p /opt/asdf
       sudo chmod 777 -R /opt/asdf
       echo "export ASDF_DIR=/opt/asdf" | sudo tee /opt/asdf/asdf.sh
       echo "export ASDF_DATA_DIR=/opt/asdf" | sudo tee -a /opt/asdf/asdf.sh
