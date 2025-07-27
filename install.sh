@@ -239,15 +239,25 @@ DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 echo "🔄 Updating submodules..."
 git submodule update --init --recursive 
 
-# fix asdf python
+# fix asdf 
 if [[ -f /opt/asdf/asdf.sh ]]; then
     echo "🔄 Loading asdf..."
     . /opt/asdf/asdf.sh
-    if [ ! -f "$HOME/.tool-versions" ]; then
+    if ! asdf current python &> /dev/null; then
         latest_python=$(asdf list python | sed -E 's/[ |*]+//g' | head -1)
         echo "👉 Setting python to $latest_python..."
         asdf set -u python $latest_python
     fi
+    if ! asdf current nodejs &> /dev/null; then
+        latest_nodejs=$(asdf list nodejs | sed -E 's/[ |*]+//g' | head -1)
+        echo "👉 Setting nodejs to $latest_nodejs..."
+        asdf set -u nodejs $latest_nodejs
+    fi
+    if ! asdf current golang &> /dev/null; then
+        latest_golang=$(asdf list golang | sed -E 's/[ |*]+//g' | head -1)
+        echo "👉 Setting golang to $latest_golang..."
+        asdf set -u golang $latest_golang
+    fi  
 fi
 
 echo "💡 Running install command: ${DOTBOT_CMD[*]}"
