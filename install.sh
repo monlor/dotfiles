@@ -244,7 +244,7 @@ if [[ -f /opt/asdf/asdf.sh ]]; then
     echo "🔄 Loading asdf..."
     . /opt/asdf/asdf.sh
     if [ ! -f "$HOME/.tool-versions" ]; then
-        latest_python=$(asdf list python | awk -F '*' '{print$2}' | sort -V | tail -n 1)
+        latest_python=$(asdf list python | sed -E 's/[ |*]+//g' | head -1)
         echo "👉 Setting python to $latest_python..."
         asdf set -u python $latest_python
     fi
