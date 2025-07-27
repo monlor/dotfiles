@@ -239,6 +239,17 @@ DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 echo "🔄 Updating submodules..."
 git submodule update --init --recursive 
 
+# fix asdf python
+if [[ -f /opt/asdf/asdf.sh ]]; then
+    echo "🔄 Loading asdf..."
+    . /opt/asdf/asdf.sh
+    if [ ! -f "$HOME/.tool-versions" ]; then
+        latest_python=$(asdf list python | awk -F '*' '{print$2}' | sort -V | tail -n 1)
+        echo "👉 Setting python to $latest_python..."
+        asdf set -u python $latest_python
+    fi
+fi
+
 echo "💡 Running install command: ${DOTBOT_CMD[*]}"
 echo ""
 
