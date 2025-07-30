@@ -76,7 +76,7 @@
     stdout: true
     stderr: true
   - 
-    command: ~/.exec ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act utkuozdemir/pv-migrate nxtrace/NTrace-core:nexttrace helmfile/vals
+    command: ~/.exec ghpkg mikefarah/yq sunny0826/kubecm ahmetb/kubectx AliyunContainerService/image-syncer helmfile/helmfile nektos/act nxtrace/NTrace-core:nexttrace helmfile/vals
     description: Installing Github release package ...
     quiet: false
     stdout: true

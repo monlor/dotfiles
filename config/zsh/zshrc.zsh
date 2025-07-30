@@ -7,7 +7,9 @@ zstyle ':omz:update' mode disabled
 . ~/.zgen/zgen.zsh
 
 # asdf
-. /opt/asdf/asdf.sh
+if [[ -f /opt/asdf/asdf.sh ]]; then
+  . /opt/asdf/asdf.sh
+fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
