@@ -36,7 +36,7 @@
     stdout: true
     stderr: true
   - 
-    command: if which kubectl-krew; then kubectl krew install neat pv-migrate || true; fi
+    command: if which kubectl-krew; then kubectl krew install neat pv-migrate; fi
     description: Installing krew plugins neat and pv-migrate ...
     quiet: false
     stdout: true
