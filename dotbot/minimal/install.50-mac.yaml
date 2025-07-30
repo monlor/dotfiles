@@ -13,8 +13,8 @@
     stdout: true
     stderr: true
   - 
-    command: kubectl krew install neat pv-migrate
-    description: Installing krew plugins neat and pv-migrate ...
+    command: kubectl krew install neat pv-migrate ns ctx tree status view-utilization score get-all view-secret node-shell kc grep
+    description: Installing krew plugins ...
     quiet: false
     stdout: true
     stderr: true
