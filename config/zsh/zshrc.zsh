@@ -43,6 +43,9 @@ if ! zgen saved; then
   # Warn you when you run a command that you've got an alias for
   zgen load djui/alias-tips
 
+  # AI assist plugin
+  zgen load monlor/zsh-ai-assist . main
+
   # Completion-only repos
   zgen load zsh-users/zsh-completions src
 
