@@ -66,4 +66,17 @@
     quiet: false
     stdout: true
     stderr: true
+  - command: |
+      mkdir -p ~/.claude
+      cd ~/.claude
+      if [ ! -d agents ]; then
+        git clone https://github.com/wshobson/agents.git
+      else
+        cd agents
+        git pull
+      fi
+    description: Installing wshobson/agents Claude Code agent
+    quiet: false
+    stdout: true
+    stderr: true
  
