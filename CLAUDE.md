@@ -84,6 +84,25 @@ asdf global python 3.12.3   # Set global version
 # MCP setup verification
 ls ~/.cursor/mcp.json        # Cursor MCP config
 ls ~/.gemini/settings.json   # Gemini CLI MCP config
+
+# kubectl krew plugin management
+kubectl krew list            # List installed plugins
+kubectl krew search          # Search available plugins
+kubectl krew install <plugin>  # Install specific plugin
+
+# Available plugins (auto-installed):
+# - neat: Clean up kubectl output
+# - pv-migrate: Persistent volume migration
+# - ns: Namespace switching
+# - ctx: Context switching  
+# - status: Show resource status
+# - view-utilization: Resource utilization
+# - score: Security score analysis
+# - view-secret: View secrets
+# - node-shell: Node shell access
+# - kc: Kubectl shortcuts
+# - grep: Search resources
+# Note: 'tree' and 'get-all' plugins removed on non-macOS systems
 ```
 
 ## Configuration Architecture
