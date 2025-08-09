@@ -45,13 +45,6 @@
         "~/.exec uvx mcp-server-time"
       ]
     },
-    "git": {
-      "command": "sh",
-      "args": [
-        "-c",
-        "~/.exec uvx mcp-server-git"
-      ]
-    },
     "taskmaster-ai": {
       "command": "sh",
       "args": [
