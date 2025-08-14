@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -z "$USER" ]; then
   export USER=$(whoami)
@@ -9,7 +9,7 @@ if [ -z "$HOME" ]; then
 fi
 
 if [ -f ~/.secrets ]; then
-  source ~/.secrets
+  . ~/.secrets
 fi
 
 export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
