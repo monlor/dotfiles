@@ -32,5 +32,8 @@ fi
 if [ -n "$SUPABASE_ACCESS_TOKEN" ]; then
   claude mcp add -s user supabase -e SUPABASE_ACCESS_TOKEN="$SUPABASE_ACCESS_TOKEN" -- npx -y @supabase/mcp-server-supabase@latest
 fi
+if [ -n "$UPSTASH_EMAIL" -a -n "$UPSTASH_API_KEY" ]; then
+  claude mcp add -s user upstash -- npx -y @upstash/mcp-server run $UPSTASH_EMAIL $UPSTASH_API_KEY
+fi
 
 exit 0
