@@ -18,5 +18,6 @@ claude mcp add -s user magic -e API_KEY="\$MAGIC_API_KEY" -- npx -y @21st-dev/ma
 claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
 claude mcp add -s user deepwiki -- npx -y mcp-deepwiki@latest
 claude mcp add -s user task-master-ai -- npx -y --package=task-master-ai task-master-ai
+claude mcp add -s user mcp-domain-availability -- uvx --python=3.10 --from git+https://github.com/imprvhub/mcp-domain-availability mcp-domain-availability
 
 exit 0
