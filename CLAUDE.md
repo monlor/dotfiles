@@ -25,8 +25,7 @@ config/              # All configuration files
 
 modules/            # Git submodules
 ├── oh-my-zsh/      # ZSH framework
-├── zgen/           # ZSH plugin manager
-└── SuperClaude/    # Enhanced Claude Code framework
+└── zgen/           # ZSH plugin manager
 
 scripts/            # OS-specific installation scripts
 package/            # Package definitions (brew, apt, etc.)

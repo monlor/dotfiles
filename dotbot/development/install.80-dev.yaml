@@ -45,12 +45,6 @@
     stdout: true
     stderr: true
   - 
-    command: cd ./modules/SuperClaude && uv sync && python3 -m SuperClaude install --components core commands --force -y || true
-    description: Installing SuperClaude ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - 
     command: ./config/mcp/claude.sh || true
     description: Installing claude mcp ...
     quiet: false
