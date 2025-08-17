@@ -21,18 +21,6 @@
         "npx -y @upstash/context7-mcp"
       ]
     },
-    "sequential-thinking": {
-      "command": "~/.exec",
-      "args": [
-        "npx -y @modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "puppeteer": {
-      "command": "~/.exec",
-      "args": [
-        "npx -y @modelcontextprotocol/server-puppeteer"
-      ]
-    },
     "magic": {
       "command": "~/.exec",
       "args": [
@@ -41,12 +29,6 @@
       "env": {
         "API_KEY": "$MAGIC_API_KEY"
       }
-    },
-    "time": {
-      "command": "~/.exec",
-      "args": [
-        "uvx mcp-server-time"
-      ]
     },
     "taskmaster-ai": {
       "command": "~/.exec",

@@ -15,7 +15,6 @@ fi
 export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
 
 claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
-claude mcp add -s user puppeteer -- npx -y @modelcontextprotocol/server-puppeteer
 claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
 claude mcp add -s user deepwiki -- npx -y mcp-deepwiki@latest
 claude mcp add -s user task-master-ai -- npx -y --package=task-master-ai task-master-ai
