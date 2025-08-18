@@ -1,7 +1,25 @@
 - shell:
   - 
-    command: sudo apt install -y build-essential libedit-dev libbz2-dev libffi-dev libreadline-dev libssl-dev libsqlite3-dev liblzma-dev zlib1g-dev libncursesw5-dev tk-dev libxml2-dev libxmlsec1-dev
-    description: Installing development tools on Debian/Ubuntu ...
+    command: ./scripts/install-apt.sh development.apt
+    description: Installing development apt packages ...
     quiet: false
     stdout: true
-    stderr: true 
+    stderr: true
+  - 
+    command: ghpkg helmfile/helmfile nektos/act helmfile/vals
+    description: Installing development Github packages ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: if ! which kustomize; then curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin; fi
+    description: Installing kustomize ...
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: if ! which kubectl-krew; then set -x; cd "$(mktemp -d)" && OS="$(uname | tr '[:upper:]' '[:lower:]')" && ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && KREW="krew-${OS}_${ARCH}" && curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && tar zxvf "${KREW}.tar.gz" && ./"${KREW}" install krew; fi
+    description: Installing kubectl krew ...
+    quiet: false
+    stdout: true
+    stderr: true

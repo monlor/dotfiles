@@ -1,4 +1,4 @@
-iputils
+iputils-ping
 net-tools
 dnsutils
 zsh
@@ -13,7 +13,6 @@ htop
 neofetch
 neovim
 telnet
-redis
 tree
 bash
 trash-cli
@@ -21,9 +20,6 @@ direnv
 git-crypt
 openssl
 shellcheck
-kubectl
-terraform
 ripgrep
 tmux
-helm
 nmap

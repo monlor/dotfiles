@@ -40,7 +40,7 @@
   - description: Install packages ...
     command: |
       . /opt/asdf/asdf.sh
-      npm i -g yarn git-cz pnpm @anthropic-ai/claude-code @google/gemini-cli
+      npm i -g yarn pnpm git-cz @anthropic-ai/claude-code @google/gemini-cli
       pip install ydcv uv mycli
     stdout: true
     stderr: true

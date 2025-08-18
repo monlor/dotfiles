@@ -21,7 +21,7 @@ MODE_DEPENDENCIES_desktop=(minimal development)
 
 # Mode-specific required configs (easy to extend)
 MODE_CONFIGS_minimal=(dotbot/minimal/install.01-base.yaml)
-MODE_CONFIGS_development=(dotbot/development/install.80-dev.yaml)
+MODE_CONFIGS_development=(dotbot/development/install.80-dev.yaml dotbot/development/install.81-plugins.yaml)
 MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)
@@ -132,6 +132,9 @@ elif [[ -f /etc/os-release ]]; then
             ;;
         "alpine")
             OS="alpine"
+            ;;
+        "nixos")
+            OS="nixos"
             ;;
         *)
             echo "Unsupported OS: $ID"

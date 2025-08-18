@@ -2,6 +2,7 @@
 set -e
 
 YUM_DIR="./package/yum"
+YUMFILE=${1:-"minimal.yum"}
 
 # EPEL
 echo "Installing EPEL and yum-utils..."
@@ -27,14 +28,18 @@ echo "Updating yum..."
 sudo yum makecache
 
 # Install packages from yum
-echo "Installing packages from yumfile..."
-cat "$YUM_DIR/yumfile"
+echo "Installing packages from $YUMFILE..."
+if [[ ! -f "$YUM_DIR/$YUMFILE" ]]; then
+    echo "Error: Package file $YUM_DIR/$YUMFILE not found"
+    exit 1
+fi
+cat "$YUM_DIR/$YUMFILE"
 packages=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   # Skip empty lines and comments
   [[ -z "$line" || "$line" =~ ^# ]] && continue
   packages+=("$line")
-done < "$YUM_DIR/yumfile"
+done < "$YUM_DIR/$YUMFILE"
 sudo yum install -y "${packages[@]}"
 
 echo "Yum package installation completed!"

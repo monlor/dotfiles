@@ -1,6 +1,6 @@
 - shell:
   - 
-    command: ./scripts/install-yum.sh
+    command: ./scripts/install-yum.sh minimal.yum
     description: Installing yum packages ...
     quiet: false
     stdout: true
@@ -12,32 +12,14 @@
     stdout: true
     stderr: true
   - 
-    command: if ! type helm > /dev/null; then curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash; fi
-    description: Installing helm ...
+    command: if ! type starship &> /dev/null; then curl -sS https://starship.rs/install.sh | sh -s -- -f; fi
+    description: Installing starship ...
     quiet: false
     stdout: true
     stderr: true
   - 
-    command: helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true
-    description: Installing helm diff plugin ...
+    command: ghpkg mikefarah/yq nxtrace/NTrace-core:nexttrace
+    description: Installing Github release package ...
     quiet: false
     stdout: true
-    stderr: true
-  - 
-    command: if ! which kustomize; then curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin; fi
-    description: Installing kustomize ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - 
-    command: if ! which kubectl-krew; then set -x; cd "$(mktemp -d)" && OS="$(uname | tr '[:upper:]' '[:lower:]')" && ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && KREW="krew-${OS}_${ARCH}" && curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && tar zxvf "${KREW}.tar.gz" && ./"${KREW}" install krew; fi
-    description: Installing kubectl krew ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - 
-    command: if which kubectl-krew; then kubectl krew install neat pv-migrate ns ctx status view-utilization score view-secret node-shell kc grep; fi
-    description: Installing krew plugins ...
-    quiet: false
-    stdout: false
     stderr: true

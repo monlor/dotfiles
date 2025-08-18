@@ -2,6 +2,7 @@
 set -e
 
 APT_DIR="./package/apt"
+APTFILE=${1:-"minimal.apt"}
 
 # Add repositories
 echo "Adding apt repositories..."
@@ -27,14 +28,18 @@ echo "Updating apt..."
 sudo apt update
 
 # Install packages from aptfile
-echo "Installing packages from aptfile..."
-cat "$APT_DIR/aptfile"
+echo "Installing packages from $APTFILE..."
+if [[ ! -f "$APT_DIR/$APTFILE" ]]; then
+    echo "Error: Package file $APT_DIR/$APTFILE not found"
+    exit 1
+fi
+cat "$APT_DIR/$APTFILE"
 packages=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   # Skip empty lines and comments
   [[ -z "$line" || "$line" =~ ^# ]] && continue
   packages+=("$line")
-done < "$APT_DIR/aptfile"
+done < "$APT_DIR/$APTFILE"
 sudo apt install -y "${packages[@]}"
 
 echo "Apt package installation completed!"

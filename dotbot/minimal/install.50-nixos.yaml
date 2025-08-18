@@ -1,0 +1,7 @@
+- shell:
+  - 
+    command: scripts/install-nix.sh minimal.nix
+    description: Installing minimal NixOS packages
+    quiet: false
+    stdout: true
+    stderr: true

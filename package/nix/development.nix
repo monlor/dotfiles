@@ -1,0 +1,10 @@
+kubectl
+kustomize
+helm
+helmfile
+krew
+act
+vals
+terraform
+redis
+restic

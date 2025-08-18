@@ -4,6 +4,6 @@
       stderr: true
       include: ['tap', 'brew', 'cask', 'mas']
 - brewfile:
-    file: package/brew/brewfile.cask
+    file: package/brew/desktop.cask
 - brewfile:
-    file: package/brew/brewfile.mas
+    file: package/brew/desktop.mas

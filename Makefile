@@ -31,9 +31,9 @@ brew_install:
 
 # Save snapshot of all Homebrew packages
 brew_dump:
-	brew bundle dump --brews -f --file=package/brew/brewfile
-	brew bundle dump --casks -f --file=package/brew/brewfile.cask
-	brew bundle dump --mas -f --file=package/brew/brewfile.mas
+	brew bundle dump --brews -f --file=package/brew/minimal.brew
+	brew bundle dump --casks -f --file=package/brew/desktop.cask
+	brew bundle dump --mas -f --file=package/brew/desktop.mas
 
 
 backup:

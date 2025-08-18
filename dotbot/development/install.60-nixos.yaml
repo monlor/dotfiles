@@ -1,0 +1,13 @@
+- shell:
+  - 
+    command: scripts/install-nix.sh development.nix
+    description: Installing development NixOS packages
+    quiet: false
+    stdout: true
+    stderr: true
+  - 
+    command: ghpkg AliyunContainerService/image-syncer
+    description: Installing image-syncer ...
+    quiet: false
+    stdout: true
+    stderr: true

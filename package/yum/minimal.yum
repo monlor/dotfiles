@@ -15,10 +15,7 @@ neovim
 telnet
 bash
 trash-cli 
-redis
 openssl
-terraform
-kubectl
 mysql
 tmux
 shellcheck

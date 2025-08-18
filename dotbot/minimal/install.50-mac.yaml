@@ -4,17 +4,4 @@
       stderr: true
       include: ['tap', 'brew', 'cask', 'mas']
 - brewfile:
-    file: package/brew/brewfile
-- shell:
-  - 
-    command: helm plugin list diff && helm plugin install https://github.com/databus23/helm-diff || true
-    description: Installing helm diff plugin ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - 
-    command: kubectl krew install neat pv-migrate ns ctx tree status view-utilization score get-all view-secret node-shell kc grep
-    description: Installing krew plugins ...
-    quiet: false
-    stdout: false
-    stderr: true
+    file: package/brew/minimal.brew
