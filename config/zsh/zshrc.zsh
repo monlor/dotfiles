@@ -117,11 +117,3 @@ eval "$(starship init zsh)"
 
 # load user zshrc
 [ -f ${HOME}/.zshrc.user ] && source ${HOME}/.zshrc.user
-
-# pnpm
-export PNPM_HOME="/Users/gongqianjun.1/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
