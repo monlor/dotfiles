@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# Removed 'set -e' to allow proper error handling and continue installation of other plugins
 
 # Install krew plugins, skipping already installed ones
 # Usage: ./install-krew-plugins.sh plugin1 plugin2 plugin3 ...
@@ -68,7 +68,7 @@ main() {
     echo "🔧 Krew Plugin Installation Script"
     echo "================================="
     
-    # Check prerequisites
+    # Check prerequisites - exit if kubectl/krew not available
     check_krew
     
     echo "📦 Installing plugins: $*"
@@ -79,16 +79,19 @@ main() {
     local failed_count=0
     local failed_plugins=()
     
+    # Continue processing all plugins even if some fail
     for plugin in "$@"; do
         if is_plugin_installed "$plugin"; then
             echo "✓ Plugin '$plugin' is already installed, skipping..."
             ((skipped_count++))
         else
+            # Don't let plugin installation failure exit the entire script
             if install_plugin "$plugin"; then
                 ((installed_count++))
             else
                 ((failed_count++))
                 failed_plugins+=("$plugin")
+                echo "⚠️  Continuing with remaining plugins..."
             fi
         fi
     done
