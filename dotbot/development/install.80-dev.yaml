@@ -45,31 +45,23 @@
     stdout: true
     stderr: true
   - 
-    command: ./config/mcp/claude.sh || true
-    description: Installing claude mcp ...
+    command: ./config/coding/claude.sh || true
+    description: Installing claude mcp and agents ...
     quiet: false
     stdout: true
     stderr: true
-  - command: mkdir -p ~/.gemini && cat config/mcp/gemini.json > ~/.gemini/settings.json
+  - command: mkdir -p ~/.gemini && cp -n config/coding/gemini.json ~/.gemini/settings.json
     description: Installing gemini mcp ...
     quiet: false
     stdout: true
     stderr: true
-  - command: mkdir -p ~/.cursor && sed -e "s@~/@$HOME/@g" config/mcp/mcp.json > ~/.cursor/mcp.json
+  - command: mkdir -p ~/.cursor && cp -n config/coding/mcp.json ~/.cursor/mcp.json
     description: Installing cursor mcp ...
     quiet: false
     stdout: true
     stderr: true
-  - command: |
-      mkdir -p ~/.claude
-      cd ~/.claude
-      if [ ! -d agents ]; then
-        git clone https://github.com/wshobson/agents.git
-      else
-        cd agents
-        git pull
-      fi
-    description: Installing wshobson/agents Claude Code agent
+  - command: mkdir -p ~/.codex && cp -n config/coding/codex.toml ~/.codex/codex.toml
+    description: Installing codex configuration ...
     quiet: false
     stdout: true
     stderr: true

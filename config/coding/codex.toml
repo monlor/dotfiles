@@ -1,0 +1,30 @@
+[tools.context7]
+command = ["npx", "-y", "@upstash/context7-mcp"]
+
+[tools.playwright]
+command = ["npx", "-y", "@playwright/mcp@latest"]
+
+[tools.deepwiki]
+command = ["npx", "-y", "mcp-deepwiki@latest"]
+
+[tools.task-master-ai]
+command = ["npx", "-y", "--package=task-master-ai", "task-master-ai"]
+
+[tools.mcp-domain-availability]
+command = ["uvx", "--from", "git+https://github.com/imprvhub/mcp-domain-availability", "mcp-domain-availability"]
+
+[tools.magic]
+command = ["npx", "-y", "@21st-dev/magic@latest"]
+env = { API_KEY = "$MAGIC_API_KEY" }
+
+[tools.postgres-dev]
+command = ["uvx", "--from", "git+https://github.com/crystaldba/postgres-mcp.git", "postgres-mcp", "--access-mode=unrestricted"]
+env = { DATABASE_URI = "$DEV_PG_URI" }
+
+[tools.redis-dev]
+command = ["uvx", "--from", "git+https://github.com/redis/mcp-redis.git", "redis-mcp-server", "--url", "$DEV_REDIS_URI"]
+
+[tools.supabase]
+command = ["npx", "-y", "@supabase/mcp-server-supabase@latest"]
+env = { SUPABASE_ACCESS_TOKEN = "$SUPABASE_ACCESS_TOKEN" }
+

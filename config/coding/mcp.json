@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "mcp-feedback-enhanced": {
-      "command": "~/.exec",
-      "args": ["uvx mcp-feedback-enhanced@latest"],
+      "command": "uvx",
+      "args": ["mcp-feedback-enhanced@latest"],
       "env": {
         "MCP_DEBUG": "false",
         "MCP_WEB_PORT": "8765"
@@ -10,51 +10,51 @@
       "autoApprove": ["interactive_feedback"]
     },
     "fetch": {
-      "command": "~/.exec",
+      "command": "uvx",
       "args": [
-        "uvx mcp-server-fetch"
+        "mcp-server-fetch"
       ]
     },
     "context7": {
-      "command": "~/.exec",
+      "command": "npx",
       "args": [
-        "npx -y @upstash/context7-mcp"
+        "-y", "@upstash/context7-mcp"
       ]
     },
     "magic": {
-      "command": "~/.exec",
+      "command": "npx",
       "args": [
-        "npx -y @21st-dev/magic@latest"
+        "-y", "@21st-dev/magic@latest"
       ],
       "env": {
         "API_KEY": "$MAGIC_API_KEY"
       }
     },
     "taskmaster-ai": {
-      "command": "~/.exec",
+      "command": "npx",
       "args": [
-        "npx -y --package=task-master-ai task-master-ai"
+        "-y", "--package=task-master-ai", "task-master-ai"
       ],
       "env": {
         "OPENAI_API_KEY": "$OPENAI_API_KEY"
       }
     },
     "playwright": {
-      "command": "~/.exec",
+      "command": "npx",
       "args": [
-        "npx -y @playwright/mcp@latest"
+        "-y", "@playwright/mcp@latest"
       ]
     },
     "deepwiki": {
-      "command": "~/.exec",
+      "command": "npx",
       "args": [
-        "npx -y mcp-deepwiki@latest"
+        "-y", "mcp-deepwiki@latest"
       ]
     },
     "zen": {
-      "command": "~/.exec",
+      "command": "uvx",
       "args": [
-        "uvx --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
+        "--from", "git+https://github.com/BeehiveInnovations/zen-mcp-server.git", "zen-mcp-server"
       ],
       "env": {
         "OPENAI_API_KEY": "$OPENAI_API_KEY"
