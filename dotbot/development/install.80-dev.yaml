@@ -37,30 +37,38 @@
       
     stdout: true
     stderr: true
-  - description: Install packages ...
+  - description: Install npm packages ...
     command: |
       . /opt/asdf/asdf.sh
-      npm i -g yarn pnpm git-cz @anthropic-ai/claude-code @google/gemini-cli
+      if ! command -v pnpm &> /dev/null; then
+        npm i -g pnpm
+      fi
+      pnpm add -g yarn git-cz @anthropic-ai/claude-code @google/gemini-cli
+    stdout: true
+    stderr: true
+  - description: Install python packages ...
+    command: |
+      . /opt/asdf/asdf.sh
       pip install ydcv uv mycli
     stdout: true
     stderr: true
-  - 
+  - description: Install claude mcp and agents ...
     command: ./config/coding/claude.sh || true
     description: Installing claude mcp and agents ...
     quiet: false
     stdout: true
     stderr: true
-  - command: mkdir -p ~/.gemini && cp -n config/coding/gemini.json ~/.gemini/settings.json
+  - command: mkdir -p ~/.gemini && cp -n config/coding/gemini.json ~/.gemini/settings.json || true
     description: Installing gemini mcp ...
     quiet: false
     stdout: true
     stderr: true
-  - command: mkdir -p ~/.cursor && cp -n config/coding/mcp.json ~/.cursor/mcp.json
+  - command: mkdir -p ~/.cursor && cp -n config/coding/mcp.json ~/.cursor/mcp.json || true
     description: Installing cursor mcp ...
     quiet: false
     stdout: true
     stderr: true
-  - command: mkdir -p ~/.codex && cp -n config/coding/codex.toml ~/.codex/codex.toml
+  - command: mkdir -p ~/.codex && cp -n config/coding/codex.toml ~/.codex/config.toml || true
     description: Installing codex configuration ...
     quiet: false
     stdout: true

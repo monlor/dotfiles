@@ -51,13 +51,40 @@
         "-y", "mcp-deepwiki@latest"
       ]
     },
-    "zen": {
+    "mcp-domain-availability": {
       "command": "uvx",
       "args": [
-        "--from", "git+https://github.com/BeehiveInnovations/zen-mcp-server.git", "zen-mcp-server"
+        "--from", "git+https://github.com/imprvhub/mcp-domain-availability",
+        "mcp-domain-availability"
+      ]
+    },
+    "postgres-dev": {
+      "command": "uvx",
+      "args": [
+        "--from", "git+https://github.com/crystaldba/postgres-mcp.git",
+        "postgres-mcp",
+        "--access-mode=unrestricted"
       ],
       "env": {
-        "OPENAI_API_KEY": "$OPENAI_API_KEY"
+        "DATABASE_URI": "$DEV_PG_URI"
+      }
+    },
+    "redis-dev": {
+      "command": "uvx",
+      "args": [
+        "--from", "git+https://github.com/redis/mcp-redis.git",
+        "redis-mcp-server",
+        "--url",
+        "$DEV_REDIS_URI"
+      ]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y", "@supabase/mcp-server-supabase@latest"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "$SUPABASE_ACCESS_TOKEN"
       }
     }
   }

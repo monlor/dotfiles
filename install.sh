@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export PATH=$HOME/.local/bin:/opt/asdf/shims:/usr/local/bin:$PATH
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH=$HOME/.local/bin:/opt/asdf/shims:/usr/local/bin:$PNPM_HOME:$PATH
 
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"

@@ -18,13 +18,8 @@ export PATH=$HOME/.local/bin:$HOME/.asdf/shims:$PATH
 add_mcp_server() {
     local server_name="$1"
     shift
-    
-    if ! claude mcp list -s user | grep -q "^$server_name\s"; then
-        echo "Adding MCP server: $server_name"
-        claude mcp add -s user "$server_name" "$@" || echo "Warning: Failed to add $server_name"
-    else
-        echo "MCP server $server_name already exists, skipping"
-    fi
+    echo "Adding MCP server: $server_name"
+    claude mcp add -s user "$server_name" "$@" 
 }
 
 # Add MCP servers
