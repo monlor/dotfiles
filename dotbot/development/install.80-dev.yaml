@@ -43,7 +43,7 @@
       if ! command -v pnpm &> /dev/null; then
         npm i -g pnpm
       fi
-      pnpm add -g yarn git-cz @anthropic-ai/claude-code @google/gemini-cli
+      pnpm add -g yarn git-cz @anthropic-ai/claude-code @google/gemini-cli @openai/codex
     stdout: true
     stderr: true
   - description: Install python packages ...
