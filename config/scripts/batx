@@ -30,9 +30,9 @@ set_bat_theme
 
 # Execute bat with all arguments (handle different command names)
 if type bat >/dev/null 2>&1; then
-    exec command bat "$@"
+    exec bat "$@"
 elif type batcat >/dev/null 2>&1; then
-    exec command batcat "$@"
+    exec batcat "$@"
 else
     echo "Error: bat/batcat command not found" >&2
     exit 1
