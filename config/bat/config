@@ -1,0 +1,22 @@
+# bat configuration file
+
+# Auto-detect theme based on terminal appearance
+# Use "auto" to automatically choose based on terminal background
+--theme="auto"
+
+# Style configuration
+--style="numbers,changes,header,grid"
+
+# Show line numbers
+--line-range="1:"
+
+# Use italic text
+--italic-text=always
+
+# Pager settings
+--pager="less -FR"
+
+# Map extensions
+--map-syntax "*.jenkinsfile:Groovy"
+--map-syntax ".ignore:Git Ignore"
+--map-syntax "*.conf:INI"
