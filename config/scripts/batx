@@ -28,5 +28,12 @@ set_bat_theme() {
 # Set adaptive theme
 set_bat_theme
 
-# Execute bat with all arguments (let system find the correct path)
-exec command bat "$@"
+# Execute bat with all arguments (handle different command names)
+if type bat >/dev/null 2>&1; then
+    exec command bat "$@"
+elif type batcat >/dev/null 2>&1; then
+    exec command batcat "$@"
+else
+    echo "Error: bat/batcat command not found" >&2
+    exit 1
+fi

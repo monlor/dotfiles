@@ -1,18 +1,19 @@
 # bat aliases with adaptive theme support
 
-if type bat >/dev/null 2>&1; then
-  # Override cat command to use batcat wrapper (with adaptive theme)
-  alias cat='batcat --paging=never'
+# Check for bat command (could be 'bat' on macOS/homebrew or 'batcat' on Linux)
+if type bat >/dev/null 2>&1 || type batcat >/dev/null 2>&1; then
+  # Override cat command to use batx wrapper (with adaptive theme)
+  alias cat='batx -p'
 
   # Alternative bat command for paged output
-  alias less='batcat'
+  alias less='batx'
 
   # Override bat command to use wrapper with adaptive theme
-  alias bat='batcat'
+  alias bat='batx'
 
   # Show bat with line numbers (useful for debugging)
-  alias batn='batcat --style=numbers'
+  alias batn='batx --style=numbers'
 
   # Show bat without decorations (plain text)
-  alias batp='batcat --style=plain'
+  alias batp='batx --style=plain'
 fi
