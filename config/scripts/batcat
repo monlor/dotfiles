@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# bat theme switcher - adaptive to macOS appearance mode
+# bat wrapper script with adaptive theme switching
 
 get_macos_appearance() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -17,18 +17,16 @@ set_bat_theme() {
     local appearance=$(get_macos_appearance)
 
     if [[ "$appearance" == "Dark" ]]; then
-        # Dark mode themes (choose one that looks good)
+        # Dark mode theme
         export BAT_THEME="Monokai Extended Bright"
     else
-        # Light mode themes
+        # Light mode theme
         export BAT_THEME="GitHub"
     fi
 }
 
-# Set the theme
+# Set adaptive theme
 set_bat_theme
 
-# If called with --print, just print the theme name
-if [[ "$1" == "--print" ]]; then
-    echo "$BAT_THEME"
-fi
+# Execute bat with all arguments (let system find the correct path)
+exec command bat "$@"
