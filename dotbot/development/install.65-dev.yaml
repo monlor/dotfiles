@@ -21,10 +21,11 @@
       asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
       asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
       asdf plugin add python https://github.com/danhper/asdf-python.git
+      asdf plugin add bun https://github.com/cometkim/asdf-bun.git
     stdout: true
     stderr: true
   - description: Install tools ...
-    command: | 
+    command: |
       . /opt/asdf/asdf.sh
       asdf install golang 1.21.0
       asdf set -u golang 1.21.0
@@ -34,7 +35,10 @@
 
       asdf install nodejs 22.17.1
       asdf set -u nodejs 22.17.1
-      
+
+      asdf install bun 1.2.23
+      asdf set -u bun 1.2.23
+
     stdout: true
     stderr: true
   - description: Install npm packages ...
