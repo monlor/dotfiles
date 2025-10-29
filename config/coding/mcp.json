@@ -44,7 +44,7 @@
         "--browser-url=http://127.0.0.1:9222"
       ]
     },
-    "codex-cli": {
+    "codex": {
       "command": "npx",
       "args": [
         "-y", "codex-mcp-server"
