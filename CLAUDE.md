@@ -8,7 +8,7 @@ This is a **dotfiles management system** using Dotbot for cross-platform configu
 
 ### Core Components
 - **Dotbot Engine**: Configuration management via `install.conf.yaml`
-- **Multi-Mode Installation**: Minimal, Development, Desktop installation profiles
+- **Multi-Mode Installation**: Minimal, DevOps, Development, Desktop installation profiles
 - **Modular Configuration**: Platform-specific and tool-specific organization
 - **Version Management**: Git submodules for external dependencies (oh-my-zsh, zgen)
 
@@ -27,8 +27,23 @@ modules/            # Git submodules
 ├── oh-my-zsh/      # ZSH framework
 └── zgen/           # ZSH plugin manager
 
+dotbot/             # Dotbot installation configurations
+├── minimal/        # Minimal mode configs
+├── devops/         # DevOps mode configs
+├── development/    # Development mode configs
+└── desktop/        # Desktop mode configs
+
 scripts/            # OS-specific installation scripts
-package/            # Package definitions (brew, apt, etc.)
+├── install-apt.sh  # APT package installer
+├── install-yum.sh  # YUM package installer
+├── install-apk.sh  # APK package installer
+└── install-*.sh    # Other installation scripts
+
+package/            # Package definitions by OS
+├── brew/           # Homebrew packages (macOS)
+├── apt/            # APT packages (Debian/Ubuntu)
+├── yum/            # YUM packages (CentOS/RHEL)
+└── apk/            # APK packages (Alpine)
 ```
 
 ### Configuration Philosophy
@@ -36,6 +51,7 @@ package/            # Package definitions (brew, apt, etc.)
 - **Platform Awareness**: OS-specific configurations and conditionals
 - **User Customization**: `.user` files for personal overrides (never committed)
 - **Forced Synchronization**: Core configs overwritten to maintain consistency
+- **Package Installation**: Use `scripts/install-*.sh` scripts to install packages from `package/` directory files
 
 ## Common Commands
 
@@ -45,6 +61,7 @@ package/            # Package definitions (brew, apt, etc.)
 make install
 
 # Direct mode installation
+./install.sh --mode devops
 ./install.sh --mode development
 ./install.sh --mode desktop --yes
 
@@ -66,7 +83,6 @@ git submodule foreach --recursive '
 '
 
 # Homebrew package management (macOS)
-make brew_dump          # Export current packages
 make brew_install       # Install Homebrew
 
 # Backup/restore application configs (macOS)
