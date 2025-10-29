@@ -1,0 +1,25 @@
+- shell:
+  -
+    command: ./scripts/install-yum.sh devops.yum
+    description: Installing devops yum packages ...
+    quiet: false
+    stdout: true
+    stderr: true
+  -
+    command: ghpkg helmfile/helmfile
+    description: Installing helmfile from Github ...
+    quiet: false
+    stdout: true
+    stderr: true
+  -
+    command: if ! which kustomize; then curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash -s -- ~/.local/bin; fi
+    description: Installing kustomize ...
+    quiet: false
+    stdout: true
+    stderr: true
+  -
+    command: if ! which kubectl-krew; then set -x; cd "$(mktemp -d)" && OS="$(uname | tr '[:upper:]' '[:lower:]')" && ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && KREW="krew-${OS}_${ARCH}" && curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && tar zxvf "${KREW}.tar.gz" && ./"${KREW}" install krew; fi
+    description: Installing kubectl krew ...
+    quiet: false
+    stdout: true
+    stderr: true

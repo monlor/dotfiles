@@ -1,0 +1,4 @@
+- brewfile:
+    file: package/brew/devops.brew
+    stdout: true
+    stderr: true
