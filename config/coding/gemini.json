@@ -1,44 +1,10 @@
 {
   "mcpServers": {
-    "fetch": {
-      "command": "uvx",
-      "args": [
-        "mcp-server-fetch"
-      ]
-    },
     "context7": {
       "command": "npx",
       "args": [
         "-y",
         "@upstash/context7-mcp"
-      ]
-    },
-    "magic": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@21st-dev/magic@latest"
-      ],
-      "env": {
-        "API_KEY": "$MAGIC_API_KEY"
-      }
-    },
-    "taskmaster-ai": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "--package=task-master-ai",
-        "task-master-ai"
-      ],
-      "env": {
-        "OPENAI_API_KEY": "$OPENAI_API_KEY"
-      }
-    },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest"
       ]
     },
     "deepwiki": {
@@ -54,6 +20,23 @@
         "--from",
         "git+https://github.com/imprvhub/mcp-domain-availability",
         "mcp-domain-availability"
+      ]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "$SUPABASE_ACCESS_TOKEN"
+      }
+    },
+    "codex-cli": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "codex-mcp-server"
       ]
     }
   },

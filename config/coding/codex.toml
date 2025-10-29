@@ -4,19 +4,19 @@ disable_response_storage = true
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
-[mcp_servers.playwright]
-command = "npx"
-args = ["-y", "@playwright/mcp@latest"]
-
 [mcp_servers.deepwiki]
 command = "npx"
 args = ["-y", "mcp-deepwiki@latest"]
 
-[mcp_servers.magic]
-command = "npx"
-args = ["-y", "@21st-dev/magic@latest"]
-env = { API_KEY = "$MAGIC_API_KEY" }
+[mcp_servers.mcp-domain-availability]
+command = "uvx"
+args = ["--from", "git+https://github.com/imprvhub/mcp-domain-availability", "mcp-domain-availability"]
 
-[mcp_servers.taskmaster-ai]
+[mcp_servers.supabase]
 command = "npx"
-args = ["-y", "--package=task-master-ai", "task-master-ai"]
+args = ["-y", "@supabase/mcp-server-supabase@latest"]
+env = { SUPABASE_ACCESS_TOKEN = "$SUPABASE_ACCESS_TOKEN" }
+
+[mcp_servers.codex-cli]
+command = "npx"
+args = ["-y", "codex-mcp-server"]
