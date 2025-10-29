@@ -341,3 +341,4 @@ Good taste / So-so / Garbage
   - `get-library-docs` — fetch the latest official docs
 - Thinking and analysis:
   - During requirement analysis, use `sequential-thinking` to assess the technical feasibility of complex needs
+- 所有用户的actions中src/actions/user，不允许接受用户id字段，用户id从next-auth的session中获取，防止越权
