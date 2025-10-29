@@ -13,16 +13,18 @@ INSTALL_MODE=${INSTALL_MODE:-""}
 SKIP_CONFIRM=${SKIP_CONFIRM:-false}
 
 # Supported install modes (easy to extend)
-ALL_MODES=(minimal development desktop)
+ALL_MODES=(minimal devops development desktop)
 
 # Mode dependency chain (easy to extend)
 MODE_DEPENDENCIES_minimal=()
-MODE_DEPENDENCIES_development=(minimal)
-MODE_DEPENDENCIES_desktop=(minimal development)
+MODE_DEPENDENCIES_devops=(minimal)
+MODE_DEPENDENCIES_development=(minimal devops)
+MODE_DEPENDENCIES_desktop=(minimal devops development)
 
 # Mode-specific required configs (easy to extend)
 MODE_CONFIGS_minimal=(dotbot/minimal/install.01-base.yaml)
-MODE_CONFIGS_development=(dotbot/development/install.65-dev.yaml dotbot/development/install.66-plugins.yaml)
+MODE_CONFIGS_devops=(dotbot/devops/install.56-plugins.yaml)
+MODE_CONFIGS_development=(dotbot/development/install.65-dev.yaml)
 MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)
@@ -38,6 +40,7 @@ Usage: $0 [options] [dotbot options]
 
 Install modes:
   🌏 minimal      - Minimal install, basic configs
+  ⚙️  devops       - DevOps tools, includes kubectl, helm, terraform, etc.
   🛠️  development  - Development environment, includes ASDF and dev tools
   🖥️  desktop      - Desktop environment, includes GUI apps and desktop configs
 
@@ -51,6 +54,7 @@ Environment variables:
   SKIP_CONFIRM       Set to true to skip confirmation
 
 Examples:
+  $0 --mode devops
   $0 --mode development
   $0 --mode desktop --yes
   INSTALL_MODE=desktop SKIP_CONFIRM=true $0
@@ -61,19 +65,23 @@ EOF
 select_mode() {
     echo "✨ Please select an installation mode:"
     echo "  1) 🌏 minimal      - Basic configuration for servers or minimal environments"
-    echo "  2) 🛠️  development  - Development environment with ASDF and dev tools"
-    echo "  3) 🖥️  desktop      - Full desktop environment with GUI apps"
+    echo "  2) ⚙️  devops       - DevOps tools (kubectl, helm, terraform, krew plugins)"
+    echo "  3) 🛠️  development  - Development environment with ASDF and dev tools"
+    echo "  4) 🖥️  desktop      - Full desktop environment with GUI apps"
     echo ""
-    read -p "Enter your choice (1-3): " choice
-    
+    read -p "Enter your choice (1-4): " choice
+
     case $choice in
         1)
             INSTALL_MODE="minimal"
             ;;
         2)
-            INSTALL_MODE="development"
+            INSTALL_MODE="devops"
             ;;
         3)
+            INSTALL_MODE="development"
+            ;;
+        4)
             INSTALL_MODE="desktop"
             ;;
         *)

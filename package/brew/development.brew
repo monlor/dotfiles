@@ -1,7 +1,2 @@
-brew "kubectl"
-brew "kustomize"
-brew "helm"
-brew "krew"
-brew "act"
 brew "redis"
 brew "restic"

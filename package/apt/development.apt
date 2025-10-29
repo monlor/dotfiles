@@ -1,7 +1,4 @@
-kubectl
-helm
 redis
-terraform
 build-essential
 libedit-dev
 libbz2-dev

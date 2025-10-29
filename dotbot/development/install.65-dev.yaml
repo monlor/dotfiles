@@ -2,6 +2,9 @@
     ~/.asdfrc:
       path: config/asdf/asdfrc
       force: true
+    ~/.claude/CLAUDE.md:
+      path: config/coding/CLAUDE.md
+      force: true
 - shell:
   - description: Install asdf ...
     command: |
