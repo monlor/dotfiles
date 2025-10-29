@@ -17,6 +17,10 @@ command = "npx"
 args = ["-y", "@supabase/mcp-server-supabase@latest"]
 env = { SUPABASE_ACCESS_TOKEN = "$SUPABASE_ACCESS_TOKEN" }
 
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["chrome-devtools-mcp@latest", "--browser-url=http://127.0.0.1:9222"]
+
 [mcp_servers.codex-cli]
 command = "npx"
 args = ["-y", "codex-mcp-server"]
