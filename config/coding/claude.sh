@@ -27,7 +27,7 @@ add_mcp_server context7 -- npx -y @upstash/context7-mcp
 add_mcp_server deepwiki -- npx -y mcp-deepwiki@latest
 add_mcp_server mcp-domain-availability -- uvx --from git+https://github.com/imprvhub/mcp-domain-availability mcp-domain-availability
 add_mcp_server chrome-devtools -- npx chrome-devtools-mcp@latest --browser-url=http://127.0.0.1:9222
-add_mcp_server codex -- npx -y codex-mcp-server
+add_mcp_server codex -- npx -y github:monlor/codex-mcp-server#main
 
 # Conditional MCP servers based on environment variables
 if [ -n "$SUPABASE_ACCESS_TOKEN" ]; then

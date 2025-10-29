@@ -43,7 +43,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "codex-mcp-server"
+        "github:monlor/codex-mcp-server#main"
       ]
     }
   },
