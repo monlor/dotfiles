@@ -3,9 +3,9 @@
 ## Core Principles
 
 1. **Separation of Concerns**: CC = brain (planning, search, decisions), Codex = hands (code generation, refactoring)
-2. **Codex-First Strategy**: Default to Codex for code tasks, CC only for trivial changes (<20 lines) and non-code work
+2. **User-Requested Strategy**: Use Codex ONLY when user explicitly requests it, CC handles all tasks by default
 3. **Zero-Confirmation Flow**: Pre-defined boundaries, auto-execute within limits
-4. **MANDATORY Parameter Requirement**: ALWAYS use `model: "gpt-5-codex"`, `sandbox: "danger-full-access"`, `approval-policy: "on-failure"` when calling Codex MCP - NO EXCEPTIONS
+4. **Model Requirement**: ALWAYS use `model: "gpt-5-codex"` when calling Codex MCP - NO EXCEPTIONS
 
 ---
 
@@ -17,10 +17,10 @@
 3. What will this break? → Backward compatibility is iron law
 
 ### CC Responsibilities
-- ✅ Plan, search (WebSearch/Glob/Grep), decide, coordinate Codex
-- ✅ Trivial changes only: typo fixes, comment updates, simple config tweaks (<20 lines)
-- ❌ No final code in planning phase
-- ❌ Delegate all code generation/refactoring to Codex (even simple tasks)
+- ✅ Plan, search (WebSearch/Glob/Grep), decide, implement code changes
+- ✅ Handle all code tasks by default (typos, features, refactoring, bug fixes)
+- ✅ Use native tools (Read, Edit, Write) for code modifications
+- ❌ Only use Codex when user explicitly requests it
 
 ### Quality Standards
 - Simplify data structures over patching logic
@@ -34,17 +34,16 @@
 - High-risk changes only with evidence
 - Mark speculation as "assumption"
 
-### Codex Participation Priority
-**IMPORTANT**: Maximize Codex involvement for all code-related tasks
-- ✅ Single function modification → Codex
-- ✅ Adding a new method → Codex
-- ✅ Refactoring logic → Codex
-- ✅ Bug fixes → Codex
-- ❌ Only skip Codex for: typo fixes, comment-only changes, trivial config tweaks (<20 lines)
+### Codex Usage Policy
+**CRITICAL**: Use Codex ONLY when user explicitly requests it
+- ✅ User says "use codex" or "let codex handle this" → Use Codex
+- ✅ User explicitly mentions "codex" in their request → Use Codex
+- ❌ Default behavior: CC handles all code tasks directly
+- ❌ Don't automatically use Codex for any tasks
 
-**CRITICAL**: Always use `model: "gpt-5-codex"`, `sandbox: "danger-full-access"`, `approval-policy: "on-failure"` when calling Codex MCP
-- ✅ Correct: `model: "gpt-5-codex"`, `sandbox: "danger-full-access"`, `approval-policy: "on-failure"`
-- ❌ Wrong: Any other model, sandbox, or approval-policy value
+**CRITICAL**: When using Codex, always use `model: "gpt-5-codex"`
+- ✅ Correct: `model: "gpt-5-codex"`
+- ❌ Wrong: Any other model value (gpt-4, gpt-3.5-turbo, etc.)
 - This is a MANDATORY requirement, not optional
 
 ---
@@ -52,21 +51,130 @@
 ## MCP Invocation
 
 ### CRITICAL REQUIREMENT
-**MUST ALWAYS include `model: "gpt-5-codex"`, `sandbox: "danger-full-access"`, `approval-policy: "on-failure"`** - This is NON-NEGOTIABLE
-- Every single Codex MCP call MUST include all three parameters with these exact values
-- Do NOT use any other model, sandbox, or approval-policy values
-- Do NOT omit any of these parameters
-- Do NOT use mcp__codex__codex_reply, You can only call mcp__codex__codex to append all tasks in the prompt.
+**MUST ALWAYS include `model: "gpt-5-codex"`** - This is NON-NEGOTIABLE
+- Every single Codex MCP call MUST use `gpt-5-codex` model
+- Do NOT use other models (gpt-4, gpt-3.5-turbo)
+- Available parameters: `prompt` (required), `sessionId` (optional), `resetSession` (optional), `model` (optional, default: gpt-5-codex), `additionalArgs` (optional)
+
+### DEFAULT ARGUMENTS
+**MUST ALWAYS include `additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"]`**
+- `--search`: Enable codebase search capabilities for Codex to find relevant code
+- `--dangerously-bypass-approvals-and-sandbox`: Auto-execute without confirmation (required for zero-confirmation workflow)
+- These arguments are MANDATORY for all Codex MCP calls to ensure optimal performance
+
+#### additionalArgs Usage Examples
+```javascript
+// Minimum required configuration
+mcp__codex__codex({
+  model: "gpt-5-codex",
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+  prompt: "Fix the bug in auth.ts"
+})
+
+// With session management
+mcp__codex__codex({
+  model: "gpt-5-codex",
+  sessionId: "bugfix-auth-20250129",
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+  prompt: "Continue fixing the authentication flow"
+})
+
+// With session reset
+mcp__codex__codex({
+  model: "gpt-5-codex",
+  sessionId: "bugfix-auth-20250129",
+  resetSession: true,
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+  prompt: "New task: implement rate limiting"
+})
+```
+
+**⚠️ CRITICAL**: Never call Codex MCP without `additionalArgs` - it breaks the zero-confirmation workflow
 
 ### Session Management
 
-// First call
+**Core Principle**: Use sessionId to organize context and maintain conversational continuity
+
+#### Session Naming Strategy
+```
+Format: <project>-<feature>-<timestamp>
+Examples:
+- "auth-refactor-20250129"
+- "api-bugfix-20250129"
+- "perf-optimize-20250129"
+```
+
+#### Session Lifecycle
+
+**Create New Session** — First call
+```javascript
 mcp__codex__codex({
   model: "gpt-5-codex",
-  sandbox: "danger-full-access",
-  approval-policy: "on-failure",
+  sessionId: "auth-refactor-20250129",
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
   prompt: "<structured prompt>"
 })
+```
+
+**Reuse Session** — Continue with context
+```javascript
+// Same sessionId automatically inherits conversation history
+mcp__codex__codex({
+  model: "gpt-5-codex",
+  sessionId: "auth-refactor-20250129",
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+  prompt: "Optimize the previous implementation to reduce memory allocations"
+})
+```
+
+**Reset Session** — Clear context, keep ID
+```javascript
+// Use when switching topics to avoid context pollution
+mcp__codex__codex({
+  model: "gpt-5-codex",
+  sessionId: "auth-refactor-20250129",
+  resetSession: true,
+  additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+  prompt: "New task: implement OAuth2 login"
+})
+```
+
+**List Active Sessions**
+```javascript
+mcp__codex__listSessions({})
+// Returns: { sessionId, createdAt, lastAccessedAt, turnCount }
+```
+
+#### Session Management Best Practices
+
+| Scenario | Strategy | Example |
+|----------|----------|---------|
+| **Parallel feature development** | Separate sessionId per feature | `login-feat`, `profile-feat` |
+| **Iterative optimization** | Reuse sessionId | 3-5 consecutive refinements on same feature |
+| **Topic switching** | resetSession first | Switch from login to payment logic |
+| **Session expiration** | 24h TTL auto-cleanup | Create new session after timeout |
+| **Debug history** | listSessions to review | Find yesterday's refactoring session |
+
+#### Session Timeout Handling
+```javascript
+// Sessions auto-expire after 24 hours
+// Create new session when detecting expiration
+try {
+  mcp__codex__codex({
+    model: "gpt-5-codex",
+    sessionId: "old-session",
+    additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+    prompt: "..."
+  })
+} catch (SessionExpiredError) {
+  mcp__codex__codex({
+    model: "gpt-5-codex",
+    sessionId: "old-session-retry-20250130",
+    additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"],
+    prompt: "Continue previous task..."
+  })
+}
+```
 
 
 ### Auto-Confirmation
@@ -75,20 +183,20 @@ mcp__codex__codex({
 
 ---
 
-## Routing Matrix (Codex-First)
+## Routing Matrix (CC-First)
 
 | Task | Executor | Trigger | Reason |
 |------|----------|---------|--------|
-| Code changes | **Codex** | Any code modification (functions, logic, components) | Strong generation, always prefer Codex |
-| Single-file edit | **Codex** | Even <50 lines if involves logic/code | Better code understanding |
-| Multi-file refactor | **Codex** | >1 file with code changes | Global understanding |
-| New feature | **Codex** | Any new functionality | Strong generation |
-| Bug fix | **Codex** | Need trace or logic fix | Strong search + fix |
-| Trivial changes | **CC** | Typos, comments, simple configs (<20 lines) | Too simple for Codex |
+| Code changes | **CC** | Default for all code modifications | Native tools sufficient |
+| Single-file edit | **CC** | All file edits unless user requests Codex | Direct control |
+| Multi-file refactor | **CC** | All refactoring unless user requests Codex | Precise changes |
+| New feature | **CC** | All features unless user requests Codex | Clear implementation |
+| Bug fix | **CC** | All fixes unless user requests Codex | Direct debugging |
+| User explicitly requests Codex | **Codex** | User says "use codex" or mentions "codex" | User preference |
 | Non-code work | **CC** | Pure .md/.json/.yaml (no logic) | No code generation needed |
 | Architecture | **CC** | Pure design decision | Planning strength |
 
-**Decision Flow**: User Request → Linus 3Q → Assess → **Default to Codex for code** → Only CC for trivial/non-code
+**Decision Flow**: User Request → Linus 3Q → Assess → **Default to CC** → Only use Codex if user explicitly requests it
 
 ---
 
@@ -112,11 +220,13 @@ Compatibility: [how to ensure]
 - [ ] Task 2: ...
 
 
-### 3. Execution (Codex-First)
-- **Codex (Default)**: All code-related tasks → Call with structured prompt, **MUST include `model: "gpt-5-codex"`, `sandbox: "danger-full-access"`, `approval-policy: "on-failure"`**, save conversationId, monitor
-- **CC (Exception Only)**: Trivial non-code work → Edit/Write tools for typos, pure docs, simple configs (<20 lines)
+### 3. Execution (CC-First)
+- **CC (Default)**: All tasks → Use Read/Edit/Write tools for code changes, Glob/Grep for search
+- **Codex (User-Requested Only)**: When user explicitly requests → Call with structured prompt, **MUST include `model: "gpt-5-codex"` and `additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"]`**, use appropriate sessionId, monitor
 
-**CRITICAL**: Every Codex MCP call MUST include these three parameters with exact values - this is non-negotiable
+**CRITICAL**: When user requests Codex, every call MUST include:
+- `model: "gpt-5-codex"` - this is non-negotiable
+- `additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"]` - required for auto-execution
 
 ### 4. Validation
 - [ ] Functionality ✓ | Tests ✓ | Types ✓ | Performance ✓ | No API break ✓ | Style ✓
@@ -155,13 +265,14 @@ Steps: 1. [step] 2. [step] 3. [step]
 | Pattern | Problem | Fix |
 |---------|---------|-----|
 | **Using wrong model** | **CRITICAL ERROR - Using non-gpt-5-codex model** | **ALWAYS use `model: "gpt-5-codex"` - NO EXCEPTIONS** |
-| Missing sandbox parameter | **MANDATORY breach - Codex runs without `sandbox: "danger-full-access"`** | **ALWAYS set `sandbox: "danger-full-access"`** |
-| Missing approval-policy parameter | **MANDATORY breach - Codex runs without `approval-policy: "on-failure"`** | **ALWAYS set `approval-policy: "on-failure"`** |
-| CC doing code work | Waste Codex's strength | Use Codex for all code changes (even simple) |
+| **Missing additionalArgs** | **CRITICAL ERROR - Missing required CLI arguments** | **ALWAYS include `additionalArgs: ["--search", "--dangerously-bypass-approvals-and-sandbox"]`** |
+| **No sessionId for multi-step tasks** | Context lost between calls | Use descriptive sessionId for related work |
+| **Reusing sessionId across unrelated tasks** | Context pollution | Use resetSession or new sessionId when switching topics |
+| **Not checking session expiration** | Unexpected errors after 24h | Handle expiration, create new session with new timestamp |
+| Using Codex without user request | Unnecessary tool usage | Only use Codex when user explicitly asks |
 | No boundaries | High failure, breaks code | Structured prompt required |
 | Confirmation loops | Low efficiency | Pre-define auto boundaries |
-| Ignoring Codex for "simple" edits | Miss code quality improvements | Default to Codex unless trivial (<20 lines typo/comment) |
-| Vague tasks | Codex can't understand | Specific, measurable, verifiable |
+| Vague Codex tasks | Codex can't understand | Specific, measurable, verifiable when requested |
 | Ignore compatibility | Break user code | Explain in Constraints |
 
 ---
@@ -342,3 +453,4 @@ Good taste / So-so / Garbage
 - Thinking and analysis:
   - During requirement analysis, use `sequential-thinking` to assess the technical feasibility of complex needs
 - 所有用户的actions中src/actions/user，不允许接受用户id字段，用户id从next-auth的session中获取，防止越权
+- 前后端统一使用zod校验，src/validations
