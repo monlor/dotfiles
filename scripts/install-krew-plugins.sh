@@ -4,6 +4,9 @@
 # Install krew plugins, skipping already installed ones
 # Usage: ./install-krew-plugins.sh plugin1 plugin2 plugin3 ...
 
+# Load krew PATH
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # Global variable to cache installed plugins
 INSTALLED_PLUGINS=""
 
@@ -50,7 +53,7 @@ check_krew() {
         echo "Error: kubectl not found. Please install kubectl first." >&2
         exit 1
     fi
-    
+
     if ! kubectl krew version >/dev/null 2>&1; then
         echo "Error: krew not found. Please install krew first." >&2
         exit 1
@@ -100,17 +103,18 @@ main() {
     echo "📊 Installation Summary:"
     echo "   ✓ Installed: $installed_count plugins"
     echo "   → Skipped: $skipped_count plugins (already installed)"
-    
+
     if [ $failed_count -gt 0 ]; then
-        echo "   ✗ Failed: $failed_count plugins"
+        echo "   ✗ Failed: $failed_count plugins (skipped)"
         echo "   Failed plugins: ${failed_plugins[*]}"
         echo ""
         echo "🔧 To see available plugins, run: kubectl krew search"
-        exit 1
+        echo "⚠️  Some plugins failed to install but continuing..."
+    else
+        echo ""
+        echo "🎉 All plugins processed successfully!"
     fi
-    
-    echo ""
-    echo "🎉 All plugins processed successfully!"
+
     echo "📋 To list installed plugins, run: kubectl krew list"
 }
 
