@@ -2,8 +2,8 @@
     ~/.asdfrc:
       path: config/asdf/asdfrc
       force: true
-    ~/.claude/CLAUDE.md:
-      path: config/coding/CLAUDE.md
+    ~/.cursor/mcp.json:
+      path: config/coding/mcp.json
       force: true
 - shell:
   - description: Install asdf ...
@@ -67,11 +67,6 @@
     stderr: true
   - command: mkdir -p ~/.gemini && cp -n config/coding/gemini.json ~/.gemini/settings.json || true
     description: Installing gemini mcp ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - command: mkdir -p ~/.cursor && cp -n config/coding/mcp.json ~/.cursor/mcp.json || true
-    description: Installing cursor mcp ...
     quiet: false
     stdout: true
     stderr: true
