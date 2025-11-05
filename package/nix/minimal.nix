@@ -8,7 +8,7 @@ bat
 jq
 fzf
 htop
-neofetch
+fastfetch
 neovim
 telnet
 tree
