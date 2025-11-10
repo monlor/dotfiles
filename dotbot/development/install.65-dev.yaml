@@ -62,10 +62,7 @@
   - description: Asdf reshim ...
     command: |
       . /opt/asdf/asdf.sh
-      asdf reshim python
-      asdf reshim nodejs
-      asdf reshim golang
-      asdf reshim bun
+      asdf reshim
     stdout: true
     stderr: true
   - description: Install claude mcp and agents ...
