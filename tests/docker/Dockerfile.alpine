@@ -1,0 +1,41 @@
+FROM alpine:latest
+
+# Install basic dependencies
+RUN apk update && \
+    apk add --no-cache \
+    git \
+    sudo \
+    bash \
+    make \
+    python3 \
+    py3-pip \
+    shadow
+
+# Create test user with sudo permissions
+RUN adduser -D -s /bin/bash testuser && \
+    echo "testuser:password" | chpasswd && \
+    echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    adduser testuser wheel
+
+# Copy dotfiles repository
+COPY --chown=testuser:testuser . /home/testuser/.dotfiles
+
+# Switch to test user
+USER testuser
+WORKDIR /home/testuser/.dotfiles
+
+# Initialize git submodules
+RUN git config --global user.email "test@example.com" && \
+    git config --global user.name "Test User" && \
+    git submodule update --init --recursive
+
+# Run installation with specified mode
+ARG INSTALL_MODE=minimal
+ENV INSTALL_MODE=$INSTALL_MODE
+ENV SKIP_CONFIRM=true
+
+# Test installation
+RUN ./install.sh --mode ${INSTALL_MODE} --yes
+
+# Set entrypoint
+ENTRYPOINT ["/bin/bash"]

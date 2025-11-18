@@ -1,0 +1,67 @@
+name: Test Dotfiles Installation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-fedora:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mode: [minimal, devops, development]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Test Fedora ${{ matrix.mode }}
+        run: |
+          cd tests/docker
+          docker-compose build fedora-${{ matrix.mode }}
+          docker-compose run --rm fedora-${{ matrix.mode }} -c "echo 'Installation successful!'"
+
+  test-rocky:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mode: [minimal, devops]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Test Rocky Linux ${{ matrix.mode }}
+        run: |
+          cd tests/docker
+          docker-compose build rocky-${{ matrix.mode }}
+          docker-compose run --rm rocky-${{ matrix.mode }} -c "echo 'Installation successful!'"
+
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Test Ubuntu minimal
+        run: |
+          cd tests/docker
+          docker-compose build ubuntu-minimal
+          docker-compose run --rm ubuntu-minimal -c "echo 'Installation successful!'"
+
+  test-alpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Test Alpine minimal
+        run: |
+          cd tests/docker
+          docker-compose build alpine-minimal
+          docker-compose run --rm alpine-minimal -c "echo 'Installation successful!'"

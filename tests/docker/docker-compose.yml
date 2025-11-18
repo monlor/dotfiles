@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  fedora-minimal:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.fedora
+      args:
+        INSTALL_MODE: minimal
+    container_name: dotfiles-fedora-minimal
+    image: dotfiles-test:fedora-minimal
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  fedora-devops:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.fedora
+      args:
+        INSTALL_MODE: devops
+    container_name: dotfiles-fedora-devops
+    image: dotfiles-test:fedora-devops
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  fedora-development:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.fedora
+      args:
+        INSTALL_MODE: development
+    container_name: dotfiles-fedora-development
+    image: dotfiles-test:fedora-development
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  rocky-minimal:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.rockylinux
+      args:
+        INSTALL_MODE: minimal
+    container_name: dotfiles-rocky-minimal
+    image: dotfiles-test:rocky-minimal
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  rocky-devops:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.rockylinux
+      args:
+        INSTALL_MODE: devops
+    container_name: dotfiles-rocky-devops
+    image: dotfiles-test:rocky-devops
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  centos-stream-minimal:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.centos-stream
+      args:
+        INSTALL_MODE: minimal
+    container_name: dotfiles-centos-minimal
+    image: dotfiles-test:centos-minimal
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  # Alpine Linux for testing cross-platform support
+  alpine-minimal:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.alpine
+      args:
+        INSTALL_MODE: minimal
+    container_name: dotfiles-alpine-minimal
+    image: dotfiles-test:alpine-minimal
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true
+
+  # Ubuntu for Debian-based testing
+  ubuntu-minimal:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.ubuntu
+      args:
+        INSTALL_MODE: minimal
+    container_name: dotfiles-ubuntu-minimal
+    image: dotfiles-test:ubuntu-minimal
+    volumes:
+      - ../../:/workspace:ro
+    stdin_open: true
+    tty: true

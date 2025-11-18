@@ -40,3 +40,46 @@ backup:
 	mackup restore
 	mackup backup
 
+# Docker testing targets
+.PHONY: test test-fedora test-rocky test-centos test-ubuntu test-alpine test-all test-clean
+
+# Test all distributions with minimal mode
+test:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh
+
+# Test specific distributions
+test-fedora:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d fedora -m "minimal devops"
+
+test-rocky:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d rockylinux -m "minimal devops"
+
+test-centos:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d centos-stream -m minimal
+
+test-ubuntu:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d ubuntu -m minimal
+
+test-alpine:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d alpine -m minimal
+
+# Test all distributions and all modes
+test-all:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d "fedora rockylinux centos-stream ubuntu alpine" -m "minimal devops development"
+
+# Clean up test containers and images
+test-clean:
+	@cd tests/docker && docker-compose down --rmi all --volumes --remove-orphans
+
+# Quick test for a specific distro and mode
+test-quick:
+	@chmod +x tests/docker/test-dotfiles.sh
+	@tests/docker/test-dotfiles.sh -d fedora -m minimal -c
+

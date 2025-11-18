@@ -1,0 +1,41 @@
+# Git files (keep .git for submodule init)
+# Note: We need .git directory for submodule initialization
+# Only exclude large git subdirectories
+.git/hooks/
+.git/logs/
+.git/refs/
+.git/objects/
+
+# Test files
+tests/docker/*.log
+tests/docker/build-*.log
+tests/docker/test-*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# User-specific files
+*.user
+.secrets
+
+# Documentation
+README.md
+CLAUDE.md
+CONFIG_OVERRIDES.md
+
+# Docker files (to prevent recursive copying)
+tests/docker/
+.dockerignore

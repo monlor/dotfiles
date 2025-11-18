@@ -1,0 +1,43 @@
+FROM fedora:latest
+
+# Install basic dependencies
+RUN dnf update -y && \
+    dnf install -y \
+    git \
+    sudo \
+    which \
+    make \
+    python3 \
+    python3-pip \
+    && dnf clean all
+
+# Create test user with sudo permissions
+RUN useradd -m -s /bin/bash testuser && \
+    echo "testuser:password" | chpasswd && \
+    usermod -aG wheel testuser && \
+    echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Copy dotfiles repository
+COPY --chown=testuser:testuser . /home/testuser/.dotfiles
+
+# Switch to test user
+USER testuser
+WORKDIR /home/testuser/.dotfiles
+
+# Configure git (needed for install.sh)
+RUN git config --global user.email "test@example.com" && \
+    git config --global user.name "Test User"
+
+# Note: Submodules are already included in the COPY command
+# No need to initialize them during build
+
+# Run installation with specified mode
+ARG INSTALL_MODE=minimal
+ENV INSTALL_MODE=$INSTALL_MODE
+ENV SKIP_CONFIRM=true
+
+# Test installation
+RUN ./install.sh --mode ${INSTALL_MODE} --yes
+
+# Set entrypoint
+ENTRYPOINT ["/bin/bash"]
