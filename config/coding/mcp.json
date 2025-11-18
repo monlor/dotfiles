@@ -44,10 +44,13 @@
         "--browser-url=http://127.0.0.1:9222"
       ]
     },
-    "codex": {
-      "command": "npx",
+    "serena": {
+      "command": "uvx",
       "args": [
-        "-y", "github:monlor/codex-mcp-server#main"
+        "--from", 
+        "git+https://github.com/oraios/serena", 
+        "serena", 
+        "start-mcp-server"
       ]
     }
   }
