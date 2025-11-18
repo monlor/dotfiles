@@ -1,7 +1,7 @@
 - shell:
-  - 
-    command: ./scripts/install-yum.sh minimal.yum
-    description: Installing yum packages ...
+  -
+    command: ./scripts/install-dnf.sh minimal.dnf
+    description: Installing dnf packages ...
     quiet: false
     stdout: true
     stderr: true

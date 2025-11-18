@@ -1,7 +1,7 @@
 - shell:
   -
-    command: ./scripts/install-yum.sh devops.yum
-    description: Installing devops yum packages ...
+    command: ./scripts/install-dnf.sh devops.dnf
+    description: Installing devops dnf packages ...
     quiet: false
     stdout: true
     stderr: true

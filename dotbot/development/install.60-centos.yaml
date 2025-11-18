@@ -1,13 +1,13 @@
 - shell:
   -
-    command: sudo yum groupinstall -y "Development Tools"
-    description: Installing development tools on CentOS ...
+    command: sudo dnf group install -y "Development Tools"
+    description: Installing development tools ...
     quiet: false
     stdout: true
     stderr: true
   -
-    command: ./scripts/install-yum.sh development.yum
-    description: Installing development yum packages ...
+    command: ./scripts/install-dnf.sh development.dnf
+    description: Installing development dnf packages ...
     quiet: false
     stdout: true
     stderr: true
