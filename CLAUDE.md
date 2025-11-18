@@ -203,3 +203,4 @@ The ZSH setup uses a **layered loading system**:
 - **Backup warning**: Installation forcefully overwrites many configuration files (see CONFIG_OVERRIDES.md)
 - **Submodule management**: Use provided commands for updating external dependencies
 - **Multi-platform support**: Debian/Ubuntu, CentOS/RHEL/Fedora, Alpine Linux, macOS
+  - **Fedora Support**: Enhanced with automatic dnf detection, proper repository configuration, and package name compatibility
