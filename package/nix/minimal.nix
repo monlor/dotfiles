@@ -27,3 +27,4 @@ nali
 iperf
 iftop
 whois
+unzip
