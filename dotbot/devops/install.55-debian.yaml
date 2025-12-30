@@ -6,7 +6,7 @@
     stdout: true
     stderr: true
   -
-    command: curl -L https://git.io/get_helm.sh | bash
+    command: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
     description: Installing helm ...
     quiet: false
     stdout: true
