@@ -20,3 +20,4 @@ install.conf.yaml
 config/git/gitconfig.user
 config/zsh/zshrc.zsh.user
 InjectLib
+.spec-workflow

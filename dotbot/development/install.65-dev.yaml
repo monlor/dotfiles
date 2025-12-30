@@ -50,7 +50,7 @@
       if ! pnpm version &> /dev/null; then
         npm i -g pnpm
       fi
-      pnpm add -g yarn git-cz @google/gemini-cli @openai/codex claude-code-router
+      pnpm add -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
     stdout: true
     stderr: true
   - description: Install python packages ...

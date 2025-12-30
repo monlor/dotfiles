@@ -1,3 +1,2 @@
 brew "redis"
 brew "restic"
-cask "claude-code"
