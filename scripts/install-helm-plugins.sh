@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Install helm plugins, skipping already installed ones
 # Usage: ./install-helm-plugins.sh plugin1:url1 plugin2:url2 ...
@@ -49,7 +48,7 @@ install_plugin() {
         echo "  URL: $plugin_url"
     fi
     
-    if helm plugin install "$plugin_url"; then
+    if helm plugin install "$plugin_url" --verify=false; then
         echo "✓ Successfully installed plugin: $plugin_name"
         # Update cache after successful installation
         INSTALLED_PLUGINS=""
