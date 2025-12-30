@@ -6,6 +6,12 @@
     stdout: true
     stderr: true
   -
+    command: curl -L https://git.io/get_helm.sh | bash
+    description: Installing helm ...
+    quiet: false
+    stdout: true
+    stderr: true
+  -
     command: ghpkg helmfile/helmfile
     description: Installing helmfile from Github ...
     quiet: false
