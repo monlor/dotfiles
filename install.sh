@@ -29,7 +29,6 @@ MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)
 PLUGIN_DIRS=(
-  "--plugin-dir ${BASEDIR}/modules/dotbot-brewfile"
   "--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
 )
 

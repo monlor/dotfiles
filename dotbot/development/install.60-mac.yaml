@@ -1,2 +1,6 @@
-- brewfile:
-    file: package/brew/development.brew
+- shell:
+  - command: ./script/install-brew.sh package/brew/development.brew
+    description: Installing Homebrew packages (development) ...
+    quiet: false
+    stdout: true
+    stderr: true

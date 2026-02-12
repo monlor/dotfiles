@@ -1,4 +1,6 @@
-- brewfile:
-    file: package/brew/devops.brew
+- shell:
+  - command: ./script/install-brew.sh package/brew/devops.brew
+    description: Installing Homebrew packages (devops) ...
+    quiet: false
     stdout: true
     stderr: true

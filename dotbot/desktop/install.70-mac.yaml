@@ -1,9 +1,6 @@
-- defaults:
-    brewfile:
-      stdout: true
-      stderr: true
-      include: ['tap', 'brew', 'cask', 'mas']
-- brewfile:
-    file: package/brew/desktop.cask
-- brewfile:
-    file: package/brew/desktop.mas
+- shell:
+  - command: ./script/install-brew.sh package/brew/desktop.cask package/brew/desktop.mas
+    description: Installing Homebrew packages (desktop) ...
+    quiet: false
+    stdout: true
+    stderr: true

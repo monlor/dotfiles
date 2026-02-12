@@ -1,7 +1,6 @@
-- defaults:
-    brewfile:
-      stdout: true
-      stderr: true
-      include: ['tap', 'brew', 'cask', 'mas']
-- brewfile:
-    file: package/brew/minimal.brew
+- shell:
+  - command: ./script/install-brew.sh package/brew/minimal.brew
+    description: Installing Homebrew packages (minimal) ...
+    quiet: false
+    stdout: true
+    stderr: true
