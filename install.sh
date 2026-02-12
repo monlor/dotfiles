@@ -158,6 +158,16 @@ fi
 echo "🖥️  Detected OS type: ${OS}"
 echo "🛠️  Install mode: ${INSTALL_MODE}"
 
+# Ensure system directories exist
+echo "🗂️  Creating system directories..."
+if [[ ! -d "/usr/local/bin" ]]; then
+    sudo mkdir -p /usr/local/bin
+    sudo chmod 755 /usr/local/bin
+    echo "   ✅ Created /usr/local/bin"
+else
+    echo "   ✅ /usr/local/bin already exists"
+fi
+
 # Supported install modes for validation
 VALID_MODES=("${ALL_MODES[@]}")
 

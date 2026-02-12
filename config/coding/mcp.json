@@ -43,15 +43,6 @@
         "chrome-devtools-mcp@latest",
         "--browser-url=http://127.0.0.1:9222"
       ]
-    },
-    "serena": {
-      "command": "uvx",
-      "args": [
-        "--from", 
-        "git+https://github.com/oraios/serena", 
-        "serena", 
-        "start-mcp-server"
-      ]
     }
   }
 }
