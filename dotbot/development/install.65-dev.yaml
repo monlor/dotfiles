@@ -47,10 +47,7 @@
   - description: Install npm packages ...
     command: |
       . /opt/asdf/asdf.sh
-      if ! pnpm version &> /dev/null; then
-        npm i -g pnpm
-      fi
-      pnpm add -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
+      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
     stdout: true
     stderr: true
   - description: Install python packages ...
