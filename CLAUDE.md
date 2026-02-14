@@ -10,7 +10,7 @@ This is a **dotfiles management system** using Dotbot for cross-platform configu
 - **Dotbot Engine**: Configuration management via `install.conf.yaml`
 - **Multi-Mode Installation**: Minimal, DevOps, Development, Desktop installation profiles
 - **Modular Configuration**: Platform-specific and tool-specific organization
-- **Version Management**: Git submodules for external dependencies (oh-my-zsh, zgen)
+- **Version Management**: Git submodules for external dependencies (oh-my-zsh, zinit)
 
 ### Directory Structure
 ```
@@ -25,7 +25,7 @@ config/              # All configuration files
 
 modules/            # Git submodules
 ├── oh-my-zsh/      # ZSH framework
-└── zgen/           # ZSH plugin manager
+└── zinit/          # ZSH plugin manager
 
 dotbot/             # Dotbot installation configurations
 ├── minimal/        # Minimal mode configs
@@ -124,7 +124,7 @@ kubectl krew install <plugin>  # Install specific plugin
 
 ### ZSH Configuration System
 The ZSH setup uses a **layered loading system**:
-1. **Base Config** (`zshrc.zsh`): Core zsh settings, history, zgen plugin loading
+1. **Base Config** (`zshrc.zsh`): Core zsh settings, history, zinit plugin loading
 2. **Modular Loading**: Automatic loading of organized config files:
    - `path/*.path.sh` → PATH modifications
    - `init/*.init.sh` → Initialization scripts  
@@ -133,7 +133,7 @@ The ZSH setup uses a **layered loading system**:
 3. **User Overrides**: `~/.zshrc.user` for personal customizations
 4. **Secrets Management**: `~/.secrets` for environment variables (API keys, tokens)
 
-### Plugin Management via zgen
+### Plugin Management via zinit
 - **oh-my-zsh plugins**: git, github, sudo, docker, etc.
 - **Community plugins**: zsh-z, zsh-syntax-highlighting, zsh-autosuggestions
 - **Custom plugins**: monlor/zsh-ai-assist for AI assistance

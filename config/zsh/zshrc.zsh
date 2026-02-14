@@ -3,8 +3,12 @@
 # zsh config
 zstyle ':omz:update' mode disabled
 
-# Get zgen
-. ~/.zgen/zgen.zsh
+# Get zinit
+if [[ -f ~/.zinit/zinit.zsh ]]; then
+  source ~/.zinit/zinit.zsh
+else
+  echo "zinit is not installed at ~/.zinit" >&2
+fi
 
 # asdf
 if [[ -f /opt/asdf/asdf.sh ]]; then
@@ -16,42 +20,48 @@ export PATH="$HOME/.local/bin:$PATH"
 export ZSH_CONFIG_HOME="$HOME/.config/zsh"
 export GPG_TTY=$TTY # https://unix.stackexchange.com/a/608921
 
-# Generate zgen init.sh if it doesn't exist
-if ! zgen saved; then
-  zgen oh-my-zsh
+# Initialize completion system early so plugin scripts can use `compdef`.
+autoload -Uz compinit
+_zsh_compdump_file="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompdump"
+mkdir -p "${_zsh_compdump_file:h}"
+compinit -d "${_zsh_compdump_file}"
 
+if typeset -f zinit >/dev/null 2>&1; then
   # Plugins
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/github
-  zgen oh-my-zsh plugins/sudo
-  zgen oh-my-zsh plugins/command-not-found
-  zgen oh-my-zsh plugins/docker
-  zgen oh-my-zsh plugins/docker-compose
-  zgen oh-my-zsh plugins/macos
-  zgen oh-my-zsh plugins/genpass
+  zinit snippet OMZP::git
+  zinit snippet OMZP::github
+  zinit snippet OMZP::sudo
+  zinit snippet OMZP::command-not-found
+  zinit snippet OMZP::docker
+  zinit snippet OMZP::docker-compose
+  zinit snippet OMZP::genpass
 
-  zgen load agkozak/zsh-z
+  zinit light agkozak/zsh-z
 
-  zgen oh-my-zsh plugins/asdf
+  zinit snippet OMZP::asdf
+
+  if [[ -f ~/.oh-my-zsh/plugins/macos/macos.plugin.zsh ]]; then
+    source ~/.oh-my-zsh/plugins/macos/macos.plugin.zsh
+  fi
 
   # These 2 must be in this order
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-history-substring-search
+  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zsh-users/zsh-history-substring-search
 
-  zgen load zsh-users/zsh-autosuggestions
+  zinit light zsh-users/zsh-autosuggestions
 
   # Warn you when you run a command that you've got an alias for
-  zgen load djui/alias-tips
+  zinit light djui/alias-tips
 
   # AI assist plugin
-  zgen load monlor/zsh-ai-assist . main
+  zinit light monlor/zsh-ai-assist
 
   # Completion-only repos
-  zgen load zsh-users/zsh-completions src
-
-  # Generate init.sh
-  zgen save
+  zinit ice blockf
+  zinit light zsh-users/zsh-completions
+  zinit cdreplay -q
 fi
+unset _zsh_compdump_file
 
 # History Options
 setopt append_history

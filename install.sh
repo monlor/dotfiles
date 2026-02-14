@@ -305,6 +305,6 @@ if [[ "${OS}" == "mac" ]]; then
 fi
 
 echo ""
-echo "If zgen initialization fails:"
-echo "* 🧹 zgen reset"
-echo "* 🗑️  rm -rf ~/.zgen/zsh-users"
+echo "If zinit initialization fails:"
+echo "* 🔄 git submodule update --init --recursive modules/zinit"
+echo "* 🗑️  rm -rf ~/.zinit/plugins"

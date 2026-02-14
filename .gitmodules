@@ -3,11 +3,6 @@
 	url = https://github.com/anishathalye/dotbot.git
 	branch = master
 	ignore = dirty
-[submodule "modules/zgen"]
-	path = modules/zgen
-	url = https://github.com/tarjoilija/zgen.git
-	branch = master
-	ignore = dirty
 [submodule "modules/oh-my-zsh"]
 	path = modules/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
@@ -25,3 +20,6 @@
 	path = modules/CoreInject
 	url = https://git.sr.ht/~qiuchenly/CoreInject
 	branch = main
+[submodule "modules/zinit"]
+	path = modules/zinit
+	url = https://github.com/zdharma-continuum/zinit.git

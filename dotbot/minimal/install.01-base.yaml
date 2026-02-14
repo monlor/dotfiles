@@ -24,7 +24,7 @@
       path: config/zsh
       force: true
     ~/.oh-my-zsh: modules/oh-my-zsh
-    ~/.zgen: modules/zgen
+    ~/.zinit: modules/zinit
     ~/.gitconfig: 
       path: config/git/gitconfig
       force: true

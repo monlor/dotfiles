@@ -5,7 +5,6 @@ alias .f='cd ~/.config/zsh && cd -P ../..'
 alias .fu='.f && git submodule update --init --recursive'
 alias .fe='.f && vim .'
 alias .fr='source ~/.zshrc; echo ".zshrc reloaded"'
-alias .fgen='zgen reset;source ~/.zshrc'
 
 if type systemctl >/dev/null 2>&1; then
   alias senable='sudo systemctl enable'
