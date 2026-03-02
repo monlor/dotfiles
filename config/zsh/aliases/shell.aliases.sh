@@ -53,8 +53,13 @@ case $OS in
   alias pbpaste='xclip -selection clipboard -o'
   alias traceroute='nexttrace'
   ;;
-'Darwin') 
+'Darwin')
   alias traceroute='nexttrace'
+  alias ofd='open .'
+  alias rmdsstore='find . -name ".DS_Store" -delete'
+  alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
+  alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
+  alias ql='qlmanage -p 2>/dev/null'
   ;;
 *) ;;
 esac
