@@ -28,15 +28,6 @@
         "mcp-domain-availability"
       ]
     },
-    "supabase": {
-      "command": "npx",
-      "args": [
-        "-y", "@supabase/mcp-server-supabase@latest"
-      ],
-      "env": {
-        "SUPABASE_ACCESS_TOKEN": "$SUPABASE_ACCESS_TOKEN"
-      }
-    },
     "chrome-devtools": {
       "command": "npx",
       "args": [

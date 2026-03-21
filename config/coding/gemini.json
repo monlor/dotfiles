@@ -22,28 +22,11 @@
         "mcp-domain-availability"
       ]
     },
-    "supabase": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@supabase/mcp-server-supabase@latest"
-      ],
-      "env": {
-        "SUPABASE_ACCESS_TOKEN": "$SUPABASE_ACCESS_TOKEN"
-      }
-    },
     "chrome-devtools": {
       "command": "npx",
       "args": [
         "chrome-devtools-mcp@latest",
         "--browser-url=http://127.0.0.1:9222"
-      ]
-    },
-    "codex": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "github:monlor/codex-mcp-server#main"
       ]
     }
   },
