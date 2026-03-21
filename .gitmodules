@@ -23,3 +23,4 @@
 [submodule "modules/zinit"]
 	path = modules/zinit
 	url = https://github.com/zdharma-continuum/zinit.git
+	ignore = dirty

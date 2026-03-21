@@ -69,3 +69,5 @@
   - cp -n config/zsh/zshrc.zsh.user ~/.zshrc.user || true
   - cp -n config/zsh/secrets ~/.secrets || true
   - cp -n config/git/gitconfig.user ~/.gitconfig.user || true
+  - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+  - cp -n config/ssh/config ~/.ssh/config || true
