@@ -43,7 +43,6 @@ if typeset -f zinit >/dev/null 2>&1; then
     djui/alias-tips \
     hlissner/zsh-autopair \
     monlor/zsh-ai-assist \
-    Aloxaf/fzf-tab \
     zsh-users/zsh-autosuggestions \
     zsh-users/zsh-syntax-highlighting
 fi
