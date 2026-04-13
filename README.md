@@ -96,6 +96,31 @@ git config user.email "me@monlor.com"
 * `~/.zshrc.user` (frps and openai config)
 * `~/.gitconfig.user` (Set up your git user)
 
+### AI Workspace Paths
+
+Shared AI helper repos and generated plugin worktrees default to `~/.code`.
+The current defaults are:
+
+* `~/.code/plugins/compound-engineering-plugin`
+* `~/.code/gstack`
+
+### RTK Integration
+
+This dotfiles repo includes an optional RTK integration layer.
+
+What it does:
+
+* installs `rtk` in development mode
+* adds shell helpers for RTK-assisted Codex / Claude / OpenCode workflows
+* keeps the shared AI control plane as the source of truth
+
+What it does not do:
+
+* it does not force all tool calls through RTK
+* it does not assume OpenClaw has a native first-class `rtk init` target
+
+See `config/ai/rtk/README.md` for notes and the helper commands.
+
 ## Supported Operating Systems
 
 - **macOS** - All installation modes supported

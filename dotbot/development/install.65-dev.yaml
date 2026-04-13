@@ -3,7 +3,7 @@
       path: config/asdf/asdfrc
       force: true
     ~/.cursor/mcp.json:
-      path: config/coding/mcp.json
+      path: config/ai/generated/mcp.json
       force: true
 - shell:
   - description: Install asdf ...
@@ -47,7 +47,7 @@
   - description: Install npm packages ...
     command: |
       . /opt/asdf/asdf.sh
-      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
+      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router rtk
     stdout: true
     stderr: true
   - description: Install python packages ...
@@ -62,19 +62,8 @@
       asdf reshim
     stdout: true
     stderr: true
-  - description: Install claude mcp and agents ...
-    command: ./config/coding/claude.sh || true
-    description: Installing claude mcp and agents ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - command: mkdir -p ~/.gemini && cp -n config/coding/gemini.json ~/.gemini/settings.json || true
-    description: Installing gemini mcp ...
-    quiet: false
-    stdout: true
-    stderr: true
-  - command: mkdir -p ~/.codex && cp -n config/coding/codex.toml ~/.codex/config.toml || true
-    description: Installing codex configuration ...
+  - command: ./config/scripts/ai-sync || true
+    description: Installing shared AI control plane ...
     quiet: false
     stdout: true
     stderr: true
