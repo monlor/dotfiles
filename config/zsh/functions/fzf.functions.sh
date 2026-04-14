@@ -1,6 +1,10 @@
 #!/bin/bash
 
 if type fzf >/dev/null 2>&1; then
+  h() {
+    print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height "50%" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+  }
+
   # (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
   # - The first argument to the function is the name of the command.
   # - You should make sure to pass the rest of the arguments to fzf.
@@ -14,5 +18,9 @@ if type fzf >/dev/null 2>&1; then
     ssh) fzf "$@" --preview 'dig {}' ;;
     *) fzf "$@" ;;
     esac
+  }
+else
+  h() {
+    history | grep -i "$1"
   }
 fi

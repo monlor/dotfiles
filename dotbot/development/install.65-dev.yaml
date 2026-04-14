@@ -2,9 +2,6 @@
     ~/.asdfrc:
       path: config/asdf/asdfrc
       force: true
-    ~/.cursor/mcp.json:
-      path: config/ai/generated/mcp.json
-      force: true
 - shell:
   - description: Install asdf ...
     command: |
@@ -47,7 +44,20 @@
   - description: Install npm packages ...
     command: |
       . /opt/asdf/asdf.sh
-      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router rtk
+      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
+    stdout: true
+    stderr: true
+  - description: Install GSD for AI development tools ...
+    command: |
+      . /opt/asdf/asdf.sh
+      npx get-shit-done-cc --all --global -y
+    stdout: true
+    stderr: true
+  - description: Install RTK CLI on non-macOS ...
+    command: |
+      if [ "$(uname)" != "Darwin" ] && ! which rtk &> /dev/null; then
+      sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg rtk-ai/rtk
+      fi
     stdout: true
     stderr: true
   - description: Install python packages ...

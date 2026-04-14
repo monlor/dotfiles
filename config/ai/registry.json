@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "default_profile": "readonly",
+  "paths": {
+    "code_root": "~/.code",
+    "ce_plugin_repo": "~/.code/plugins/compound-engineering-plugin",
+    "gstack_repo": "~/.code/gstack"
+  },
+  "rtk": {
+    "enabled": true,
+    "bin": "rtk",
+    "auto_init": true,
+    "config_path": "~/.config/rtk/config.json",
+    "integrations": {
+      "codex": {
+        "enabled": true,
+        "tool": "codex",
+        "subcommand": "codex",
+        "mode": "proxy"
+      },
+      "claude": {
+        "enabled": true,
+        "tool": "claude",
+        "subcommand": "claude",
+        "mode": "proxy"
+      },
+      "opencode": {
+        "enabled": true,
+        "tool": "opencode",
+        "subcommand": "opencode",
+        "mode": "proxy"
+      },
+      "openclaw": {
+        "enabled": true,
+        "subcommand": "openclaw",
+        "mode": "wrapper",
+        "note": "OpenClaw stays on wrapper-style RTK integration until upstream adds a native init target."
+      }
+    }
+  },
+  "managed_server_ids": [
+    "pinchtab",
+    "context7",
+    "deepwiki",
+    "chrome-devtools"
+  ],
+  "retired_server_ids": [
+    "mcp-domain-availability"
+  ],
+  "external_skill_sources": [
+    {
+      "id": "gstack",
+      "path": "~/.code/gstack",
+      "enabled_for": [
+        "codex",
+        "claude",
+        "gemini",
+        "opencode"
+      ],
+      "legacy_roots": [
+        "/Users/monlor/code/gstack"
+      ]
+    },
+    {
+      "id": "compound-engineering",
+      "path": "~/.code/plugins/compound-engineering-plugin/skills",
+      "enabled_for": [
+        "codex",
+        "claude",
+        "gemini",
+        "opencode"
+      ],
+      "legacy_roots": []
+    }
+  ],
+  "tools": {
+    "codex": {
+      "enabled": true,
+      "config_format": "toml",
+      "server_key": "mcp_servers",
+      "config_path": "~/.codex/config.toml",
+      "skills_path": "~/.codex/skills",
+      "skills_mode": "links",
+      "prompts_path": "~/.codex/prompts",
+      "prompts_mode": "links"
+    },
+    "gemini": {
+      "enabled": true,
+      "config_format": "json",
+      "server_key": "mcpServers",
+      "config_path": "~/.gemini/settings.json",
+      "skills_path": "~/.gemini/skills",
+      "skills_mode": "catalog",
+      "prompts_path": "~/.gemini/prompts",
+      "prompts_mode": "links"
+    },
+    "opencode": {
+      "enabled": true,
+      "config_format": "json-merge",
+      "server_key": "mcp",
+      "config_path": "~/.config/opencode/opencode.json",
+      "skills_path": "~/.config/opencode/skills",
+      "skills_mode": "links",
+      "prompts_path": "~/.config/opencode/prompts",
+      "prompts_mode": "links"
+    },
+    "claude": {
+      "enabled": true,
+      "config_format": "json",
+      "server_key": "mcpServers",
+      "config_path": "~/.claude.json",
+      "settings_path": "~/.claude/settings.json",
+      "skills_path": "~/.claude/skills",
+      "skills_mode": "links",
+      "prompts_path": "~/.claude/prompts",
+      "prompts_mode": "links"
+    }
+  }
+}

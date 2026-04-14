@@ -91,6 +91,24 @@ git config user.name "monlor"
 git config user.email "me@monlor.com"
 ```
 
+### Configure GitHub CLI
+
+`gh` is installed from the Homebrew package set and zsh completion is enabled automatically.
+
+After `make install`, finish authentication with:
+
+```bash
+gh auth login
+gh auth status
+```
+
+This repo reserves `gh` for GitHub CLI.
+The old git history shortcut is available as:
+
+```bash
+ghist
+```
+
 ### Custom Configuration
 
 * `~/.zshrc.user` (frps and openai config)
@@ -110,8 +128,10 @@ This dotfiles repo includes an optional RTK integration layer.
 
 What it does:
 
-* installs `rtk` in development mode
+* installs `rtk` via Homebrew on macOS and `ghpkg rtk-ai/rtk` on Linux
 * adds shell helpers for RTK-assisted Codex / Claude / OpenCode workflows
+* generates RTK config from the shared AI registry
+* runs supported `rtk init -g` setup automatically from `ai-sync`
 * keeps the shared AI control plane as the source of truth
 
 What it does not do:

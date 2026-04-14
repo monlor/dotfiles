@@ -1,2 +1,4 @@
 brew "redis"
 brew "restic"
+brew "rtk"
+brew "gh"

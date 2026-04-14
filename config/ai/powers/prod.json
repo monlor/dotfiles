@@ -1,0 +1,8 @@
+{
+  "name": "prod",
+  "allowed_tiers": [
+    "readonly",
+    "write",
+    "prod"
+  ]
+}

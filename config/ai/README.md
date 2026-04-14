@@ -1,7 +1,7 @@
 # AI Control Plane
 
 This directory is the single source of truth for shared AI tooling across
-Codex, Cursor, Gemini, and Claude Code.
+Codex, Gemini, Claude Code, and OpenCode.
 
 It also contains optional integration notes for RTK under `rtk/`.
 
@@ -18,6 +18,11 @@ Layout:
 
 `ai-sync` reads this directory and updates each tool's managed shared state
 without overwriting private auth, history, or UI preferences.
+
+RTK is now part of that managed state as well: its generated config is emitted to
+`generated/rtk.config.json`, synced into the user RTK config path declared in
+`registry.json`, and `ai-sync` will run the matching `rtk init -g` steps for
+enabled supported integrations when `rtk` is available on `PATH`.
 
 Current status:
 

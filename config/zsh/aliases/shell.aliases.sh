@@ -32,14 +32,6 @@ alias 'dl'='cd ~/Downloads'
 alias 'dt'='cd ~/Desktop'
 alias 'p'='cd ~/Projects'
 
-h() {
-  if type fzf >/dev/null 2>&1; then
-    print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height "50%" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
-  else
-    history | grep -i "$1"
-  fi
-}
-
 # Detect the platform (similar to $OSTYPE)
 OS=$(uname)
 case $OS in
@@ -94,3 +86,6 @@ if [ "${LOGNAME}" = "coder" ]; then
 fi
 
 alias dri="docker run -it --rm --entrypoint=sh"
+
+alias ai-sync='~/.dotfiles/config/scripts/ai-sync'
+alias ai-doctor='~/.dotfiles/config/scripts/ai-doctor'

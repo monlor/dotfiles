@@ -23,9 +23,6 @@ The following files will be overwritten during installation via the `link` opera
 - `~/.asdfrc`               ←  `config/asdf/asdfrc`
 - `~/.asdf/asdf.sh`         ←  `config/asdf/asdf.sh`
 - `~/.exec`                 ←  `config/zsh/exec.sh`
-- `~/.cursor/mcp.json`      ←  `config/mcp/mcp.json`  (development mode)
-- `~/.gemini/settings.json` ←  `config/mcp/gemini.json` (development mode)
-
 > Note: Some files are only overwritten on macOS (e.g., `~/.config/iterm2`, `~/.mackup.cfg`, `~/.mackup`).
 
 ### 2. Files Initialized via `cp` Command
@@ -36,7 +33,16 @@ The following files are initialized during installation using the `cp` command (
 - `~/.secrets`              ←  `config/zsh/secrets`
 - `~/.gitconfig.user`       ←  `config/git/gitconfig.user`
 
-### 3. Additional Notes
+### 3. Files Managed via `ai-sync`
+
+The following files are updated by `ai-sync` rather than by static copy:
+
+- `~/.codex/config.toml`
+- `~/.gemini/settings.json`
+- `~/.claude.json`
+- `~/.config/rtk/config.json`
+
+### 4. Additional Notes
 
 - Files in the `~/.local/bin` directory will be linked from `config/scripts/*` using glob. Any files with the same name will be overwritten.
 - Tools installed via asdf, npm, pip, etc., do not directly overwrite configuration files but may affect related environments.

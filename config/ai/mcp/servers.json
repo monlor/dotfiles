@@ -1,0 +1,93 @@
+{
+  "servers": [
+    {
+      "id": "pinchtab",
+      "command": "pinchtab",
+      "args": [
+        "mcp"
+      ],
+      "env": {},
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "opencode": {
+          "type": "local"
+        }
+      }
+    },
+    {
+      "id": "context7",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {},
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "opencode": {
+          "type": "local"
+        }
+      }
+    },
+    {
+      "id": "deepwiki",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-deepwiki@latest"
+      ],
+      "env": {},
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "opencode": {
+          "type": "local"
+        }
+      }
+    },
+    {
+      "id": "chrome-devtools",
+      "command": "npx",
+      "args": [
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ],
+      "env": {},
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "claude": {
+          "args": [
+            "chrome-devtools-mcp@latest",
+            "--browser-url=http://127.0.0.1:9222"
+          ]
+        },
+        "opencode": {
+          "type": "local"
+        }
+      }
+    }
+  ]
+}

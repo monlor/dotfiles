@@ -97,8 +97,8 @@ asdf install golang 1.21.0  # Install specific version
 asdf global python 3.12.3   # Set global version
 
 # MCP setup verification
-ls ~/.cursor/mcp.json        # Cursor MCP config
-ls ~/.gemini/settings.json   # Gemini CLI MCP config
+ls ~/.gemini/settings.json   # Gemini CLI config
+ai-doctor                    # Shared AI control-plane health check
 
 # kubectl krew plugin management
 kubectl krew list            # List installed plugins
@@ -204,3 +204,9 @@ The ZSH setup uses a **layered loading system**:
 - **Submodule management**: Use provided commands for updating external dependencies
 - **Multi-platform support**: Debian/Ubuntu, CentOS/RHEL/Fedora, Alpine Linux, macOS
   - **Fedora Support**: Enhanced with automatic dnf detection, proper repository configuration, and package name compatibility
+
+## gstack
+
+- Use gstack skills when available for planning, review, QA, and browser work.
+- Use `/browse` from gstack for browser automation instead of any `mcp__claude-in-chrome__*` tools.
+- Prefer PinchTab through MCP for browser control when MCP access is needed.
