@@ -130,6 +130,14 @@ def enabled_tools(registry: dict) -> dict[str, dict]:
     }
 
 
+def enabled_managed_configs(registry: dict) -> dict[str, dict]:
+    return {
+        name: config
+        for name, config in registry.get("managed_configs", {}).items()
+        if config.get("enabled", True)
+    }
+
+
 def rtk_config(registry: dict) -> dict:
     return registry.get("rtk", {})
 
@@ -266,6 +274,7 @@ def write_generated(profile: str, registry: dict) -> None:
             "profile": profile,
             "managed_server_ids": sorted(managed_server_ids()),
             "retired_server_ids": sorted(retired_server_ids()),
+            "managed_configs": sorted(enabled_managed_configs(registry)),
             "skills": discover_skill_names(),
             "prompts": discover_prompt_names(),
             "tools": sorted(enabled_tools(registry)),
@@ -312,6 +321,13 @@ def write_tool_config(config_path: Path, config_format: str, payload: dict) -> N
     raise ValueError(f"Unsupported config format: {config_format}")
 
 
+def read_managed_payload(source_path: str, config_format: str) -> dict:
+    payload_path = AI_ROOT / source_path
+    if config_format in ("json", "json-merge"):
+        return load_json(payload_path)
+    raise ValueError(f"Unsupported managed config format: {config_format}")
+
+
 def sync_tool_servers(tool: str, tool_config: dict, profile: str) -> None:
     if "config_path" not in tool_config:
         return
@@ -320,6 +336,13 @@ def sync_tool_servers(tool: str, tool_config: dict, profile: str) -> None:
     server_key = tool_config["server_key"]
     config[server_key] = merge_managed_servers(config.get(server_key, {}), active_servers(tool, profile))
     write_tool_config(config_path, tool_config["config_format"], config)
+
+
+def sync_managed_configs(registry: dict) -> None:
+    for config in enabled_managed_configs(registry).values():
+        config_path = expand_path(config["config_path"])
+        payload = read_managed_payload(config["source_path"], config["config_format"])
+        write_tool_config(config_path, config["config_format"], payload)
 
 
 def sync_rtk_config(registry: dict, profile: str) -> None:
@@ -595,6 +618,7 @@ def main(argv: list[str]) -> int:
 
     for tool, tool_config in enabled_tools(registry).items():
         sync_tool_servers(tool, tool_config, profile)
+    sync_managed_configs(registry)
     sync_rtk_config(registry, profile)
     sync_rtk_hooks(registry)
 

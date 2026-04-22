@@ -1,0 +1,7 @@
+{
+  "security": {
+    "trustedResolveCIDRs": [
+      "198.18.0.0/15"
+    ]
+  }
+}

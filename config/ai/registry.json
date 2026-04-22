@@ -47,6 +47,14 @@
   "retired_server_ids": [
     "mcp-domain-availability"
   ],
+  "managed_configs": {
+    "pinchtab": {
+      "enabled": true,
+      "config_format": "json-merge",
+      "config_path": "~/.pinchtab/config.json",
+      "source_path": "managed/pinchtab.json"
+    }
+  },
   "external_skill_sources": [
     {
       "id": "gstack",
