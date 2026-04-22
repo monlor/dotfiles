@@ -19,6 +19,12 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 if typeset -f zinit >/dev/null 2>&1; then
+  # Synchronous: completion system must initialize before any compdef calls
+  zinit ice blockf; zinit light zsh-users/zsh-completions
+  zinit light marlonrichert/zsh-autocomplete
+  autoload -Uz compinit && compinit
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
   # Synchronous: must be available before first prompt
   zinit snippet OMZP::git
   zinit snippet OMZP::sudo
@@ -33,17 +39,11 @@ if typeset -f zinit >/dev/null 2>&1; then
   zinit snippet OMZP::genpass
   zinit snippet OMZP::asdf
 
-  # Initialize completions after all synchronous plugins
-  zinit ice blockf; zinit light zsh-users/zsh-completions
-  autoload -Uz compinit && compinit
-  zinit cdreplay -q
-
   # Turbo: only UI plugins that don't call compdef
   zinit wait lucid for \
     djui/alias-tips \
     hlissner/zsh-autopair \
     monlor/zsh-ai-assist \
-    zsh-users/zsh-autosuggestions \
     zsh-users/zsh-syntax-highlighting
 fi
 
