@@ -12,8 +12,8 @@ else
 fi
 
 # asdf
-if [[ -f /opt/asdf/asdf.sh ]]; then
-  . /opt/asdf/asdf.sh
+if [[ -f "$HOME/.dotfiles/script/load-asdf.sh" ]]; then
+  . "$HOME/.dotfiles/script/load-asdf.sh"
 fi
 
 export PATH="$HOME/.local/bin:$PATH"

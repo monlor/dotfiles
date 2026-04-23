@@ -46,6 +46,8 @@ cd ~/.dotfiles
 # Install Homebrew if not installed
 make brew_install
 
+# Install development formulae such as asdf through Homebrew during setup
+
 # Load brew environment
 source ~/.zprofile
 

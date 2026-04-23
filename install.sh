@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH=$HOME/.local/bin:/opt/asdf/shims:/usr/local/bin:$PNPM_HOME:$PATH
+export PATH="$HOME/.local/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/usr/local/bin:$PNPM_HOME:$PATH"
 
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
@@ -260,10 +260,13 @@ DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 echo "🔄 Updating submodules..."
 git submodule update --init --recursive 
 
-# fix asdf 
-if [[ -f /opt/asdf/asdf.sh ]]; then
+# fix asdf
+if [[ -f "${BASEDIR}/script/load-asdf.sh" ]]; then
     echo "🔄 Loading asdf..."
-    . /opt/asdf/asdf.sh
+    . "${BASEDIR}/script/load-asdf.sh"
+fi
+
+if command -v asdf >/dev/null 2>&1; then
     if ! asdf current python &> /dev/null; then
         latest_python=$(asdf list python | sed -E 's/[ |*]+//g' | head -1)
         echo "👉 Setting python to $latest_python..."
@@ -278,7 +281,7 @@ if [[ -f /opt/asdf/asdf.sh ]]; then
         latest_golang=$(asdf list golang | sed -E 's/[ |*]+//g' | head -1)
         echo "👉 Setting golang to $latest_golang..."
         asdf set -u golang $latest_golang
-    fi  
+    fi
 fi
 
 echo "💡 Running install command: ${DOTBOT_CMD[*]}"

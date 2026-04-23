@@ -21,7 +21,6 @@ The following files will be overwritten during installation via the `link` opera
 - `~/.m2/settings.xml`      ←  `config/maven/settings.xml`
 - `~/.npmrc`                ←  `config/node/npmrc`
 - `~/.asdfrc`               ←  `config/asdf/asdfrc`
-- `~/.asdf/asdf.sh`         ←  `config/asdf/asdf.sh`
 - `~/.exec`                 ←  `config/zsh/exec.sh`
 > Note: Some files are only overwritten on macOS (e.g., `~/.config/iterm2`, `~/.mackup.cfg`, `~/.mackup`).
 
