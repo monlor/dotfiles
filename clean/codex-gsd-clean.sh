@@ -2,6 +2,9 @@
 set -eu
 
 CODEX_ROOT="${HOME}/.codex"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+REPO_ROOT=$(CDPATH= cd -- "${SCRIPT_DIR}/.." && pwd)
+REGISTRY_PATH="${REPO_ROOT}/config/ai/registry.json"
 
 remove_path() {
   target="$1"
@@ -29,12 +32,60 @@ fi
 remove_path "${CODEX_ROOT}/get-shit-done"
 remove_path "${CODEX_ROOT}/gsd-file-manifest.json"
 
-python3 - <<'PY'
+REGISTRY_PATH="${REGISTRY_PATH}" python3 - <<'PY'
 from pathlib import Path
 import json
+import os
 import re
+import shutil
 
 codex_root = Path.home() / ".codex"
+registry_path = Path(os.environ["REGISTRY_PATH"]).expanduser()
+
+
+def expand_path(value: str) -> Path:
+    return Path(value).expanduser()
+
+
+def remove_path(path: Path) -> None:
+    if path.is_symlink() or path.is_file():
+        path.unlink()
+        return
+    if path.is_dir():
+        shutil.rmtree(path)
+
+
+def cleanup_skill_root(skill_root: Path) -> None:
+    if not skill_root.exists():
+        return
+
+    for manifest_path in skill_root.glob(".ai-external-skills-*.json"):
+        try:
+            payload = json.loads(manifest_path.read_text())
+        except json.JSONDecodeError:
+            payload = {}
+
+        for name in payload.get("managed", []):
+            remove_path(skill_root / name)
+
+        manifest_path.unlink()
+
+    for entry in skill_root.iterdir():
+        if (
+            entry.name.startswith("gsd-")
+            or entry.name == "paseo"
+            or entry.name.startswith("paseo-")
+            or entry.name == "pinchtab"
+        ):
+            remove_path(entry)
+
+
+if registry_path.exists():
+    registry = json.loads(registry_path.read_text())
+    for tool_config in registry.get("tools", {}).values():
+        skills_path = tool_config.get("skills_path")
+        if skills_path:
+            cleanup_skill_root(expand_path(skills_path))
 
 config_path = codex_root / "config.toml"
 if config_path.exists():
