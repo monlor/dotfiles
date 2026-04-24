@@ -2,6 +2,8 @@
 
 # zsh config
 export ZSH_CONFIG_HOME="$HOME/.config/zsh"
+export ZSH_COMPDUMP_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+export ZSH_COMPDUMP="$ZSH_COMPDUMP_DIR/.zcompdump-$ZSH_VERSION"
 export GPG_TTY=$TTY # https://unix.stackexchange.com/a/608921
 
 # Get zinit
@@ -21,7 +23,14 @@ export PATH="$HOME/.local/bin:$PATH"
 if typeset -f zinit >/dev/null 2>&1; then
   # Synchronous: completion system must initialize before any compdef calls
   zinit ice blockf; zinit light zsh-users/zsh-completions
-  autoload -Uz compinit && compinit
+  mkdir -p "$ZSH_COMPDUMP_DIR"
+  for f in ~/.zinit/completions/_autocomplete__*(N); do
+    [[ -L "$f" ]] && rm -f "$f"
+  done
+  if [[ -f "$ZSH_COMPDUMP" ]] && command grep -q '_autocomplete__' "$ZSH_COMPDUMP"; then
+    rm -f "$ZSH_COMPDUMP"
+  fi
+  autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
   zmodload zsh/complist
   zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
   zstyle ':completion:*' menu select
