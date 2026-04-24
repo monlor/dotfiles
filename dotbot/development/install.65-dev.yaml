@@ -44,12 +44,6 @@
       npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
     stdout: true
     stderr: true
-  - description: Install GSD for AI development tools ...
-    command: |
-      . ./script/load-asdf.sh
-      npx get-shit-done-cc --all --global -y
-    stdout: true
-    stderr: true
   - description: Install RTK CLI on non-macOS ...
     command: |
       if [ "$(uname)" != "Darwin" ] && ! which rtk &> /dev/null; then
@@ -72,6 +66,18 @@
   - command: ./config/scripts/ai-sync || true
     description: Installing shared AI control plane ...
     quiet: false
+    stdout: true
+    stderr: true
+  - description: Configure Codex default plugins ...
+    command: >
+      ./config/scripts/codex-install-plugins
+      superpowers
+      build-macos-apps
+      build-web-apps
+      build-ios-apps
+      expo
+      coderabbit
+    quiet: true
     stdout: true
     stderr: true
  
