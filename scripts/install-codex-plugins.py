@@ -19,7 +19,9 @@ def run(command: list[str]) -> str:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Install and enable Codex plugins from openai/plugins.")
+    parser = argparse.ArgumentParser(
+        description="Install and enable Codex plugins from openai/plugins."
+    )
     parser.add_argument("plugins", nargs="+", help="Plugin names from the openai/plugins marketplace")
     return parser.parse_args(argv)
 

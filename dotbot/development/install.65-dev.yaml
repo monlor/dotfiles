@@ -70,13 +70,21 @@
     stderr: true
   - description: Configure Codex default plugins ...
     command: >
-      ./config/scripts/codex-install-plugins
+      ./scripts/install-codex-plugins.py
       superpowers
       build-macos-apps
       build-web-apps
       build-ios-apps
       expo
       coderabbit
+    quiet: true
+    stdout: true
+    stderr: true
+  - description: Enable Codex bundled plugins ...
+    command: >
+      ./scripts/enable-codex-bundled-plugins.py
+      browser-use
+      computer-use
     quiet: true
     stdout: true
     stderr: true

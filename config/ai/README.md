@@ -29,6 +29,9 @@ Current status:
 
 - `browser-use` is configured in `mcp/servers.json` and propagated into the
   generated Codex, Claude, and Gemini MCP configs under `generated/`.
+- Codex bundled plugins are enabled separately from MCP wiring. Bootstrap now
+  enables `browser-use@openai-bundled` and `computer-use@openai-bundled`
+  directly in `~/.codex/config.toml`.
 - `ai-doctor` verifies that the shared control plane is wired correctly and
   that required commands such as `uvx` and `npx` are available.
 - The local plugin repo is only a helper checkout location. It is not required
