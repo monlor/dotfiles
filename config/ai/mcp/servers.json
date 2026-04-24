@@ -1,10 +1,13 @@
 {
   "servers": [
     {
-      "id": "pinchtab",
-      "command": "pinchtab",
+      "id": "browser-use",
+      "command": "uvx",
       "args": [
-        "mcp"
+        "--from",
+        "browser-use[cli]",
+        "browser-use",
+        "--mcp"
       ],
       "env": {},
       "enabled_for": [

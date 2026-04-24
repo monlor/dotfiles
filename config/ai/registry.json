@@ -39,22 +39,16 @@
     }
   },
   "managed_server_ids": [
-    "pinchtab",
+    "browser-use",
     "context7",
     "deepwiki",
     "chrome-devtools"
   ],
   "retired_server_ids": [
-    "mcp-domain-availability"
+    "mcp-domain-availability",
+    "pinchtab"
   ],
-  "managed_configs": {
-    "pinchtab": {
-      "enabled": true,
-      "config_format": "json-merge",
-      "config_path": "~/.pinchtab/config.json",
-      "source_path": "managed/pinchtab.json"
-    }
-  },
+  "managed_configs": {},
   "external_skill_sources": [
     {
       "id": "gstack",

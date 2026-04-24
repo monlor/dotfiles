@@ -238,6 +238,8 @@ def prune_retired_metadata(value: object) -> object:
     if isinstance(value, dict):
         pruned: dict[object, object] = {}
         for key, item in value.items():
+            if key in retired:
+                continue
             cleaned = prune_retired_metadata(item)
             if key == "disabledMcpServers" and isinstance(cleaned, list):
                 cleaned = [entry for entry in cleaned if entry not in retired]
@@ -316,7 +318,7 @@ def write_tool_config(config_path: Path, config_format: str, payload: dict) -> N
         if config_format == "json-merge" and config_path.exists():
             existing = load_json(config_path)
             payload = deep_merge(existing, payload)
-        write_json(config_path, payload)
+        write_json(config_path, prune_retired_metadata(payload))
         return
     raise ValueError(f"Unsupported config format: {config_format}")
 

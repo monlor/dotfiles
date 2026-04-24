@@ -27,13 +27,10 @@ enabled supported integrations when `rtk` is available on `PATH`.
 
 Current status:
 
-- `pinchtab` is configured in `mcp/servers.json` and propagated into the
+- `browser-use` is configured in `mcp/servers.json` and propagated into the
   generated Codex, Claude, and Gemini MCP configs under `generated/`.
-- `pinchtab` shared local config overrides live under `managed/` and are merged
-  into `~/.pinchtab/config.json` by `ai-sync` without overwriting
-  machine-specific secrets like the API token.
 - `ai-doctor` verifies that the shared control plane is wired correctly and
-  that required commands such as `pinchtab` and `npx` are available.
+  that required commands such as `uvx` and `npx` are available.
 - The local plugin repo is only a helper checkout location. It is not required
   by the control plane itself. Shell helpers default `LOCAL_PLUGIN_REPO` to
   `$HOME/.code/plugins/compound-engineering-plugin`, and `gstack` external
