@@ -21,9 +21,14 @@ export PATH="$HOME/.local/bin:$PATH"
 if typeset -f zinit >/dev/null 2>&1; then
   # Synchronous: completion system must initialize before any compdef calls
   zinit ice blockf; zinit light zsh-users/zsh-completions
-  zinit light marlonrichert/zsh-autocomplete
   autoload -Uz compinit && compinit
+  zmodload zsh/complist
   zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+  zstyle ':completion:*' menu select
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --level=2 --color=always $realpath'
+  zstyle ':fzf-tab:complete:*' fzf-preview '[[ -d $realpath ]] && eza --tree --level=2 --color=always $realpath || bat --style=numbers --color=always --line-range=:200 $realpath'
+  zinit light Aloxaf/fzf-tab
+  zinit light zsh-users/zsh-autosuggestions
 
   # Synchronous: must be available before first prompt
   zinit snippet OMZP::git
@@ -38,6 +43,11 @@ if typeset -f zinit >/dev/null 2>&1; then
   zinit snippet OMZP::docker-compose
   zinit snippet OMZP::genpass
   zinit snippet OMZP::asdf
+
+  bindkey '^I' menu-complete
+  bindkey "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -M menuselect '^I' menu-complete
+  bindkey -M menuselect "${terminfo[kcbt]}" reverse-menu-complete
 
   # Turbo: only UI plugins that don't call compdef
   zinit wait lucid for \
