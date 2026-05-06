@@ -76,7 +76,6 @@
       build-web-apps
       build-ios-apps
       expo
-      coderabbit
     quiet: true
     stdout: true
     stderr: true
