@@ -66,6 +66,29 @@
       }
     },
     {
+      "id": "searxng",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-searxng"
+      ],
+      "env": {
+        "SEARXNG_URL": "https://searxng.monlor.com/"
+      },
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "opencode": {
+          "type": "local"
+        }
+      }
+    },
+    {
       "id": "chrome-devtools",
       "command": "npx",
       "args": [

@@ -42,6 +42,7 @@
     "browser-use",
     "context7",
     "deepwiki",
+    "searxng",
     "chrome-devtools"
   ],
   "retired_server_ids": [
