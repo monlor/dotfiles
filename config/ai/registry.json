@@ -6,40 +6,9 @@
     "ce_plugin_repo": "~/.code/plugins/compound-engineering-plugin",
     "gstack_repo": "~/.code/gstack"
   },
-  "rtk": {
-    "enabled": true,
-    "bin": "rtk",
-    "auto_init": true,
-    "config_path": "~/.config/rtk/config.json",
-    "integrations": {
-      "codex": {
-        "enabled": true,
-        "tool": "codex",
-        "subcommand": "codex",
-        "mode": "proxy"
-      },
-      "claude": {
-        "enabled": true,
-        "tool": "claude",
-        "subcommand": "claude",
-        "mode": "proxy"
-      },
-      "opencode": {
-        "enabled": true,
-        "tool": "opencode",
-        "subcommand": "opencode",
-        "mode": "proxy"
-      },
-      "openclaw": {
-        "enabled": true,
-        "subcommand": "openclaw",
-        "mode": "wrapper",
-        "note": "OpenClaw stays on wrapper-style RTK integration until upstream adds a native init target."
-      }
-    }
-  },
   "managed_server_ids": [
     "browser-use",
+    "bb-browser",
     "context7",
     "deepwiki",
     "searxng",

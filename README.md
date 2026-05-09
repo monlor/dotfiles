@@ -124,24 +124,6 @@ The current defaults are:
 * `~/.code/plugins/compound-engineering-plugin`
 * `~/.code/gstack`
 
-### RTK Integration
-
-This dotfiles repo includes an optional RTK integration layer.
-
-What it does:
-
-* installs `rtk` via Homebrew on macOS and `ghpkg rtk-ai/rtk` on Linux
-* adds shell helpers for RTK-assisted Codex / Claude / OpenCode workflows
-* generates RTK config from the shared AI registry
-* runs supported `rtk init -g` setup automatically from `ai-sync`
-* keeps the shared AI control plane as the source of truth
-
-What it does not do:
-
-* it does not force all tool calls through RTK
-* it does not assume OpenClaw has a native first-class `rtk init` target
-
-See `config/ai/rtk/README.md` for notes and the helper commands.
 
 ## Supported Operating Systems
 

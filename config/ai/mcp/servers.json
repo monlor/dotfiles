@@ -89,6 +89,28 @@
       }
     },
     {
+      "id": "bb-browser",
+      "command": "npx",
+      "args": [
+        "-y",
+        "bb-browser",
+        "--mcp"
+      ],
+      "env": {},
+      "enabled_for": [
+        "codex",
+        "gemini",
+        "claude",
+        "opencode"
+      ],
+      "risk_tier": "readonly",
+      "tool_overrides": {
+        "opencode": {
+          "type": "local"
+        }
+      }
+    },
+    {
       "id": "chrome-devtools",
       "command": "npx",
       "args": [

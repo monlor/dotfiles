@@ -39,7 +39,6 @@ The following files are updated by `ai-sync` rather than by static copy:
 - `~/.codex/config.toml`
 - `~/.gemini/settings.json`
 - `~/.claude.json`
-- `~/.config/rtk/config.json`
 
 ### 4. Additional Notes
 

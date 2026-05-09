@@ -48,9 +48,6 @@ def enabled_tools(reg: dict) -> dict[str, dict]:
     }
 
 
-def rtk_config(reg: dict) -> dict:
-    return reg.get("rtk", {})
-
 
 def server_commands() -> set[str]:
     commands = set()
@@ -59,83 +56,8 @@ def server_commands() -> set[str]:
     return commands
 
 
-def enabled_rtk_integrations(reg: dict) -> dict[str, dict]:
-    rtk = rtk_config(reg)
-    if not rtk.get("enabled", False):
-        return {}
-
-    tools = enabled_tools(reg)
-    integrations: dict[str, dict] = {}
-    for name, config in rtk.get("integrations", {}).items():
-        if not config.get("enabled", True):
-            continue
-        tool_name = config.get("tool")
-        if tool_name and tool_name not in tools:
-            continue
-        integrations[name] = config
-    return integrations
 
 
-def rtk_show_args(name: str, integration: dict) -> list[str] | None:
-    mode = integration.get("mode")
-    if mode == "wrapper":
-        return None
-
-    tool_name = integration.get("tool") or name
-    if tool_name == "claude":
-        return []
-    if tool_name == "codex":
-        return ["--codex"]
-    if tool_name == "opencode":
-        return ["--opencode"]
-    return None
-
-
-def rtk_integration_healthy(name: str, output: str) -> bool:
-    checks = {
-        "claude": [
-            "Hook: not found",
-            "RTK hook not configured",
-            "RTK.md: not found",
-        ],
-        "codex": [
-            "Global RTK.md: not found",
-            "Global AGENTS.md: exists but rtk not configured",
-        ],
-        "opencode": [
-            "OpenCode: plugin not found",
-        ],
-    }
-    return not any(marker in output for marker in checks.get(name, []))
-
-
-def check_rtk_integrations(reg: dict, errors: list[str]) -> None:
-    rtk = rtk_config(reg)
-    if not rtk.get("enabled", False):
-        return
-
-    rtk_bin = rtk.get("bin", "rtk")
-    rtk_path = shutil.which(rtk_bin)
-    if rtk_path is None:
-        return
-
-    for name, integration in enabled_rtk_integrations(reg).items():
-        show_args = rtk_show_args(name, integration)
-        if show_args is None:
-            continue
-
-        result = subprocess.run(
-            [rtk_path, "init", "--show", *show_args],
-            capture_output=True,
-            text=True,
-        )
-        output = (result.stdout or "") + (result.stderr or "")
-        check(
-            result.returncode == 0 and rtk_integration_healthy(name, output),
-            f"rtk integration '{name}' is installed",
-            f"rtk integration '{name}' is not installed correctly",
-            errors,
-        )
 
 
 def read_tool_servers(path: Path, config_format: str, server_key: str) -> dict:
@@ -204,24 +126,9 @@ def main() -> int:
     check((AI_ROOT / "mcp" / "servers.json").exists(), "servers.json exists", "servers.json missing", errors)
     check(GENERATED_ROOT.exists(), "generated directory exists", "generated directory missing", errors)
     check(manifest_exists, "manifest.json exists", "manifest.json missing; run ai-sync", errors)
-    if rtk_config(reg).get("enabled", False):
-        check(
-            (GENERATED_ROOT / "rtk.config.json").exists(),
-            "rtk.config.json exists",
-            "rtk.config.json missing; run ai-sync",
-            errors,
-        )
 
     for command in sorted(server_commands()):
         check(shutil.which(command) is not None, f"{command} is available", f"{command} is not on PATH", errors)
-    if rtk_config(reg).get("enabled", False):
-        rtk_bin = rtk_config(reg).get("bin", "rtk")
-        check(
-            shutil.which(rtk_bin) is not None,
-            f"{rtk_bin} is available",
-            f"{rtk_bin} is not on PATH",
-            errors,
-        )
 
     manifest = generated_manifest() if manifest_exists else None
     managed = set(manifest.get("managed_server_ids", [])) if manifest else set(reg.get("managed_server_ids", []))
@@ -245,22 +152,6 @@ def main() -> int:
         path = expand(value)
         check(path.exists(), f"managed path exists: {path}", f"managed path missing: {path}", errors)
 
-    if rtk_config(reg).get("enabled", False):
-        rtk_path = expand(rtk_config(reg)["config_path"])
-        check(
-            rtk_path.exists(),
-            f"rtk config exists: {rtk_path}",
-            f"rtk config missing: {rtk_path}",
-            errors,
-        )
-        if manifest:
-            check(
-                set(enabled_rtk_integrations(reg)).issubset(set(manifest.get("rtk_integrations", []))),
-                "rtk integrations match manifest",
-                "rtk integrations missing from manifest",
-                errors,
-            )
-        check_rtk_integrations(reg, errors)
 
     check_external_skill_sources(reg, errors)
 

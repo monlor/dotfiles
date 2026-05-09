@@ -1,4 +1,4 @@
-.PHONY: install brew_dump brew_install backup
+.PHONY: install brew_dump brew_install backup restore
 
 # Detect system architecture (via `uname -m`)
 SYS_ARCH := $(shell uname -m)
@@ -37,8 +37,10 @@ brew_dump:
 
 
 backup:
-	mackup restore
 	mackup backup
+
+restore:
+	mackup restore
 
 # Docker testing targets
 .PHONY: test test-fedora test-rocky test-centos test-ubuntu test-alpine test-all test-clean

@@ -138,37 +138,6 @@ def enabled_managed_configs(registry: dict) -> dict[str, dict]:
     }
 
 
-def rtk_config(registry: dict) -> dict:
-    return registry.get("rtk", {})
-
-
-def enabled_rtk_integrations(registry: dict) -> dict[str, dict]:
-    rtk = rtk_config(registry)
-    if not rtk.get("enabled", False):
-        return {}
-
-    tools = enabled_tools(registry)
-    integrations: dict[str, dict] = {}
-    for name, integration in rtk.get("integrations", {}).items():
-        if not integration.get("enabled", True):
-            continue
-
-        payload = dict(integration)
-        tool_name = payload.get("tool")
-        if tool_name:
-            if tool_name not in tools:
-                continue
-            tool_config = tools[tool_name]
-            payload["tool"] = tool_name
-            payload["tool_config_path"] = tool_config.get("config_path")
-            if "settings_path" in tool_config:
-                payload["tool_settings_path"] = tool_config["settings_path"]
-            if "skills_path" in tool_config:
-                payload["skills_path"] = tool_config["skills_path"]
-            if "prompts_path" in tool_config:
-                payload["prompts_path"] = tool_config["prompts_path"]
-        integrations[name] = payload
-    return integrations
 
 
 def active_servers(tool: str, profile: str) -> dict[str, dict]:
@@ -252,24 +221,12 @@ def prune_retired_metadata(value: object) -> object:
 
 def write_generated(profile: str, registry: dict) -> None:
     payloads = {tool: active_servers(tool, profile) for tool in enabled_tools(registry)}
-    rtk = rtk_config(registry)
-    rtk_integrations = enabled_rtk_integrations(registry)
-
     write_text(
         GENERATED_ROOT / "codex.toml",
         dump_toml({"mcp_servers": payloads.get("codex", {})}),
     )
     write_json(GENERATED_ROOT / "gemini.settings.json", {"mcpServers": payloads.get("gemini", {})})
     write_json(GENERATED_ROOT / "claude.json", {"mcpServers": payloads.get("claude", {})})
-    if rtk.get("enabled", False):
-        write_json(
-            GENERATED_ROOT / "rtk.config.json",
-            {
-                "profile": profile,
-                "bin": rtk.get("bin", "rtk"),
-                "integrations": rtk_integrations,
-            },
-        )
     write_json(
         GENERATED_ROOT / "manifest.json",
         {
@@ -280,8 +237,6 @@ def write_generated(profile: str, registry: dict) -> None:
             "skills": discover_skill_names(),
             "prompts": discover_prompt_names(),
             "tools": sorted(enabled_tools(registry)),
-            "rtk_enabled": rtk.get("enabled", False),
-            "rtk_integrations": sorted(rtk_integrations),
             "external_skill_sources": [
                 source["id"] for source in registry.get("external_skill_sources", [])
             ],
@@ -347,79 +302,8 @@ def sync_managed_configs(registry: dict) -> None:
         write_tool_config(config_path, config["config_format"], payload)
 
 
-def sync_rtk_config(registry: dict, profile: str) -> None:
-    rtk = rtk_config(registry)
-    if not rtk.get("enabled", False):
-        return
-
-    config_path = rtk.get("config_path")
-    if not config_path:
-        return
-
-    payload = {
-        "profile": profile,
-        "bin": rtk.get("bin", "rtk"),
-        "integrations": enabled_rtk_integrations(registry),
-    }
-    write_json(expand_path(config_path), payload)
 
 
-def rtk_init_args(name: str, integration: dict) -> list[str] | None:
-    mode = integration.get("mode")
-    if mode == "wrapper":
-        return None
-
-    tool_name = integration.get("tool") or name
-    if tool_name == "claude":
-        return ["--auto-patch"]
-    if tool_name == "codex":
-        return ["--codex"]
-    if tool_name == "opencode":
-        return ["--opencode"]
-    return None
-
-
-def normalize_codex_rtk_reference() -> None:
-    agents_path = expand_path("~/.codex/AGENTS.md")
-    if not agents_path.exists():
-        return
-
-    content = agents_path.read_text()
-    normalized = content.replace(f"@{expand_path('~/.codex/RTK.md')}", "@RTK.md")
-    if normalized != content:
-        write_text(agents_path, normalized)
-
-
-def sync_rtk_hooks(registry: dict) -> None:
-    rtk = rtk_config(registry)
-    if not rtk.get("enabled", False):
-        return
-    if not rtk.get("auto_init", True):
-        return
-
-    rtk_bin = rtk.get("bin", "rtk")
-    rtk_path = shutil.which(rtk_bin)
-    if rtk_path is None:
-        print(f"Skipping RTK hook sync because '{rtk_bin}' is not on PATH.")
-        return
-
-    integrations = enabled_rtk_integrations(registry)
-    for name, integration in integrations.items():
-        init_args = rtk_init_args(name, integration)
-        if init_args is None:
-            continue
-
-        command = [rtk_path, "init", "-g", *init_args]
-        result = subprocess.run(command, capture_output=True, text=True)
-        if result.returncode != 0:
-            if result.stdout:
-                print(result.stdout.rstrip())
-            if result.stderr:
-                print(result.stderr.rstrip(), file=sys.stderr)
-            raise RuntimeError(f"RTK init failed for integration '{name}'")
-        if (integration.get("tool") or name) == "codex":
-            normalize_codex_rtk_reference()
-        print(f"Synced RTK integration '{name}'.")
 
 
 def discover_skill_dirs() -> list[Path]:
@@ -621,8 +505,6 @@ def main(argv: list[str]) -> int:
     for tool, tool_config in enabled_tools(registry).items():
         sync_tool_servers(tool, tool_config, profile)
     sync_managed_configs(registry)
-    sync_rtk_config(registry, profile)
-    sync_rtk_hooks(registry)
 
     sync_skills_and_prompts(registry)
 
