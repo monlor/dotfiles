@@ -36,6 +36,10 @@ def ensure_marketplace_checkout(plugin_names: list[str]) -> tuple[Path, str]:
             check=True,
         )
         subprocess.run(
+            ["git", "-C", str(vendor_repo), "reset", "--hard"],
+            check=True,
+        )
+        subprocess.run(
             ["git", "-C", str(vendor_repo), "checkout", "FETCH_HEAD"],
             check=True,
         )
