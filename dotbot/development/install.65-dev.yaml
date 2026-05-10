@@ -44,13 +44,6 @@
       npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
     stdout: true
     stderr: true
-  - description: Install RTK CLI on non-macOS ...
-    command: |
-      if [ "$(uname)" != "Darwin" ] && ! which rtk &> /dev/null; then
-      sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg rtk-ai/rtk
-      fi
-    stdout: true
-    stderr: true
   - description: Install python packages ...
     command: |
       . ./script/load-asdf.sh
@@ -61,11 +54,6 @@
     command: |
       . ./script/load-asdf.sh
       asdf reshim
-    stdout: true
-    stderr: true
-  - command: ./config/scripts/ai-sync || true
-    description: Installing shared AI control plane ...
-    quiet: false
     stdout: true
     stderr: true
   - description: Configure Codex default plugins ...

@@ -27,3 +27,4 @@ config/ai/generated/*
 !config/ai/generated/.gitkeep
 config/ai/scripts/__pycache__/
 *.pyc
+.aider*

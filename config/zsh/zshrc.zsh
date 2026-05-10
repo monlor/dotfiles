@@ -53,7 +53,7 @@ if typeset -f zinit >/dev/null 2>&1; then
   zinit snippet OMZP::genpass
   zinit snippet OMZP::asdf
 
-  bindkey '^I' menu-complete
+  bindkey '^I' expand-or-complete
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
   bindkey -M menuselect '^I' menu-complete
   bindkey -M menuselect "${terminfo[kcbt]}" reverse-menu-complete

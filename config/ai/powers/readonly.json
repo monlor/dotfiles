@@ -1,6 +1,0 @@
-{
-  "name": "readonly",
-  "allowed_tiers": [
-    "readonly"
-  ]
-}

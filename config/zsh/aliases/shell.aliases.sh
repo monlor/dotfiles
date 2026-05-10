@@ -87,5 +87,3 @@ fi
 
 alias dri="docker run -it --rm --entrypoint=sh"
 
-alias ai-sync='~/.dotfiles/config/scripts/ai-sync'
-alias ai-doctor='~/.dotfiles/config/scripts/ai-doctor'

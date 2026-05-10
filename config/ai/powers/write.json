@@ -1,7 +1,0 @@
-{
-  "name": "write",
-  "allowed_tiers": [
-    "readonly",
-    "write"
-  ]
-}
