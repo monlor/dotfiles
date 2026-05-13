@@ -65,6 +65,7 @@
     excludesfile = ~/.gitignore
     autocrlf = input
     editor = vim
+	hooksPath = /Users/monlor/.codex/git-hooks
 
 [filter "lfs"]
 	required = true
