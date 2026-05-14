@@ -1,18 +1,17 @@
-approval_policy = "on-request"                                                  
+approval_policy = "on-request"
 persistent_instructions = "Follow project AGENTS.md guidelines. Use available MCP servers when they can help."
 sandbox_mode = "workspace-write"
 web_search = "live"
+
 model = "gpt-5.4"
-model_reasoning_effort = "gpt-5.5"
+review_model = "gpt-5.4"
+model_reasoning_effort = "medium"
+plan_mode_reasoning_effort = "xhigh"
+
+disable_response_storage = true
+network_access = "enabled"
 
 notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex ECC\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
-
-model_provider = "9router"
-
-[model_providers.9router]
-name = "9Router"
-base_url = "https://9router.monlor.com/v1"
-wire_api = "responses"
 
 [agents]
 max_depth = 1
