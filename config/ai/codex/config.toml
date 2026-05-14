@@ -29,6 +29,7 @@ memories = true
 terminal_resize_reflow = true
 goals = true
 prevent_idle_sleep = true
+remote_connections = true
 
 [marketplaces.openai-bundled]
 last_updated = "2026-05-13T03:55:48Z"
