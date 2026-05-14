@@ -1,0 +1,219 @@
+approval_policy = "on-request"
+persistent_instructions = "Follow project AGENTS.md guidelines. Use available MCP servers when they can help."
+sandbox_mode = "workspace-write"
+web_search = "live"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+
+notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex ECC\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
+
+[agents]
+max_depth = 1
+max_threads = 6
+
+[agents.docs_researcher]
+config_file = "agents/docs-researcher.toml"
+description = "Documentation specialist that verifies APIs, framework behavior, and release notes."
+
+[agents.explorer]
+config_file = "agents/explorer.toml"
+description = "Read-only codebase explorer for gathering evidence before changes are proposed."
+
+[agents.reviewer]
+config_file = "agents/reviewer.toml"
+description = "PR reviewer focused on correctness, security, and missing tests."
+
+[features]
+multi_agent = true
+memories = true
+terminal_resize_reflow = true
+goals = true
+prevent_idle_sleep = true
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-13T03:55:48Z"
+source_type = "local"
+source = "/Users/monlor/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.ecc]
+last_updated = "2026-05-14T03:12:53Z"
+last_revision = "4423f10cfb9e3fa088d04ab10c838c7f7fa74a45"
+source_type = "git"
+source = "https://github.com/affaan-m/everything-claude-code.git"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-12T18:18:27Z"
+source_type = "local"
+source = "/Users/monlor/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[mcp_servers.bb-browser]
+args = [
+    "-y",
+    "bb-browser",
+    "--mcp",
+]
+command = "npx"
+
+[mcp_servers.browser-use]
+args = [
+    "--from",
+    "browser-use[cli]",
+    "browser-use",
+    "--mcp",
+]
+command = "uvx"
+
+[mcp_servers.chrome-devtools]
+args = [
+    "chrome-devtools-mcp@latest",
+    "--browser-url=http://127.0.0.1:9222",
+]
+command = "npx"
+
+[mcp_servers.context7]
+args = [
+    "-y",
+    "@upstash/context7-mcp@latest",
+]
+command = "npx"
+startup_timeout_sec = 30
+
+[mcp_servers.deepwiki]
+args = [
+    "-y",
+    "mcp-deepwiki@latest",
+]
+command = "npx"
+
+[mcp_servers.exa]
+url = "https://mcp.exa.ai/mcp"
+
+[mcp_servers.github]
+args = [
+    "-y",
+    "@modelcontextprotocol/server-github",
+]
+command = "npx"
+startup_timeout_sec = 30
+
+[mcp_servers.memory]
+args = [
+    "-y",
+    "@modelcontextprotocol/server-memory",
+]
+command = "npx"
+startup_timeout_sec = 30
+
+[mcp_servers.playwright]
+args = [
+    "-y",
+    "@playwright/mcp@latest",
+    "--extension",
+]
+command = "npx"
+startup_timeout_sec = 30
+
+[mcp_servers.searxng]
+args = [
+    "-y",
+    "mcp-searxng",
+]
+command = "npx"
+
+[mcp_servers.searxng.env]
+SEARXNG_URL = "https://searxng.monlor.com/"
+
+[mcp_servers.sequential-thinking]
+args = [
+    "-y",
+    "@modelcontextprotocol/server-sequential-thinking",
+]
+command = "npx"
+startup_timeout_sec = 30
+
+[mcp_servers.supabase]
+args = [
+    "@supabase/mcp-server-supabase@latest",
+    "--features=account,docs,database,debugging,development,functions,storage,branching",
+]
+command = "bunx"
+startup_timeout_sec = 20.0
+tool_timeout_sec = 120.0
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."build-ios-apps@openai-curated"]
+enabled = true
+
+[plugins."build-macos-apps@openai-curated"]
+enabled = true
+
+[plugins."build-web-apps@openai-curated"]
+enabled = true
+
+[plugins."expo@openai-curated"]
+enabled = true
+
+[plugins."remotion@openai-curated"]
+enabled = true
+
+[plugins."openai-developers@openai-curated"]
+enabled = true
+
+[plugins."supabase@openai-curated"]
+enabled = true
+
+[plugins."stripe@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[profiles.strict]
+approval_policy = "on-request"
+sandbox_mode = "read-only"
+web_search = "cached"
+
+[profiles.yolo]
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+[shell_environment_policy]
+inherit = "core"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[apps.connector_690ab09fa43c8191bca40280e4563238]
+enabled = true
+
+[memories]
+generate_memories = true
+use_memories = true
+disable_on_external_context = false

@@ -2,7 +2,50 @@
     ~/.asdfrc:
       path: config/asdf/asdfrc
       force: true
+    ~/.codex/AGENTS.md:
+      path: config/ai/codex/AGENTS.md
+      force: true
+    ~/.codex/RTK.md:
+      path: config/ai/codex/RTK.md
+      force: true
+    ~/.codex/keybindings.json:
+      path: config/ai/codex/keybindings.json
+      force: true
+    ~/.codex/agents:
+      path: config/ai/codex/agents
+      force: true
+    ~/.codex/prompts:
+      path: config/ai/codex/prompts
+      force: true
+    ~/.codex/git-hooks:
+      path: config/ai/codex/git-hooks
+      force: true
+    ~/.agents:
+      path: config/ai/agents
+      force: true
+    ~/.hermes/config.yaml:
+      path: config/ai/hermes/config.yaml
+      force: true
+      create: true
+    ~/.hermes/SOUL.md:
+      path: config/ai/hermes/SOUL.md
+      force: true
+      create: true
+    ~/.hermes/cron/jobs.json:
+      path: config/ai/hermes/cron/jobs.json
+      force: true
+      create: true
+    ~/.hermes/skills:
+      path: config/ai/hermes/skills
+      force: true
+      create: true
+    ~/.hermes/hooks:
+      path: config/ai/hermes/hooks
+      force: true
+      create: true
 - shell:
+  - description: Initialize Codex config ...
+    command: mkdir -p ~/.codex && cp -n config/ai/codex/config.toml ~/.codex/config.toml || true
   - description: Install asdf ...
     command: |
       if ! which asdf &> /dev/null; then
