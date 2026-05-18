@@ -13,6 +13,13 @@ network_access = "enabled"
 
 notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex ECC\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
 
+model_provider = "OpenAI"
+[model_providers.OpenAI]
+name = "OpenAI"
+base_url = "https://devai.bytevela.com"
+wire_api = "responses"
+requires_openai_auth = true
+
 [agents]
 max_depth = 1
 max_threads = 6
