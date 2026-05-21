@@ -1,12 +1,10 @@
 - link:
-    ~/.asdfrc:
-      path: config/asdf/asdfrc
+    ~/.config/mise/config.toml:
+      path: config/mise/config.toml
       force: true
+      create: true
     ~/.codex/AGENTS.md:
       path: config/ai/codex/AGENTS.md
-      force: true
-    ~/.codex/RTK.md:
-      path: config/ai/codex/RTK.md
       force: true
     ~/.codex/keybindings.json:
       path: config/ai/codex/keybindings.json
@@ -23,99 +21,72 @@
     ~/.agents:
       path: config/ai/agents
       force: true
-    ~/.hermes/config.yaml:
-      path: config/ai/hermes/config.yaml
-      force: true
-      create: true
-    ~/.hermes/SOUL.md:
-      path: config/ai/hermes/SOUL.md
-      force: true
-      create: true
-    ~/.hermes/cron/jobs.json:
-      path: config/ai/hermes/cron/jobs.json
-      force: true
-      create: true
-    ~/.hermes/skills:
-      path: config/ai/hermes/skills
-      force: true
-      create: true
-    ~/.hermes/hooks:
-      path: config/ai/hermes/hooks
-      force: true
-      create: true
 - shell:
-  - description: Initialize Codex config ...
-    command: mkdir -p ~/.codex && cp -n config/ai/codex/config.toml ~/.codex/config.toml || true
-  - description: Install asdf ...
-    command: |
-      if ! which asdf &> /dev/null; then
-      if [ "$(uname)" = "Darwin" ]; then
-      brew install asdf
-      else
-      sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg asdf-vm/asdf
-      fi
-      fi
-  - description: Add golang plugin ...
-    command: |
-      . ./script/load-asdf.sh
-      asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-      asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-      asdf plugin add python https://github.com/danhper/asdf-python.git
-      asdf plugin add bun https://github.com/cometkim/asdf-bun.git
-    stdout: true
-    stderr: true
-  - description: Install tools ...
-    command: |
-      . ./script/load-asdf.sh
-      asdf install golang 1.25.1
-      asdf set -u golang 1.25.1
+    - description: Initialize Codex config ...
+      command: mkdir -p ~/.codex && cp -n config/ai/codex/config.toml ~/.codex/config.toml || true
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Install mise ...
+      command: |
+        if ! which mise &> /dev/null; then
+        if [ "$(uname)" = "Darwin" ]; then
+        brew install mise
+        else
+        sudo GHPKG_INSTALL_DIR=/usr/local/bin ~/.local/bin/ghpkg jdx/mise
+        fi
+        fi
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Install mise runtimes ...
+      command: |
+        . ./script/load-mise.sh
+        mise install
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Install npm packages ...
+      command: |
+        . ./script/load-mise.sh
+        npm i -g yarn git-cz
 
-      asdf install python 3.13.5
-      asdf set -u python 3.13.5
-
-      asdf install nodejs 24.11.0
-      asdf set -u nodejs 24.11.0
-
-      asdf install bun 1.3.2
-      asdf set -u bun 1.3.2
-
-    stdout: true
-    stderr: true
-  - description: Install npm packages ...
-    command: |
-      . ./script/load-asdf.sh
-      npm i -g yarn git-cz @google/gemini-cli @openai/codex @anthropic-ai/claude-code claude-code-router
-    stdout: true
-    stderr: true
-  - description: Install python packages ...
-    command: |
-      . ./script/load-asdf.sh
-      pip install ydcv uv mycli
-    stdout: true
-    stderr: true
-  - description: Asdf reshim ...
-    command: |
-      . ./script/load-asdf.sh
-      asdf reshim
-    stdout: true
-    stderr: true
-  - description: Configure Codex default plugins ...
-    command: >
-      ./scripts/install-codex-plugins.py
-      superpowers
-      build-macos-apps
-      build-web-apps
-      build-ios-apps
-      expo
-    quiet: true
-    stdout: true
-    stderr: true
-  - description: Enable Codex bundled plugins ...
-    command: >
-      ./scripts/enable-codex-bundled-plugins.py
-      browser-use
-      computer-use
-    quiet: true
-    stdout: true
-    stderr: true
- 
+        if [ "$(uname)" != "Darwin" ]; then
+        npm i -g @google/gemini-cli @openai/codex @anthropic-ai/claude-code
+        fi
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Install python packages ...
+      command: |
+        . ./script/load-mise.sh
+        pip install ydcv uv mycli
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Refresh mise shims ...
+      command: |
+        . ./script/load-mise.sh
+        mise reshim
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Configure Codex default plugins ...
+      command: >
+        ./scripts/install-codex-plugins.py
+        superpowers
+        build-macos-apps
+        build-web-apps
+        build-ios-apps
+        expo
+      quiet: true
+      stdout: false
+      stderr: true
+    - description: Enable Codex bundled plugins ...
+      command: >
+        ./scripts/enable-codex-bundled-plugins.py
+        browser-use
+        computer-use
+      quiet: true
+      stdout: false
+      stderr: true

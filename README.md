@@ -30,7 +30,7 @@ make install
 The installer supports three modes:
 
 1. **Minimal** - Basic configuration for servers or minimal environments
-2. **Development** - Development environment with ASDF and development tools
+2. **Development** - Development environment with mise-managed runtimes and development tools
 3. **Desktop** - Full desktop environment with GUI applications
 
 ### Mac Setup
@@ -46,7 +46,8 @@ cd ~/.dotfiles
 # Install Homebrew if not installed
 make brew_install
 
-# Install development formulae such as asdf through Homebrew during setup
+# Install development formulae such as mise and AI agent CLIs through Homebrew during setup
+# Includes Codex, Claude Code, and Gemini CLI on macOS
 
 # Load brew environment
 source ~/.zprofile

@@ -190,34 +190,21 @@ This supplements the root `AGENTS.md` with Codex-specific guidance.
 
 ## Skills Discovery
 
-Skills are auto-loaded from `.agents/skills/`. Each skill contains:
-- `SKILL.md` — Detailed instructions and workflow
-- `agents/openai.yaml` — Codex interface metadata
+Skills are auto-loaded from `.agents/skills/`. In this dotfiles bundle, installed skills currently ship as `SKILL.md`-only directories under `~/.agents/skills/`.
 
 Available skills:
-- tdd-workflow — Test-driven development with 80%+ coverage
-- security-review — Comprehensive security checklist
-- coding-standards — Universal coding standards
-- frontend-patterns — React/Next.js patterns
-- frontend-slides — Viewport-safe HTML presentations and PPTX-to-web conversion
-- article-writing — Long-form writing from notes and voice references
-- content-engine — Platform-native social content and repurposing
-- market-research — Source-attributed market and competitor research
-- investor-materials — Decks, memos, models, and one-pagers
-- investor-outreach — Personalized investor outreach and follow-ups
-- backend-patterns — API design, database, caching
-- e2e-testing — Playwright E2E tests
-- eval-harness — Eval-driven development
-- strategic-compact — Context management
-- api-design — REST API design patterns
-- verification-loop — Build, test, lint, typecheck, security
-- deep-research — Multi-source research with firecrawl and exa MCPs
-- exa-search — Neural search via Exa MCP for web, code, and companies
-- claude-api — Anthropic Claude API patterns and SDKs
-- x-api — X/Twitter API integration for posting, threads, and analytics
-- crosspost — Multi-platform content distribution
-- fal-ai-media — AI image/video/audio generation via fal.ai
-- dmux-workflows — Multi-agent orchestration with dmux
+- humanizer-zh — Chinese-language text cleanup to reduce AI-writing artifacts
+- openspec-apply-change — Implement tasks from an OpenSpec change
+- openspec-archive-change — Archive a completed OpenSpec change
+- openspec-explore — Explore and clarify requirements before or during a change
+- openspec-propose — Generate a new OpenSpec proposal end to end
+- paseo — Reference for agent and worktree management
+- paseo-advisor — Single-agent second opinion
+- paseo-committee — Two-agent planning and root-cause analysis
+- paseo-epic — Heavy multi-phase orchestration for large work
+- paseo-handoff — Hand off the current task to another agent
+- paseo-loop — Run an agent loop until an exit condition is met
+- paseo-orchestrate — Deprecated alias for `paseo-epic`
 
 ## MCP Servers
 

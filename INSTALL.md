@@ -11,8 +11,8 @@ This dotfiles repository supports three installation modes, suitable for differe
 
 ### 2. Development
 - **Purpose**: Development environment configuration, suitable for developers
-- **Includes**: Minimal + ASDF version manager, development tools, IDE config
-- **Always includes**: `install.asdf.yaml`
+- **Includes**: Minimal + mise runtime manager, development tools, IDE config
+- **Always includes**: `install.65-dev.yaml`
 
 ### 3. Desktop
 - **Purpose**: Full desktop environment configuration
@@ -80,7 +80,7 @@ dotbot/
 │   ├── install.centos.yaml    # CentOS/RHEL/Fedora-specific config
 │   └── install.alpine.yaml    # Alpine-specific config
 ├── development/
-│   ├── install.asdf.yaml      # ASDF config (included in development/desktop)
+│   ├── install.65-dev.yaml    # Development runtime/tool config (included in development/desktop)
 │   ├── install.mac.yaml       # macOS dev config
 │   ├── install.debian.yaml    # Debian/Ubuntu dev config
 │   ├── install.centos.yaml    # CentOS/RHEL/Fedora dev config
@@ -134,4 +134,4 @@ dotbot/
 - The script will automatically check for the existence of config files and skip missing ones
 - Plugin directories are added automatically according to the install mode
 - Detailed config info is shown before installation for confirmation
-- Use `--yes` or `SKIP_CONFIRM=true` to skip confirmation in CI or automation 
+- Use `--yes` or `SKIP_CONFIRM=true` to skip confirmation in CI or automation

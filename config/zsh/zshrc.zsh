@@ -13,9 +13,9 @@ else
   echo "zinit is not installed at ~/.zinit" >&2
 fi
 
-# asdf
-if [[ -f "$HOME/.dotfiles/script/load-asdf.sh" ]]; then
-  . "$HOME/.dotfiles/script/load-asdf.sh"
+# mise
+if [[ -f "$HOME/.dotfiles/script/load-mise.sh" ]]; then
+  . "$HOME/.dotfiles/script/load-mise.sh"
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
@@ -51,7 +51,7 @@ if typeset -f zinit >/dev/null 2>&1; then
   zinit snippet OMZP::docker
   zinit snippet OMZP::docker-compose
   zinit snippet OMZP::genpass
-  zinit snippet OMZP::asdf
+  zinit snippet OMZP::mise
 
   bindkey '^I' expand-or-complete
   bindkey "${terminfo[kcbt]}" reverse-menu-complete

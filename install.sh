@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$HOME/.local/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/usr/local/bin:$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:$PNPM_HOME:$PATH"
 
 DOTBOT_DIR="modules/dotbot"
 DOTBOT_BIN="bin/dotbot"
@@ -28,9 +28,7 @@ MODE_CONFIGS_development=(dotbot/development/install.65-dev.yaml)
 MODE_CONFIGS_desktop=()
 
 # All plugin directories (always included)
-PLUGIN_DIRS=(
-  "--plugin-dir ${BASEDIR}/modules/dotbot-asdf"
-)
+PLUGIN_DIRS=()
 
 # Show help
 show_help() {
@@ -40,7 +38,7 @@ Usage: $0 [options] [dotbot options]
 Install modes:
   🌏 minimal      - Minimal install, basic configs
   ⚙️  devops       - DevOps tools, includes kubectl, helm, terraform, etc.
-  🛠️  development  - Development environment, includes ASDF and dev tools
+  🛠️  development  - Development environment, includes mise and dev tools
   🖥️  desktop      - Desktop environment, includes GUI apps and desktop configs
 
 Options:
@@ -65,7 +63,7 @@ select_mode() {
     echo "✨ Please select an installation mode:"
     echo "  1) 🌏 minimal      - Basic configuration for servers or minimal environments"
     echo "  2) ⚙️  devops       - DevOps tools (kubectl, helm, terraform, krew plugins)"
-    echo "  3) 🛠️  development  - Development environment with ASDF and dev tools"
+    echo "  3) 🛠️  development  - Development environment with mise and dev tools"
     echo "  4) 🖥️  desktop      - Full desktop environment with GUI apps"
     echo ""
     read -p "Enter your choice (1-4): " choice
@@ -260,35 +258,25 @@ DOTBOT_CMD+=("${DOTBOT_ARGS[@]}")
 echo "🔄 Updating submodules..."
 git submodule update --init --recursive 
 
-# fix asdf
-if [[ -f "${BASEDIR}/script/load-asdf.sh" ]]; then
-    echo "🔄 Loading asdf..."
-    . "${BASEDIR}/script/load-asdf.sh"
-fi
-
-if command -v asdf >/dev/null 2>&1; then
-    if ! asdf current python &> /dev/null; then
-        latest_python=$(asdf list python | sed -E 's/[ |*]+//g' | head -1)
-        echo "👉 Setting python to $latest_python..."
-        asdf set -u python $latest_python
-    fi
-    if ! asdf current nodejs &> /dev/null; then
-        latest_nodejs=$(asdf list nodejs | sed -E 's/[ |*]+//g' | head -1)
-        echo "👉 Setting nodejs to $latest_nodejs..."
-        asdf set -u nodejs $latest_nodejs
-    fi
-    if ! asdf current golang &> /dev/null; then
-        latest_golang=$(asdf list golang | sed -E 's/[ |*]+//g' | head -1)
-        echo "👉 Setting golang to $latest_golang..."
-        asdf set -u golang $latest_golang
-    fi
-fi
-
 echo "💡 Running install command: ${DOTBOT_CMD[*]}"
 echo ""
 
 # Run install
 "${DOTBOT_CMD[@]}"
+
+if [[ "${INSTALL_MODE}" == "development" || "${INSTALL_MODE}" == "desktop" ]]; then
+    if [[ -f "${BASEDIR}/script/load-mise.sh" ]]; then
+        echo "🔄 Loading mise..."
+        . "${BASEDIR}/script/load-mise.sh"
+    fi
+
+    if command -v mise >/dev/null 2>&1; then
+        echo "👉 Installing configured runtimes with mise..."
+        mise install
+        echo "👉 Active global runtimes:"
+        mise ls --current || true
+    fi
+fi
 
 echo ""
 echo "🎉 Installation complete!"
@@ -298,10 +286,6 @@ echo "* 🐚 Run 'chsh -s \$(which zsh)' to set zsh as your default shell."
 echo "* 🔄 Run 'source ~/.zshrc' to reload your shell config."
 echo "* 🖋️  Change your terminal font to a Nerd Font."
 echo "* 🆕 Run 'zsh' to start a new shell."
-
-if [[ "${INSTALL_MODE}" == "development" || "${INSTALL_MODE}" == "desktop" ]]; then
-    echo "* 🐍 Run 'asdf reshim python' to ensure Python binaries are in your PATH."
-fi
 
 if [[ "${OS}" == "mac" ]]; then
     echo "* ☁️  Run 'make backup' to backup all Mackup files to iCloud."

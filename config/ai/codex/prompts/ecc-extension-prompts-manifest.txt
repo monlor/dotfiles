@@ -1,8 +1,0 @@
-ecc-rules-pack-common.md
-ecc-rules-pack-golang.md
-ecc-rules-pack-python.md
-ecc-rules-pack-swift.md
-ecc-rules-pack-typescript.md
-ecc-tool-check-coverage.md
-ecc-tool-run-tests.md
-ecc-tool-security-audit.md

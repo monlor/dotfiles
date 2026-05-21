@@ -91,10 +91,10 @@ make backup
 
 ### Development Workflows
 ```bash
-# ASDF version management (installed in development mode)
-asdf list                    # List installed versions
-asdf install golang 1.21.0  # Install specific version
-asdf global python 3.12.3   # Set global version
+# mise version management (installed in development mode)
+mise ls                     # List installed versions
+mise install                # Install runtimes from config
+mise use -g python@3.12.3   # Set global version
 
 # MCP setup verification
 ls ~/.gemini/settings.json   # Gemini CLI config

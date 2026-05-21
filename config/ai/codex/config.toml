@@ -1,21 +1,25 @@
 approval_policy = "on-request"
+disable_response_storage = true
+model = "gpt-5.4"
+model_provider = "9router"
+model_reasoning_effort = "medium"
+network_access = "enabled"
 persistent_instructions = "Follow project AGENTS.md guidelines. Use available MCP servers when they can help."
+plan_mode_reasoning_effort = "xhigh"
+review_model = "gpt-5.4"
 sandbox_mode = "workspace-write"
 web_search = "live"
 
-model = "gpt-5.4"
-review_model = "gpt-5.4"
-model_reasoning_effort = "medium"
-plan_mode_reasoning_effort = "xhigh"
+notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
 
-disable_response_storage = true
-network_access = "enabled"
+[model_providers.9router]
+base_url = "https://9router.monlor.com/v1"
+name = "9router"
+requires_openai_auth = true
+wire_api = "responses"
 
-notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex ECC\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
-
-model_provider = "OpenAI"
-[model_providers.OpenAI]
-name = "OpenAI"
+[model_providers.sub2api]
+name = "sub2api"
 base_url = "https://devai.bytevela.com"
 wire_api = "responses"
 requires_openai_auth = true
@@ -49,110 +53,13 @@ last_updated = "2026-05-13T03:55:48Z"
 source_type = "local"
 source = "/Users/monlor/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
-[marketplaces.ecc]
-last_updated = "2026-05-14T03:12:53Z"
-last_revision = "4423f10cfb9e3fa088d04ab10c838c7f7fa74a45"
-source_type = "git"
-source = "https://github.com/affaan-m/everything-claude-code.git"
-
 [marketplaces.openai-primary-runtime]
 last_updated = "2026-05-12T18:18:27Z"
 source_type = "local"
 source = "/Users/monlor/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[mcp_servers.bb-browser]
-args = [
-    "-y",
-    "bb-browser",
-    "--mcp",
-]
-command = "npx"
-
-[mcp_servers.browser-use]
-args = [
-    "--from",
-    "browser-use[cli]",
-    "browser-use",
-    "--mcp",
-]
-command = "uvx"
-
-[mcp_servers.chrome-devtools]
-args = [
-    "chrome-devtools-mcp@latest",
-    "--browser-url=http://127.0.0.1:9222",
-]
-command = "npx"
-
-[mcp_servers.context7]
-args = [
-    "-y",
-    "@upstash/context7-mcp@latest",
-]
-command = "npx"
-startup_timeout_sec = 30
-
-[mcp_servers.deepwiki]
-args = [
-    "-y",
-    "mcp-deepwiki@latest",
-]
-command = "npx"
-
-[mcp_servers.exa]
-url = "https://mcp.exa.ai/mcp"
-
-[mcp_servers.github]
-args = [
-    "-y",
-    "@modelcontextprotocol/server-github",
-]
-command = "npx"
-startup_timeout_sec = 30
-
-[mcp_servers.memory]
-args = [
-    "-y",
-    "@modelcontextprotocol/server-memory",
-]
-command = "npx"
-startup_timeout_sec = 30
-
-[mcp_servers.playwright]
-args = [
-    "-y",
-    "@playwright/mcp@latest",
-    "--extension",
-]
-command = "npx"
-startup_timeout_sec = 30
-
-[mcp_servers.searxng]
-args = [
-    "-y",
-    "mcp-searxng",
-]
-command = "npx"
-
-[mcp_servers.searxng.env]
-SEARXNG_URL = "https://searxng.monlor.com/"
-
-[mcp_servers.sequential-thinking]
-args = [
-    "-y",
-    "@modelcontextprotocol/server-sequential-thinking",
-]
-command = "npx"
-startup_timeout_sec = 30
-
-[mcp_servers.supabase]
-args = [
-    "@supabase/mcp-server-supabase@latest",
-    "--features=account,docs,database,debugging,development,functions,storage,branching",
-]
-command = "bunx"
-startup_timeout_sec = 20.0
-tool_timeout_sec = 120.0
+[mcp_servers.mcpproxy]
+url = "http://127.0.0.1:8080/mcp?apikey=a6cc3fe38b1827857b6fbb73ffdb8c91b8469b1946da7c87b9eb0494771abf6c"
 
 [plugins."computer-use@openai-bundled"]
 enabled = true
@@ -178,12 +85,6 @@ enabled = true
 [plugins."openai-developers@openai-curated"]
 enabled = true
 
-[plugins."supabase@openai-curated"]
-enabled = true
-
-[plugins."stripe@openai-curated"]
-enabled = true
-
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
@@ -191,15 +92,6 @@ enabled = true
 enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
-enabled = true
-
-[plugins."gmail@openai-curated"]
-enabled = true
-
-[plugins."google-drive@openai-curated"]
-enabled = true
-
-[plugins."google-calendar@openai-curated"]
 enabled = true
 
 [plugins."browser-use@openai-bundled"]

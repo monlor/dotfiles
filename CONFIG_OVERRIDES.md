@@ -1,6 +1,6 @@
 # Configuration File Override Notice
 
-When using `install.asdf.yaml` and `install.base.yaml` for installation, the following configuration files will be **forcefully overwritten**. Please back up any important existing configurations before proceeding.
+When using `dotbot/development/install.65-dev.yaml` and `install.base.yaml` for installation, the following configuration files will be **forcefully overwritten**. Please back up any important existing configurations before proceeding.
 
 ## List of Forcefully Overwritten Configuration Files
 
@@ -20,7 +20,7 @@ The following files will be overwritten during installation via the `link` opera
 - `~/.config/nvim`          ←  `config/nvim`
 - `~/.m2/settings.xml`      ←  `config/maven/settings.xml`
 - `~/.npmrc`                ←  `config/node/npmrc`
-- `~/.asdfrc`               ←  `config/asdf/asdfrc`
+- `~/.config/mise/config.toml` ← `config/mise/config.toml`
 - `~/.exec`                 ←  `config/zsh/exec.sh`
 > Note: Some files are only overwritten on macOS (e.g., `~/.config/iterm2`, `~/.mackup.cfg`, `~/.mackup`).
 
@@ -43,7 +43,7 @@ The following files are updated by `ai-sync` rather than by static copy:
 ### 4. Additional Notes
 
 - Files in the `~/.local/bin` directory will be linked from `config/scripts/*` using glob. Any files with the same name will be overwritten.
-- Tools installed via asdf, npm, pip, etc., do not directly overwrite configuration files but may affect related environments.
+- Tools installed via mise, npm, pip, etc., do not directly overwrite configuration files but may affect related environments.
 
 ## Override Behavior Explanation
 
@@ -57,4 +57,4 @@ The following files are updated by `ai-sync` rather than by static copy:
 
 ---
 
-If you have any questions, please refer to `dotfiles/dotbot/minimal/install.base.yaml` and `dotfiles/dotbot/development/install.asdf.yaml`, or contact the maintainer. 
+If you have any questions, please refer to `dotfiles/dotbot/minimal/install.base.yaml` and `dotfiles/dotbot/development/install.65-dev.yaml`, or contact the maintainer.
