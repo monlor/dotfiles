@@ -1,7 +1,7 @@
 approval_policy = "on-request"
 disable_response_storage = true
 model = "gpt-5.4"
-model_provider = "9router"
+model_provider = "sub2api"
 model_reasoning_effort = "medium"
 network_access = "enabled"
 persistent_instructions = "Follow project AGENTS.md guidelines. Use available MCP servers when they can help."
