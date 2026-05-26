@@ -10,7 +10,12 @@ review_model = "gpt-5.4"
 sandbox_mode = "workspace-write"
 web_search = "live"
 
-notify = ["/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended", "--previous-notify", "[\"terminal-notifier\",\"-title\",\"Codex\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]"]
+notify = [
+  "/Users/monlor/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+  "turn-ended",
+  "--previous-notify",
+  "[\"terminal-notifier\",\"-title\",\"Codex\",\"-message\",\"Task completed!\",\"-sound\",\"default\"]",
+]
 
 [model_providers.9router]
 base_url = "https://9router.monlor.com/v1"
@@ -42,11 +47,15 @@ description = "PR reviewer focused on correctness, security, and missing tests."
 
 [features]
 multi_agent = true
-memories = true
+memories = false
 terminal_resize_reflow = true
 goals = true
 prevent_idle_sleep = true
 remote_connections = true
+js_repl = false
+plugin_hooks = true
+chronicle = false
+mentions_v2 = true
 
 [marketplaces.openai-bundled]
 last_updated = "2026-05-13T03:55:48Z"
@@ -58,13 +67,14 @@ last_updated = "2026-05-12T18:18:27Z"
 source_type = "local"
 source = "/Users/monlor/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[mcp_servers.mcpproxy]
-url = "http://127.0.0.1:8080/mcp?apikey=a6cc3fe38b1827857b6fbb73ffdb8c91b8469b1946da7c87b9eb0494771abf6c"
+[marketplaces.monlor-marketplace]
+source_type = "git"
+source = "https://github.com/monlor/codex-marketplace"
+
+[mcp_servers.mcphub]
+url = "https://mcp.monlor.com/mcp/codex"
 
 [plugins."computer-use@openai-bundled"]
-enabled = true
-
-[plugins."github@openai-curated"]
 enabled = true
 
 [plugins."build-ios-apps@openai-curated"]
@@ -97,7 +107,22 @@ enabled = true
 [plugins."browser-use@openai-bundled"]
 enabled = true
 
+[plugins."browser@openai-bundled"]
+enabled = true
+
 [plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."caveman@monlor-marketplace"]
+enabled = true
+
+[plugins."rtk@monlor-marketplace"]
+enabled = true
+
+[plugins."codegraph@monlor-marketplace"]
+enabled = true
+
+[plugins."openviking-memory-no-mcp@monlor-marketplace"]
 enabled = true
 
 [profiles.strict]
@@ -120,6 +145,6 @@ inherit = "core"
 enabled = true
 
 [memories]
-generate_memories = true
-use_memories = true
+generate_memories = false
+use_memories = false
 disable_on_external_context = false
