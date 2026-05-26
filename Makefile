@@ -1,4 +1,4 @@
-.PHONY: install brew_dump brew_install backup restore
+.PHONY: install brew_dump brew_install backup restore codex_tooling_install codex_tooling_uninstall codex_tooling_status
 
 # Detect system architecture (via `uname -m`)
 SYS_ARCH := $(shell uname -m)
@@ -24,7 +24,7 @@ endif
 install:
 	SKIP_CONFIRM=$(SKIP_CONFIRM) ./install.sh
 
-brew_install: 
+brew_install:
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	@grep -q "$(BREW_PREFIX)/bin/brew" $(HOME)/.zprofile &> /dev/null || echo 'eval "$$($(BREW) shellenv)"' >> $(HOME)/.zprofile
 	@eval "$$($(BREW) shellenv)"
@@ -35,12 +35,20 @@ brew_dump:
 	brew bundle dump --casks -f --file=package/brew/desktop.cask
 	brew bundle dump --mas -f --file=package/brew/desktop.mas
 
-
 backup:
 	mackup backup
 
 restore:
 	mackup restore
+
+codex_tooling_install:
+	./scripts/manage-codex-tooling.py install
+
+codex_tooling_uninstall:
+	./scripts/manage-codex-tooling.py uninstall
+
+codex_tooling_status:
+	./scripts/manage-codex-tooling.py status
 
 # Docker testing targets
 .PHONY: test test-fedora test-rocky test-centos test-ubuntu test-alpine test-all test-clean
@@ -84,4 +92,3 @@ test-clean:
 test-quick:
 	@chmod +x tests/docker/test-dotfiles.sh
 	@tests/docker/test-dotfiles.sh -d fedora -m minimal -c
-
