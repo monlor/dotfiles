@@ -8,7 +8,7 @@
       "skillPath": "skills/cavecrew/SKILL.md",
       "skillFolderHash": "de99644a837172940aefcfab4e51f19344ba98df",
       "installedAt": "2026-05-13T04:18:38.102Z",
-      "updatedAt": "2026-05-26T04:11:09.882Z"
+      "updatedAt": "2026-05-26T08:33:58.082Z"
     },
     "caveman": {
       "source": "JuliusBrussee/caveman",
@@ -17,7 +17,7 @@
       "skillPath": "skills/caveman/SKILL.md",
       "skillFolderHash": "75b63aa9ec7bbb0e72bb6b3524ff6b576c14a05a",
       "installedAt": "2026-05-13T04:18:38.103Z",
-      "updatedAt": "2026-05-26T04:11:09.886Z"
+      "updatedAt": "2026-05-26T08:33:58.086Z"
     },
     "caveman-commit": {
       "source": "JuliusBrussee/caveman",
@@ -26,7 +26,7 @@
       "skillPath": "skills/caveman-commit/SKILL.md",
       "skillFolderHash": "34e52a2870460e4ed4b79049d5a2569097c0710e",
       "installedAt": "2026-05-13T04:18:38.103Z",
-      "updatedAt": "2026-05-26T04:11:09.887Z"
+      "updatedAt": "2026-05-26T08:33:58.088Z"
     },
     "caveman-compress": {
       "source": "JuliusBrussee/caveman",
@@ -35,7 +35,7 @@
       "skillPath": "skills/caveman-compress/SKILL.md",
       "skillFolderHash": "405938e27e3c90858bc7ed88ff07d6aa0d3cbd2c",
       "installedAt": "2026-05-13T04:18:38.104Z",
-      "updatedAt": "2026-05-26T04:11:09.888Z"
+      "updatedAt": "2026-05-26T08:33:58.089Z"
     },
     "caveman-help": {
       "source": "JuliusBrussee/caveman",
@@ -44,7 +44,7 @@
       "skillPath": "skills/caveman-help/SKILL.md",
       "skillFolderHash": "91d43545d1f02e9ef95051b42ee562867362fe6e",
       "installedAt": "2026-05-13T04:18:38.104Z",
-      "updatedAt": "2026-05-26T04:11:09.888Z"
+      "updatedAt": "2026-05-26T08:33:58.091Z"
     },
     "caveman-review": {
       "source": "JuliusBrussee/caveman",
@@ -53,7 +53,7 @@
       "skillPath": "skills/caveman-review/SKILL.md",
       "skillFolderHash": "2d9762b7aec395b9713fde57fb8965bc3bbd2c3f",
       "installedAt": "2026-05-13T04:18:38.104Z",
-      "updatedAt": "2026-05-26T04:11:09.889Z"
+      "updatedAt": "2026-05-26T08:33:58.092Z"
     },
     "caveman-stats": {
       "source": "JuliusBrussee/caveman",
@@ -62,7 +62,7 @@
       "skillPath": "skills/caveman-stats/SKILL.md",
       "skillFolderHash": "62b175240e2851f0b9be4f279737cbd74ed2e769",
       "installedAt": "2026-05-13T04:18:38.104Z",
-      "updatedAt": "2026-05-26T04:11:09.890Z"
+      "updatedAt": "2026-05-26T08:33:58.093Z"
     },
     "humanizer-zh": {
       "source": "op7418/Humanizer-zh",

@@ -85,8 +85,10 @@
     - description: Enable Codex bundled plugins ...
       command: >
         ./scripts/enable-codex-bundled-plugins.py
+        browser
         browser-use
         computer-use
+        chrome
       quiet: true
       stdout: false
       stderr: true
