@@ -53,7 +53,7 @@ goals = true
 prevent_idle_sleep = true
 remote_connections = true
 js_repl = false
-plugin_hooks = true
+hooks = true
 chronicle = false
 mentions_v2 = true
 
