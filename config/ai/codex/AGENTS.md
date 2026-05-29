@@ -18,6 +18,11 @@
 - Prefer CodeGraph for symbol lookup, impact analysis, callers, and callees when the current project has an initialized graph.
 - If CodeGraph is unavailable or not initialized, fall back to fast local search such as `rg`.
 
+## Development
+
+- Prefer popular, actively maintained dependencies and avoid obsolete or inactive libraries.
+- When a well-maintained dependency solves the problem, use it instead of building custom implementations, unless project constraints clearly require bespoke code.
+
 ## Agents
 
 - Multi-agent support may be used when the project enables it.
