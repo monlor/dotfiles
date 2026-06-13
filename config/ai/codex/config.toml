@@ -58,37 +58,31 @@ mentions_v2 = true
 source_type = "git"
 source = "https://github.com/monlor/codex-marketplace"
 
-[marketplaces.stitch-skills]
-source_type = "git"
-source = "https://github.com/google-labs-code/stitch-skills.git"
-ref = "main"
-sparse_paths = [".agents/plugins", "plugins/stitch-design", "plugins/stitch-build", "plugins/stitch-utilities"]
-
-[mcp_servers.stitch]
-url = "https://stitch.googleapis.com/mcp"
-env_http_headers = {
-  "X-Goog-Api-Key" = "STITCH_API_KEY"
-}
-
 [mcp_servers.mcphub]
 url = "https://mcp.monlor.com/mcp/codex"
-
-[plugins."remotion@openai-curated"]
-enabled = true
-
-[plugins."openai-developers@openai-curated"]
-enabled = true
-
-[plugins."documents@openai-primary-runtime"]
-enabled = true
-
-[plugins."spreadsheets@openai-primary-runtime"]
-enabled = true
 
 [plugins."caveman@monlor-marketplace"]
 enabled = true
 
 [plugins."rtk@monlor-marketplace"]
+enabled = true
+
+[plugins."codegraph@monlor-marketplace"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
 enabled = true
 
 [profiles.strict]
@@ -103,9 +97,6 @@ web_search = "live"
 
 [shell_environment_policy]
 inherit = "core"
-
-[tui.model_availability_nux]
-"gpt-5.5" = 4
 
 [memories]
 generate_memories = true
@@ -122,60 +113,3 @@ reviewDelivery = "detached"
 
 [desktop.open-in-target-preferences]
 global = "zed"
-
-[plugins."codegraph@monlor-marketplace"]
-enabled = true
-
-[plugins."build-macos-apps@openai-curated"]
-enabled = true
-
-[plugins."build-web-apps@openai-curated"]
-enabled = true
-
-[plugins."build-ios-apps@openai-curated"]
-enabled = true
-
-[plugins."expo@openai-curated"]
-enabled = true
-
-[plugins."browser-use@openai-bundled"]
-enabled = true
-
-[plugins."computer-use@openai-bundled"]
-enabled = true
-
-[plugins."stripe@openai-curated"]
-enabled = true
-
-[plugins."github@openai-curated"]
-enabled = true
-
-[plugins."supabase@openai-curated"]
-enabled = true
-
-[plugins."stitch-design@stitch-skills"]
-enabled = true
-
-[plugins."stitch-utilities@stitch-skills"]
-enabled = true
-
-[plugins."stitch-build@stitch-skills"]
-enabled = true
-
-[plugins."openviking-memory-no-mcp@monlor-marketplace"]
-enabled = true
-
-[plugins."linear@openai-curated"]
-enabled = true
-
-[plugins."presentations@openai-primary-runtime"]
-enabled = true
-
-[plugins."browser@openai-bundled"]
-enabled = true
-
-[plugins."chrome@openai-bundled"]
-enabled = true
-
-[plugins."cloudflare@openai-curated"]
-enabled = true

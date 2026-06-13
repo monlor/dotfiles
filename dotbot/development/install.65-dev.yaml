@@ -3,6 +3,9 @@
       path: config/mise/config.toml
       force: true
       create: true
+    ~/.claude/AGENTS.md:
+      path: config/ai/AGENTS.md
+      force: true
     ~/.codex/AGENTS.md:
       path: config/ai/codex/AGENTS.md
       force: true
@@ -20,6 +23,9 @@
       force: true
     ~/.agents:
       path: config/ai/agents
+      force: true
+    ~/.agents/AGENTS.md:
+      path: config/ai/AGENTS.md
       force: true
 - shell:
     - description: Initialize Codex config ...
