@@ -88,9 +88,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/ParthJadhav/app-store-screenshots.git",
       "skillPath": "skills/app-store-screenshots/SKILL.md",
-      "skillFolderHash": "2221ae55cd491d44cd90474d70aba0e3e6af257e",
+      "skillFolderHash": "13386dbd34487b33aabcb36ec0b116bfac9086b6",
       "installedAt": "2026-05-14T15:49:28.480Z",
-      "updatedAt": "2026-05-14T15:49:28.480Z"
+      "updatedAt": "2026-06-23T05:56:19.656Z"
     },
     "conventional-commit": {
       "source": "github/awesome-copilot",
@@ -365,6 +365,24 @@
       "skillFolderHash": "3da82ab342a9fef004368cd48a9aa80ac1dd7b29",
       "installedAt": "2026-05-29T02:05:09.176Z",
       "updatedAt": "2026-05-29T02:05:09.176Z"
+    },
+    "logo-generator": {
+      "source": "op7418/logo-generator-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/op7418/logo-generator-skill.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "bf4e9ac4d4428bda261afcfe981871ceb92d94e6",
+      "installedAt": "2026-06-16T02:01:16.514Z",
+      "updatedAt": "2026-06-16T02:01:16.514Z"
+    },
+    "huashu-nuwa": {
+      "source": "alchaincyf/nuwa-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/alchaincyf/nuwa-skill.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "550a8e19d2ef007e0b20d463e0d1733059ce1c6c",
+      "installedAt": "2026-06-28T02:16:24.171Z",
+      "updatedAt": "2026-06-28T02:16:24.171Z"
     }
   },
   "dismissed": {
@@ -373,17 +391,17 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
     "warp",
-    "zed"
+    "zed",
+    "claude-code"
   ]
 }

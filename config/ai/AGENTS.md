@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Follow the active repository root `AGENTS.md` first for repo-specific workflow, safety rules, and structure.
+- Follow `~/.claude/CLAUDE.md` first for repo-specific workflow, safety rules, and structure.
 - Use this file only for cross-project behavior that should stay stable across machines and repositories.
 
 ## Configuration
@@ -18,8 +18,10 @@
 
 ## Development
 
+- **Prefer existing solutions and libraries over custom implementations** — always look for a well-maintained package before writing your own logic.
 - Prefer popular, actively maintained dependencies; avoid obsolete or inactive libraries.
 - When a well-maintained dependency solves the problem, use it instead of building custom implementations.
+- Minimize reinventing the wheel: search npm/PyPI/pkg.go.dev/crates.io first; only build custom if no suitable library exists or the dependency cost clearly outweighs the benefit.
 
 ## Multi-Agent
 
@@ -38,6 +40,12 @@ When a PR needs updates (review feedback, bug fixes, refinements), prefer amendi
 - **Force push** after rewriting history: `git push --force`
 
 Only create a new commit when the change is a genuinely separate concern. Never leave commits named "fix review comment" or "address feedback".
+
+## Change Safety
+
+- Before making any changes, perform a risk analysis: assess the blast radius, reversibility, and whether the action affects shared or external systems.
+- If the risk is too high — destructive, hard to reverse, affects shared state, or scope is unclear — stop and confirm with the user before proceeding.
+- When in doubt, prepare a local draft, patch, or plan and present it for approval instead of acting immediately.
 
 ## External Actions
 
