@@ -61,9 +61,6 @@ source = "https://github.com/monlor/codex-marketplace"
 [mcp_servers.mcphub]
 url = "https://mcp.monlor.com/mcp/codex"
 
-[plugins."caveman@monlor-marketplace"]
-enabled = true
-
 [plugins."rtk@monlor-marketplace"]
 enabled = true
 

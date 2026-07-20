@@ -21,7 +21,6 @@ BASELINE_CONFIG_PATH = REPO_ROOT / "config" / "ai" / "codex" / "config.toml"
 BASELINE_AGENTS_PATH = REPO_ROOT / "config" / "ai" / "codex" / "AGENTS.md"
 RTK_RULES_PATH = CODEX_DIR / "RTK.md"
 CODEGRAPH_RULES_PATH = CODEX_DIR / "CODEGRAPH.md"
-CAVEMAN_RULES_PATH = CODEX_DIR / "CAVEMAN.md"
 STATE_PATH = CODEX_DIR / ".codex-tooling-state.json"
 
 AGENTS_BEGIN = "<!-- BEGIN MANAGED CODEX TOOLING -->"
@@ -30,15 +29,6 @@ CONFIG_BEGIN = "# BEGIN MANAGED CODEX TOOLING"
 CONFIG_END = "# END MANAGED CODEX TOOLING"
 
 BACKED_UP: set[Path] = set()
-CAVEMAN_SKILLS = [
-    "cavecrew",
-    "caveman",
-    "caveman-commit",
-    "caveman-compress",
-    "caveman-help",
-    "caveman-review",
-    "caveman-stats",
-]
 
 
 def load_state() -> dict[str, object]:
@@ -58,7 +48,7 @@ def ensure_macos() -> None:
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Install or remove Codex codegraph/rtk/caveman tooling."
+        description="Install or remove Codex codegraph/rtk tooling."
     )
     parser.add_argument(
         "--dry-run",
@@ -203,26 +193,6 @@ def uninstall_package(
     run(uninstall_command, dry_run=dry_run)
 
 
-def install_caveman_skills(*, dry_run: bool) -> None:
-    if not shutil.which("npx"):
-        raise RuntimeError("npx is required to install caveman Codex skills.")
-    run(
-        ["npx", "-y", "skills", "add", "JuliusBrussee/caveman", "-a", "codex", "-g", "-y"],
-        dry_run=dry_run,
-    )
-
-
-def uninstall_caveman_skills(*, dry_run: bool) -> None:
-    if not shutil.which("npx"):
-        print("npx not available; skip caveman skill removal")
-        return
-    run(
-        ["npx", "-y", "skills", "remove", "-g", "-a", "codex", "-y", *CAVEMAN_SKILLS],
-        dry_run=dry_run,
-        check=False,
-    )
-
-
 def codegraph_rules_text() -> str:
     return """# CodeGraph for Codex
 
@@ -234,24 +204,11 @@ Use CodeGraph when the current project already has a `.codegraph/` directory.
 """
 
 
-def caveman_rules_text() -> str:
-    return """# Caveman Mode for Codex
-
-Default to terse technical output.
-
-- Use compact technical fragments.
-- No filler or cheerleading.
-- Keep all required risk, blockers, commands, and verification details.
-- Expand only when the user asks for more detail or when brevity would hide important risk.
-"""
-
-
 def agents_block() -> str:
     return "\n".join(
         [
             "@/Users/monlor/.codex/RTK.md",
             "@/Users/monlor/.codex/CODEGRAPH.md",
-            "@/Users/monlor/.codex/CAVEMAN.md",
         ]
     )
 
@@ -272,7 +229,7 @@ def has_external_codegraph_config(content: str) -> bool:
 def patch_agents(*, dry_run: bool) -> None:
     backup_file(AGENTS_PATH, dry_run=dry_run)
     content = AGENTS_PATH.read_text() if AGENTS_PATH.exists() else ""
-    content = re.sub(r"^@/Users/monlor/\.codex/(RTK|CODEGRAPH|CAVEMAN)\.md\s*$\n?", "", content, flags=re.MULTILINE)
+    content = re.sub(r"^@/Users/monlor/\.codex/(RTK|CODEGRAPH)\.md\s*$\n?", "", content, flags=re.MULTILINE)
     content = upsert_block(content, AGENTS_BEGIN, AGENTS_END, agents_block())
     write_text(AGENTS_PATH, content, dry_run=dry_run)
 
@@ -283,7 +240,7 @@ def unpatch_agents(*, dry_run: bool) -> None:
     backup_file(AGENTS_PATH, dry_run=dry_run)
     content = AGENTS_PATH.read_text()
     content = strip_block(content, AGENTS_BEGIN, AGENTS_END)
-    content = re.sub(r"^@/Users/monlor/\.codex/(RTK|CODEGRAPH|CAVEMAN)\.md\s*$\n?", "", content, flags=re.MULTILINE)
+    content = re.sub(r"^@/Users/monlor/\.codex/(RTK|CODEGRAPH)\.md\s*$\n?", "", content, flags=re.MULTILINE)
     write_text(AGENTS_PATH, content, dry_run=dry_run)
 
 
@@ -310,7 +267,6 @@ def unpatch_config(*, dry_run: bool) -> None:
 
 def write_rule_files(*, dry_run: bool) -> None:
     write_text(CODEGRAPH_RULES_PATH, codegraph_rules_text(), dry_run=dry_run)
-    write_text(CAVEMAN_RULES_PATH, caveman_rules_text(), dry_run=dry_run)
 
     if shutil.which("rtk"):
         run(["rtk", "init", "--codex", "--global"], dry_run=dry_run, check=False)
@@ -322,29 +278,7 @@ def write_rule_files(*, dry_run: bool) -> None:
 
 def remove_rule_files(*, dry_run: bool) -> None:
     remove_file(CODEGRAPH_RULES_PATH, dry_run=dry_run)
-    remove_file(CAVEMAN_RULES_PATH, dry_run=dry_run)
     remove_file(RTK_RULES_PATH, dry_run=dry_run)
-
-
-def get_installed_caveman_skills() -> set[str]:
-    if not shutil.which("npx"):
-        return set()
-
-    result = subprocess.run(
-        ["npx", "-y", "skills", "ls", "-g", "--json"],
-        check=False,
-        text=True,
-        capture_output=True,
-    )
-    if result.returncode != 0:
-        return set()
-
-    try:
-        rows = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        return set()
-
-    return {row["name"] for row in rows if isinstance(row, dict) and "name" in row}
 
 
 def print_status() -> int:
@@ -360,7 +294,6 @@ def print_status() -> int:
         AGENTS_PATH,
         RTK_RULES_PATH,
         CODEGRAPH_RULES_PATH,
-        CAVEMAN_RULES_PATH,
     ):
         print(f"- {path}: {'present' if path.exists() else 'missing'}")
 
@@ -381,10 +314,6 @@ def print_status() -> int:
     print(f"- rtk install method: {state.get('rtk_install_method', 'unknown')}")
     print(f"- codegraph install method: {state.get('codegraph_install_method', 'unknown')}")
 
-    print("\nCaveman skills")
-    installed_skills = get_installed_caveman_skills()
-    for skill in CAVEMAN_SKILLS:
-        print(f"- {skill}: {'present' if skill in installed_skills else 'missing'}")
     return 0
 
 
@@ -394,7 +323,6 @@ def install(*, dry_run: bool) -> int:
     ensure_codex_baseline(dry_run=dry_run)
     ensure_rtk_installed(state, dry_run=dry_run)
     ensure_codegraph_installed(state, dry_run=dry_run)
-    install_caveman_skills(dry_run=dry_run)
     write_rule_files(dry_run=dry_run)
     patch_agents(dry_run=dry_run)
     patch_config(dry_run=dry_run)
@@ -405,7 +333,6 @@ def install(*, dry_run: bool) -> int:
 def uninstall(*, dry_run: bool) -> int:
     ensure_macos()
     state = load_state()
-    uninstall_caveman_skills(dry_run=dry_run)
     unpatch_agents(dry_run=dry_run)
     unpatch_config(dry_run=dry_run)
     remove_rule_files(dry_run=dry_run)
