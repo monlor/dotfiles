@@ -1,112 +1,132 @@
-approval_policy = "never"
-disable_response_storage = true
-model = "gpt-5.5"
-model_provider = "openai"
+model_provider = "LinkLM"
+model = "gpt-5.6-sol"
+review_model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
+disable_response_storage = true
 network_access = "enabled"
-persistent_instructions = "Follow project AGENTS.md guidelines. Use available MCP servers when they can help."
-plan_mode_reasoning_effort = "xhigh"
-review_model = "gpt-5.4"
-sandbox_mode = "danger-full-access"
-web_search = "live"
 
-approvals_reviewer = "user"
-
-personality = "pragmatic"
-
-[model_providers.9router]
-base_url = "https://9router.monlor.com/v1"
-name = "9router"
-requires_openai_auth = true
-wire_api = "responses"
-
-[model_providers.sub2api]
-name = "sub2api"
-base_url = "https://devai.bytevela.com"
+[model_providers.LinkLM]
+name = "LinkLM"
+base_url = "https://api.linklm.cc/v1"
 wire_api = "responses"
 requires_openai_auth = true
 
-[agents]
-max_depth = 1
-max_threads = 6
-
-[agents.docs_researcher]
-config_file = "agents/docs-researcher.toml"
-description = "Documentation specialist that verifies APIs, framework behavior, and release notes."
-
-[agents.explorer]
-config_file = "agents/explorer.toml"
-description = "Read-only codebase explorer for gathering evidence before changes are proposed."
-
-[agents.reviewer]
-config_file = "agents/reviewer.toml"
-description = "PR reviewer focused on correctness, security, and missing tests."
-
-[features]
-multi_agent = true
-memories = true
-terminal_resize_reflow = true
-goals = true
-prevent_idle_sleep = true
-remote_connections = true
-js_repl = false
-hooks = true
-chronicle = true
-mentions_v2 = true
-
-[marketplaces.monlor-marketplace]
+[marketplaces.ego-agent-skills]
 source_type = "git"
-source = "https://github.com/monlor/codex-marketplace"
+source = "git@github.com:citrolabs/ego-lite.git"
+ref = "main"
 
-[mcp_servers.mcphub]
-url = "https://mcp.monlor.com/mcp/codex"
-
-[plugins."rtk@monlor-marketplace"]
-enabled = true
-
-[plugins."codegraph@monlor-marketplace"]
-enabled = true
-
-[plugins."github@openai-curated"]
-enabled = true
-
-[plugins."browser@openai-bundled"]
-enabled = true
+[marketplaces.agent-skills]
+source_type = "git"
+source = "https://github.com/addyosmani/agent-skills.git"
 
 [plugins."chrome@openai-bundled"]
 enabled = true
 
-[plugins."browser-use@openai-bundled"]
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
-[profiles.strict]
-approval_policy = "on-request"
-sandbox_mode = "read-only"
-web_search = "cached"
+[plugins."remotion@openai-api-curated"]
+enabled = true
 
-[profiles.yolo]
-approval_policy = "never"
-sandbox_mode = "workspace-write"
-web_search = "live"
+[plugins."build-macos-apps@openai-api-curated"]
+enabled = true
 
-[shell_environment_policy]
-inherit = "core"
+[plugins."github@openai-api-curated"]
+enabled = true
+
+[plugins."build-web-apps@openai-api-curated"]
+enabled = true
+
+[plugins."record-and-replay@openai-bundled"]
+enabled = true
+
+[plugins."notion@openai-api-curated"]
+enabled = true
+
+[plugins."expo@openai-api-curated"]
+enabled = true
+
+[plugins."magicpath@openai-api-curated"]
+enabled = true
+
+[plugins."hyperframes@openai-api-curated"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."stripe@openai-curated"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."agent-skills@agent-skills"]
+enabled = true
+
+[features]
+goals = true
+js_repl = false
+memories = true
+chronicle = true
+
+[mcp_servers.codebase-memory-mcp]
+command = "codebase-memory-mcp"
+
+[mcp_servers.codebase-memory-mcp.tools.detect_changes]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.get_architecture]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.index_status]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.list_projects]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.search_code]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.search_graph]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.index_repository]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.trace_path]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.get_code_snippet]
+approval_mode = "approve"
+
+# Keep the graph-discovery rule visible at session start without storing local hook state.
+[[hooks.SessionStart]]
+matcher = "startup|resume|clear|compact"
+
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = 'echo "Code discovery: prefer codebase-memory-mcp (search_graph, trace_path, get_code_snippet, query_graph, search_code) over grep/file-read; run index_repository first if the project is not indexed."'
 
 [memories]
 generate_memories = true
 use_memories = true
-disable_on_external_context = false
-
-[desktop]
-conversationDetailMode = "STEPS_COMMANDS"
-ambient-suggestions-enabled = true
-keepRemoteControlAwakeWhilePluggedIn = true
-git-show-sidebar-pr-icons = true
-preventSleepWhileRunning = true
-reviewDelivery = "detached"
-
-[desktop.open-in-target-preferences]
-global = "zed"
