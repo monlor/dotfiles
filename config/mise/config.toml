@@ -3,7 +3,7 @@ go = "1.25.1"
 python = "3.13.5"
 node = "24.11.0"
 bun = "1.3.14"
-java = "corretto-17.0.19.10.1"
+java = "25.0.2"
 
 [settings]
 idiomatic_version_file_enable_tools = []

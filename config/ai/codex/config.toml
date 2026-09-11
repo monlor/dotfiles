@@ -231,3 +231,6 @@ gpt-6-astra = 4
 
 [sandbox_workspace_write]
 writable_roots = ["/Users/monlor/Library/Application Support/codex-with-chatgpt"]
+
+[projects."/Users/monlor/.dotfiles"]
+trust_level = "trusted"
