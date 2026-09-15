@@ -1,0 +1,1 @@
+Code discovery: call `list_projects`, then `search_graph` / `trace_path` / `get_code_snippet`. Those are native Pi tools. Index with `index_repository` when the repo is missing. Use grep for string literals, configs, and non-code files.

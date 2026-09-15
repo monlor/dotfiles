@@ -32,11 +32,42 @@ The following files are initialized during installation using the `cp` command (
 - `~/.secrets`              ←  `config/zsh/secrets`
 - `~/.gitconfig.user`       ←  `config/git/gitconfig.user`
 
-### 3. Files Managed via `ai-sync`
+### 3. Files Managed via `apply-ai-configs.py`
 
-The following files are updated by `ai-sync` rather than by static copy:
+`scripts/apply-ai-configs.py` links instruction files and merges portable JSON. It never overwrites API keys or tokens.
+
+Linked (force):
+
+- `~/.agents/AGENTS.md` ← `config/ai/AGENTS.md`
+- `~/.claude/CLAUDE.md` ← `config/ai/AGENTS.md`
+- `~/.claude/hooks/cbm-session-reminder`, `cbm-subagent-reminder`, `cbm-code-discovery-gate`
+- `~/.claude/agents/codebase-memory.md`, `codebase-memory-scout.md`, `codebase-memory-auditor.md`
+- `~/.claude/skills/codebase-memory` ← `config/ai/claude/skills/codebase-memory`
+- `~/.codex/AGENTS.md` and `~/.pi/agent/AGENTS.md` are copies of `config/ai/AGENTS.md`
+- `~/.config/opencode/AGENTS.md` is the OpenCode overlay plus `config/ai/AGENTS.md`
+- `~/.codex/keybindings.json`, `hooks.json`, `agents/`, `prompts/`, `git-hooks/`
+- `~/.pi/agent/APPEND_SYSTEM.md`
+- `~/.pi/agent/extensions/paseo-hooks.ts`, `extensions/model-tool-aliases.ts`, `extensions/cbmem.ts`
+
+Cloned if missing:
+
+- `~/.config/opencode/vendor/i-have-adhd` ← https://github.com/ayghri/i-have-adhd.git
+- `~/.config/opencode/.i-have-adhd-always` (always-on flag, created once)
+- Claude plugins (marketplace add + user install if `claude` is on PATH): `i-have-adhd@i-have-adhd`, `agent-skills@addy-agent-skills`, `browser-skills@ego-agent-skills`
+
+Merged (secrets preserved):
+
+- `~/.claude/settings.json`, `~/.claude/mcp.json`
+- `~/.pi/agent/settings.json`, `~/.pi/agent/mcp.json`, `~/.pi/agent/web-search.json`
+- `~/.config/opencode/opencode.json` (`plugin` lists are union-merged)
+
+Copied only if missing:
 
 - `~/.codex/config.toml`
+- `~/.pi/agent/models.json`
+
+Also still local-only (not linked):
+
 - `~/.gemini/settings.json`
 - `~/.claude.json`
 

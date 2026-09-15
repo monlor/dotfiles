@@ -91,15 +91,6 @@ enabled = true
 [plugins."agent-skills@agent-skills"]
 enabled = true
 
-[plugins."browser@openai-bundled"]
-enabled = true
-
-[plugins."chrome@openai-bundled"]
-enabled = true
-
-[plugins."computer-use@openai-bundled"]
-enabled = true
-
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
@@ -234,3 +225,30 @@ writable_roots = ["/Users/monlor/Library/Application Support/codex-with-chatgpt"
 
 [projects."/Users/monlor/.dotfiles"]
 trust_level = "trusted"
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[plugins."build-macos-apps@openai-curated"]
+enabled = true
+
+[plugins."build-web-apps@openai-curated"]
+enabled = true
+
+[plugins."build-ios-apps@openai-curated"]
+enabled = true
+
+[plugins."expo@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true

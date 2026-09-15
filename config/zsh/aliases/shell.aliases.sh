@@ -62,10 +62,10 @@ alias t="touch"
 
 if type eza >/dev/null 2>&1; then
   alias ls='eza'
-  alias ll='eza --long --header --git --group --all --icons'
-  alias tr1='eza --long --header --git --group --all --tree --level=1 --icons'
-  alias tr2='eza --long --header --git --group --all --tree --level=2 --icons'
-  alias tr3='eza --long --header --git --group --all --tree --level=3 --icons'
+  alias ll='eza --long --header --git --group --all --icons=auto'
+  alias tr1='eza --long --header --git --group --all --tree --level=1 --icons=auto'
+  alias tr2='eza --long --header --git --group --all --tree --level=2 --icons=auto'
+  alias tr3='eza --long --header --git --group --all --tree --level=3 --icons=auto'
 else
   alias ls='ls --color=auto -p'
   alias ll='ls -la'

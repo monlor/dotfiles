@@ -20,7 +20,7 @@ config/              # All configuration files
 ├── nvim/           # Neovim configuration
 ├── tmux/           # Terminal multiplexer config
 ├── scripts/        # Utility scripts linked to ~/.local/bin
-├── mcp/            # MCP (Model Context Protocol) configurations
+├── ai/             # Shared + per-harness agent configs (Codex, Claude, Pi, OpenCode)
 └── [tool]/         # Tool-specific configurations
 
 modules/            # Git submodules
