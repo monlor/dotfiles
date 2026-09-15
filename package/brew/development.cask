@@ -1,3 +1,4 @@
 cask "codex"
-cask "codex-app"
 cask "claude-code"
+cask "gemini"
+cask "google-gemini"
