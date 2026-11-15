@@ -124,10 +124,3 @@ eval "$(starship init zsh)"
 
 # load user zshrc
 [ -f ${HOME}/.zshrc.user ] && source ${HOME}/.zshrc.user
-
-
-# Added by codebase-memory-mcp install
-export PATH="/Users/monlor/.local/bin:$PATH"
-
-# OpenClaw Completion
-[ -f "/Users/monlor/.openclaw/completions/openclaw.zsh" ] && source "/Users/monlor/.openclaw/completions/openclaw.zsh"
