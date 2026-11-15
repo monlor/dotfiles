@@ -22,9 +22,8 @@ config/zsh/zshrc.zsh.user
 InjectLib
 .spec-workflow
 
-# ai control plane runtime artifacts
-config/ai/generated/*
-!config/ai/generated/.gitkeep
-config/ai/scripts/__pycache__/
+# runtime artifacts
+__pycache__/
 *.pyc
 .aider*
+skills/
