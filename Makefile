@@ -1,4 +1,4 @@
-.PHONY: install brew_dump brew_install backup restore ai_configs codex_tooling_install codex_tooling_uninstall codex_tooling_status
+.PHONY: install brew_dump brew_install backup restore
 
 # Detect system architecture (via `uname -m`)
 SYS_ARCH := $(shell uname -m)
@@ -40,18 +40,6 @@ backup:
 
 restore:
 	mackup restore
-
-ai_configs:
-	python3 ./scripts/apply-ai-configs.py
-
-codex_tooling_install:
-	./scripts/manage-codex-tooling.py install
-
-codex_tooling_uninstall:
-	./scripts/manage-codex-tooling.py uninstall
-
-codex_tooling_status:
-	./scripts/manage-codex-tooling.py status
 
 # Docker testing targets
 .PHONY: test test-fedora test-rocky test-centos test-ubuntu test-alpine test-all test-clean

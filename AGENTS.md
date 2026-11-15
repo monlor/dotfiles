@@ -20,7 +20,6 @@ config/              # All configuration files
 ├── nvim/           # Neovim configuration
 ├── tmux/           # Terminal multiplexer config
 ├── scripts/        # Utility scripts linked to ~/.local/bin
-├── ai/             # Shared + per-harness agent configs (Codex, Claude, Pi, OpenCode)
 └── [tool]/         # Tool-specific configurations
 
 modules/            # Git submodules
@@ -95,10 +94,6 @@ make backup
 mise ls                     # List installed versions
 mise install                # Install runtimes from config
 mise use -g python@3.12.3   # Set global version
-
-# MCP setup verification
-ls ~/.gemini/settings.json   # Gemini CLI config
-ai-doctor                    # Shared AI control-plane health check
 
 # kubectl krew plugin management
 kubectl krew list            # List installed plugins

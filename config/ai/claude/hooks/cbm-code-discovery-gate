@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# PreToolUse augmenter: append graph hints after Grep/Glob. Never blocks.
-BIN="${CODEBASE_MEMORY_MCP_BIN:-$HOME/.local/bin/codebase-memory-mcp}"
-[ -x "$BIN" ] || exit 0
-"$BIN" hook-augment 2>/dev/null
-exit 0

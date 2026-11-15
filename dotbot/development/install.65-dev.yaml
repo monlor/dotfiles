@@ -4,11 +4,6 @@
       force: true
       create: true
 - shell:
-    - description: Apply AI harness configs ...
-      command: python3 ./scripts/apply-ai-configs.py
-      quiet: true
-      stdout: true
-      stderr: true
     - description: Install mise ...
       command: |
         if ! which mise &> /dev/null; then
@@ -50,27 +45,6 @@
       command: |
         . ./script/load-mise.sh
         mise reshim
-      quiet: true
-      stdout: false
-      stderr: true
-    - description: Configure Codex default plugins ...
-      command: >
-        ./scripts/install-codex-plugins.py
-        superpowers
-        build-macos-apps
-        build-web-apps
-        build-ios-apps
-        expo
-      quiet: true
-      stdout: false
-      stderr: true
-    - description: Enable Codex bundled plugins ...
-      command: >
-        ./scripts/enable-codex-bundled-plugins.py
-        browser
-        browser-use
-        computer-use
-        chrome
       quiet: true
       stdout: false
       stderr: true

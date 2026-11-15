@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# SubagentStart context adapter. Fail-open: never blocks the session.
-BIN="${CODEBASE_MEMORY_MCP_BIN:-$HOME/.local/bin/codebase-memory-mcp}"
-[ -x "$BIN" ] || exit 0
-"$BIN" hook-augment 2>/dev/null
-exit 0
