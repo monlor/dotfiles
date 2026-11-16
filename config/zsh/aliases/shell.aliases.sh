@@ -14,7 +14,14 @@ if type systemctl >/dev/null 2>&1; then
   alias sstart='sudo systemctl start'
 fi
 
-alias rm='trash'
+# Bind rm to trash-cli by absolute path: macOS 26 ships /usr/bin/trash, which shadows
+# trash-cli in shells without the homebrew PATH and rejects GNU rm flags (-r/-f).
+if [[ -x "${TRASH_CLI_BIN:-}" ]]; then
+  alias rm="$TRASH_CLI_BIN"
+  alias trash="$TRASH_CLI_BIN"
+elif command -v trash >/dev/null 2>&1; then
+  alias rm='trash'
+fi
 
 # Easier navigation
 alias ..='cd ..'
